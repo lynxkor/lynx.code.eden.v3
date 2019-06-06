@@ -8,4 +8,9 @@
     <Compile Remove="Class1.cs" />
     <Compile Remove="EmptyInterface.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\..\..\..\usr\local\share\dotnet\sdk\NuGetFallbackFolder\newtonsoft.json\11.0.2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
 </Project>

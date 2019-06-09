@@ -44,7 +44,7 @@ namespace lce.engine
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<int> Update(T entity, IList<string> properties)
+        public async Task<int> Update(T entity, IList<string> properties = null)
         {
             var mdfOn = typeof(T).GetProperty("ModifiedOn");
             if (null != mdfOn) mdfOn.SetValue(entity, DateTime.Now);
@@ -64,7 +64,7 @@ namespace lce.engine
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<int> UpdateExcept(T entity, IList<string> properties)
+        public async Task<int> UpdateExcept(T entity, IList<string> properties = null)
         {
             var mdfOn = typeof(T).GetProperty("ModifiedOn");
             if (null != mdfOn) mdfOn.SetValue(entity, DateTime.Now);
@@ -80,6 +80,16 @@ namespace lce.engine
                 });
             }
             return await _context.SaveChangesAsync();
+        }
+
+
+        public async Task<int> Save(T entity)
+        {
+            if (entity.Id != 0)
+            {
+                return await Update(entity, null);
+            }
+            return await Add(entity);
         }
 
         public async Task<int> Delete(T entity)

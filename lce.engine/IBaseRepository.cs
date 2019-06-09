@@ -48,6 +48,8 @@ namespace lce.engine
         /// <returns></returns>
         Task<int> UpdateExcept(T entity, IList<string> properties = null);
 
+        Task<int> Save(T entity);
+
         /// <summary>
         /// delete entity
         /// </summary>

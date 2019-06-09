@@ -46,6 +46,13 @@ namespace lce.engine
         Task<int> UpdateExcept(T entity, IList<string> properties = null);
 
         /// <summary>
+        /// 保存实体，如果存在刚更新
+        /// </summary>
+        /// <returns>The save.</returns>
+        /// <param name="entity">Entity.</param>
+        Task<int> Save(T entity);
+
+        /// <summary>
         /// delete entity
         /// </summary>
         /// <param name="entity"></param>

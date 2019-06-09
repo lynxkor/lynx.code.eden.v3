@@ -32,6 +32,21 @@ namespace lce.engine
             return await _repository.Add(entity);
         }
 
+        public async Task<int> Update(T entity, IList<string> properties = null)
+        {
+            return await _repository.Update(entity, properties);
+        }
+
+        public async Task<int> UpdateExcept(T entity, IList<string> properties = null)
+        {
+            return await _repository.UpdateExcept(entity, properties);
+        }
+
+        public async Task<int> Save(T entity)
+        {
+            return await _repository.Save(entity);
+        }
+
         public async Task<int> Delete(T entity)
         {
             return await _repository.Delete(entity);
@@ -55,16 +70,6 @@ namespace lce.engine
         public async Task<IList<T>> FindList(int page, int size, Expression<Func<T, bool>> predicate, IList<OrderParam> orders)
         {
             return await _repository.FindList(page, size, predicate, orders);
-        }
-
-        public async Task<int> Update(T entity, IList<string> properties)
-        {
-            return await _repository.Update(entity, properties);
-        }
-
-        public async Task<int> UpdateExcept(T entity, IList<string> properties)
-        {
-            return await _repository.UpdateExcept(entity, properties);
         }
     }
 }

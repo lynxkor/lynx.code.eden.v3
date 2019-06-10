@@ -22,6 +22,11 @@ namespace lce.engine
         public string Name { get; set; } = string.Empty;
 
         /// <summary>
+        /// 状态：0:正常；1:禁用
+        /// </summary>
+        public int State { get; set; } = 0;
+
+        /// <summary>
         /// 创建人
         /// </summary>
         public int CreatedBy { get; set; } = 0;

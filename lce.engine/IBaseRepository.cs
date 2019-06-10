@@ -51,6 +51,13 @@ namespace lce.engine
         Task<int> Save(T entity);
 
         /// <summary>
+        /// 禁用数据,表中必须有State字段
+        /// </summary>
+        /// <returns>The delete.</returns>
+        /// <param name="id">Identifier.</param>
+        Task<int> Delete(int id);
+
+        /// <summary>
         /// delete entity
         /// </summary>
         /// <param name="entity"></param>

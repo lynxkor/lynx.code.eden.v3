@@ -47,6 +47,16 @@ namespace lce.engine
             return await _repository.Save(entity);
         }
 
+        /// <summary>
+        /// 禁用数据,表中必须有State字段
+        /// </summary>
+        /// <returns>The delete.</returns>
+        /// <param name="id">Identifier.</param>
+        public async Task<int> Delete(int id)
+        {
+            return await _repository.Delete(id);
+        }
+
         public async Task<int> Delete(T entity)
         {
             return await _repository.Delete(entity);

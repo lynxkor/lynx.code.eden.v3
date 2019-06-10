@@ -92,6 +92,17 @@ namespace lce.engine
             return await Add(entity);
         }
 
+        public async Task<int> Delete(int id)
+        {
+            var entity = Find(x => x.Id == id).Result;
+            if (null != entity)
+            {
+                entity.State = 1;
+                return await Update(entity, new string[] { "State" });
+            }
+            throw new NullReferenceException("数据不存在");
+        }
+
         public async Task<int> Delete(T entity)
         {
             _context.Set<T>().Attach(entity);

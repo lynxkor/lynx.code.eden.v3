@@ -53,6 +53,7 @@ namespace lce.engine
             {
                 var modify = _context.Entry(entity);
                 properties.ToList().ForEach(p => modify.Property(p).IsModified = true);
+                modify.Property("ModifiedBy").IsModified = true;
                 modify.Property("ModifiedOn").IsModified = true;
             }
             else

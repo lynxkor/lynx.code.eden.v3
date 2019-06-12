@@ -72,6 +72,11 @@ namespace lce.engine
             return await _repository.Find(predicate);
         }
 
+        public async Task<IList<T>> FindList(Expression<Func<T, bool>> predicate, OrderParam order = null)
+        {
+            return await _repository.FindList(predicate, order == null ? null : new OrderParam[] { order });
+        }
+
         public async Task<IList<T>> FindList(Expression<Func<T, bool>> predicate, IList<OrderParam> orders)
         {
             return await _repository.FindList(predicate, orders);

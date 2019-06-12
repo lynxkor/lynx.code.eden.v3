@@ -80,13 +80,15 @@ namespace lce.engine
         /// <returns></returns>
         Task<T> Find(Expression<Func<T, bool>> predicate);
 
+        Task<IList<T>> FindList(Expression<Func<T, bool>> predicate, OrderParam order = null);
+
         /// <summary>
         /// list all.
         /// </summary>
         /// <param name="predicate">条件</param>
         /// <param name="orders">排序字段</param>
         /// <returns></returns>
-        Task<IList<T>> FindList(Expression<Func<T, bool>> predicate, IList<OrderParam> orders = null);
+        Task<IList<T>> FindList(Expression<Func<T, bool>> predicate, IList<OrderParam> orders);
 
         /// <summary>
         /// page list.

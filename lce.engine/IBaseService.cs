@@ -91,6 +91,15 @@ namespace lce.engine
         Task<IList<T>> FindList(Expression<Func<T, bool>> predicate, IList<OrderParam> orders);
 
         /// <summary>
+        /// Finds the list.
+        /// </summary>
+        /// <returns>The list.</returns>
+        /// <param name="page">Page.</param>
+        /// <param name="size">Size.</param>
+        /// <param name="predicate">Predicate.</param>
+        /// <param name="order">Order.</param>
+        Task<IList<T>> FindList(int page, int size, Expression<Func<T, bool>> predicate, OrderParam order = null);
+        /// <summary>
         /// page list.
         /// </summary>
         /// <param name="page">页码</param>
@@ -98,7 +107,7 @@ namespace lce.engine
         /// <param name="predicate">条件</param>
         /// <param name="orders">排序字段</param>
         /// <returns></returns>
-        Task<IList<T>> FindList(int page, int size, Expression<Func<T, bool>> predicate, IList<OrderParam> orders = null);
+        Task<IList<T>> FindList(int page, int size, Expression<Func<T, bool>> predicate, IList<OrderParam> orders);
 
     }
 }

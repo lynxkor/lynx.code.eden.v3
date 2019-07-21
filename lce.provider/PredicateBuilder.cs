@@ -12,22 +12,25 @@ using System.Linq.Expressions;
 
 namespace lce.provider
 {
+    /// <summary>
+    /// lambda包装器
+    /// </summary>
     public static class PredicateBuilder
     {
         /// <summary>
-        /// 
+        /// True
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         public static Expression<Func<T, bool>> True<T>() { return f => true; }
         /// <summary>
-        /// 
+        /// False
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         public static Expression<Func<T, bool>> False<T>() { return f => false; }
         /// <summary>
-        /// 
+        /// Left And Right
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="left"></param>
@@ -39,7 +42,7 @@ namespace lce.provider
             return Expression.Lambda<Func<T, bool>>(Expression.AndAlso(left.Body, invoked), left.Parameters);
         }
         /// <summary>
-        /// 
+        /// Left Or Right
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="left"></param>

@@ -17,7 +17,13 @@ namespace lce.provider
 {
     public static class SMSHelper
     {
-
+        /// <summary>
+        /// 发送短信 Aliyun.SMS
+        /// </summary>
+        /// <param name="phones">手机号 ,分割</param>
+        /// <param name="content">信息内容</param>
+        /// <param name="signName">签名</param>
+        /// <param name="templateCode">模板ID</param>
         public static void Send(string phones, object content, string signName = "壹途", string templateCode = "SMS_162730288")
         {
             IClientProfile profile = DefaultProfile.GetProfile("default", "osMT0gwEJx32AUom", "L9pIDvNwV56Rlq07oZDrFI3OaPLeXg");

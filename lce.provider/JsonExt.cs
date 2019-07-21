@@ -11,6 +11,9 @@ using Newtonsoft.Json.Serialization;
 
 namespace lce.provider
 {
+    /// <summary>
+    /// JsonExt
+    /// </summary>
     public static class JsonExt
     {
         /// <summary>

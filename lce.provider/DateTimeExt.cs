@@ -14,6 +14,11 @@ namespace lce.provider
     /// </summary>
     public static class DateTimeExt
     {
+        /// <summary>
+        /// string2datetime
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
         public static DateTime ToDateTime(this string input)
         {
             try

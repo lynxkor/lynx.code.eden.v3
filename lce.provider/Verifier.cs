@@ -11,6 +11,9 @@ using System.Text.RegularExpressions;
 
 namespace lce.provider
 {
+    /// <summary>
+    /// Verifier
+    /// </summary>
     public static class Verifier
     {
         /// <summary>
@@ -44,6 +47,12 @@ namespace lce.provider
                     return DateTime.Now;
             }
         }
+        /// <summary>
+        /// 反回指定格式的日期字符串
+        /// </summary>
+        /// <param name="Value"></param>
+        /// <param name="format"></param>
+        /// <returns></returns>
         public static string VerifyDateTime(this object Value, string format)
         {
             return Value.VerifyDateTime().ToString(format);

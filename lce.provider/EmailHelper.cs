@@ -9,6 +9,9 @@
 using System;
 namespace lce.provider
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public static class EmailHelper
     {
         /// <summary>

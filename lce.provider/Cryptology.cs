@@ -24,12 +24,8 @@ namespace lce.provider
         /// <param name="input">Input.</param>
         public static string ToMd5(this string input)
         {
-            using (var provider = MD5.Create())
-            {
-                return BitConverter.ToString(
-                    provider.ComputeHash(Encoding.UTF8.GetBytes(input))
-                    ).Replace("-", "").ToUpper();
-            }
+            using var provider = MD5.Create();
+            return BitConverter.ToString(provider.ComputeHash(Encoding.UTF8.GetBytes(input))).Replace("-", "").ToUpper();
         }
 
         /// <summary>
@@ -52,13 +48,18 @@ namespace lce.provider
             if (useLow) dic += "abcdefghijklmnopqrstuvwxyz";
             if (useUpp) dic += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             if (useSpe) dic += "!\\\"#$%&'()*+,-./:;<=>?@[\\\\]^_`{|}~";
+            var dicLength = dic.Length - 1;
             for (int i = 0; i < lenght; i++)
             {
-                code += dic.Substring(r.Next(0, dic.Length - 1), 1);
+                code += dic.Substring(r.Next(0, dicLength), 1);
             }
             return code;
         }
 
+        /// <summary>
+        /// GUID CODE WITHOUT '-'
+        /// </summary>
+        /// <returns></returns>
         public static string Code()
         {
             var code = Guid.NewGuid();

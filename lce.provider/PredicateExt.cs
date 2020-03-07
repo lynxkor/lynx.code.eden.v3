@@ -1,13 +1,13 @@
-﻿// action：lambda PredicateBuilder
-// file name：lce.provider.PredicateBuilder.cs
+﻿// action：lambda PredicateExt
+// file name：lce.provider.PredicateExt.cs
 // author：lynx lynx.kor@163.com @ 2019/6/5 23:01
 // copyright (c) 2019 lynxce.com
+// > add description for PredicateExt
 // desc：what can you use this.
 // var where = PredicateBuilder.True<model>();
 // or where = PredicateBuilder.False<model>();
 // where = where.And(x=>x.feild1 == value1);
 // where = where.Or(x=>x.feild2 == value2);
-// > add description for PredicateBuilder
 // revision：
 //
 using System;
@@ -19,7 +19,7 @@ namespace lce.provider
     /// <summary>
     /// lambda包装器
     /// </summary>
-    public static class PredicateBuilder
+    public static class PredicateExt
     {
         /// <summary>
         /// True

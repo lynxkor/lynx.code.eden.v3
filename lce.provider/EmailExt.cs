@@ -1,9 +1,9 @@
 ﻿// action：
-// file name：${namespace}.EmailHelper.cs
+// file name：lce.provider.EmailExt.cs
 // author：lynx lynx.kor@163.com @ 2019/6/5 23:15
 // copyright (c) 2019 lynxce.com
 // desc：
-// > add description for EmailHelper
+// > add description for EmailExt
 // revision：
 //
 using System;
@@ -12,7 +12,7 @@ namespace lce.provider
     /// <summary>
     /// 
     /// </summary>
-    public static class EmailHelper
+    public static class EmailExt
     {
         /// <summary>
         /// 发送邮件

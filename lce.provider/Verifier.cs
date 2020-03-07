@@ -73,7 +73,7 @@ namespace lce.provider
                 {
                     if (Value.ToString() == "")
                         return 0;
-                    return Int64.Parse(Value.ToString());
+                    return long.Parse(Value.ToString());
                 }
                 else
                     return 0;
@@ -94,7 +94,7 @@ namespace lce.provider
                 {
                     if (Value.ToString() == "")
                         return 0;
-                    return Int16.Parse(Value.ToString());
+                    return short.Parse(Value.ToString());
                 }
                 else
                     return 0;
@@ -121,11 +121,11 @@ namespace lce.provider
                         return 0;
                     try
                     {
-                        return System.Convert.ToInt32(Value);
+                        return Convert.ToInt32(Value);
                     }
                     catch
                     {
-                        return Int32.Parse(Value.ToString());
+                        return int.Parse(Value.ToString());
                     }
 
                 }
@@ -171,7 +171,7 @@ namespace lce.provider
                     if (Value.ToString() == "1")
                         return true;
 
-                    return Boolean.Parse(Value.ToString());
+                    return bool.Parse(Value.ToString());
                 }
                 else
                     return false;
@@ -192,7 +192,7 @@ namespace lce.provider
                 {
                     if (Value.ToString() == "")
                         return 0;
-                    return System.Double.Parse(Value.ToString());
+                    return double.Parse(Value.ToString());
                 }
                 else
                     return 0;
@@ -213,7 +213,7 @@ namespace lce.provider
                 {
                     if (Value.ToString() == "")
                         return 0;
-                    return System.Single.Parse(Value.ToString());
+                    return float.Parse(Value.ToString());
                 }
                 else
                     return 0;
@@ -234,7 +234,7 @@ namespace lce.provider
                 {
                     if (Value.ToString() == "")
                         return 0;
-                    return System.Decimal.Parse(Value.ToString());
+                    return decimal.Parse(Value.ToString());
                 }
                 else
                     return 0;
@@ -247,7 +247,7 @@ namespace lce.provider
         /// <returns>合法字节返回传入值,非法字节返回零</returns>
         public static byte VerifyByte(this object Value)
         {
-            if (System.DBNull.Value.Equals(Value))
+            if (DBNull.Value.Equals(Value))
                 return 0;
             else
             {

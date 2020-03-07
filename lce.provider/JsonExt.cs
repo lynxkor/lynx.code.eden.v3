@@ -49,7 +49,7 @@ namespace lce.provider
             }
             catch
             {
-                return default(T);
+                return default;
             }
         }
     }

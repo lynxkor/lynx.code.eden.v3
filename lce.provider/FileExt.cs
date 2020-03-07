@@ -42,8 +42,8 @@ namespace lce.provider
         /// <param name="fileName">File name.</param>
         public static string GetMimeType(string fileName)
         {
-            var mimeType = string.Empty;
             var ext = System.IO.Path.GetExtension(fileName.ToLower());
+            string mimeType;
             switch (ext)
             {
                 case ".doc":

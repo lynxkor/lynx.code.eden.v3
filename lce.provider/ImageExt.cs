@@ -23,29 +23,20 @@ namespace lce.provider
         /// <param name="code">Code.</param>
         public static MemoryStream Captcha(string code)
         {
-            Bitmap Img = null;
-            Graphics g = null;
-            MemoryStream ms = null;
             Random random = new Random();
             //验证码颜色集合  
             Color[] c = { Color.Black, Color.Red, Color.DarkBlue, Color.Green, Color.Orange, Color.Brown, Color.DarkCyan, Color.Purple };
-
             //验证码字体集合
             string[] fonts = { "Verdana", "Microsoft Sans Serif", "Comic Sans MS", "Arial", "宋体" };
-
-
             //定义图像的大小，生成图像的实例  
-            Img = new Bitmap((int)code.Length * 16, 32);
-
-            g = Graphics.FromImage(Img);//从Img对象生成新的Graphics对象    
-
+            var img = new Bitmap(code.Length * 16, 32);
+            var g = Graphics.FromImage(img);
             g.Clear(Color.White);//背景设为白色  
-
             //在随机位置画背景点  
             for (int i = 0; i < 100; i++)
             {
-                int x = random.Next(Img.Width);
-                int y = random.Next(Img.Height);
+                int x = random.Next(img.Width);
+                int y = random.Next(img.Height);
                 g.DrawRectangle(new Pen(Color.LightGray, 0), x, y, 1, 1);
             }
             //验证码绘制在g中 
@@ -62,12 +53,11 @@ namespace lce.provider
                 }
                 g.DrawString(code.Substring(i, 1), f, b, 3 + (i * 12), ii);//绘制一个验证字符  
             }
-            ms = new MemoryStream();//生成内存流对象  
-            Img.Save(ms, ImageFormat.Png);//将此图像以Png图像文件的格式保存到流中  
-
+            var ms = new MemoryStream();
+            img.Save(ms, ImageFormat.Png);//将此图像以Png图像文件的格式保存到流中  
             //回收资源  
             g.Dispose();
-            Img.Dispose();
+            img.Dispose();
             return ms;
         }
 

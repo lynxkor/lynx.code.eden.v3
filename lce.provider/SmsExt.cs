@@ -1,13 +1,12 @@
 ﻿// action：
-// file name：${namespace}.SMSHelper.cs
+// file name：lce.provider.SmsExt.cs
 // author：lynx lynx.kor@163.com @ 2019/6/7 15:27
 // copyright (c) 2019 lynxce.com
 // desc：
-// > add description for SMSHelper
+// > add description for SmsExt
 // revision：
 //
 using System;
-using System.Threading.Tasks;
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Exceptions;
 using Aliyun.Acs.Core.Http;
@@ -15,7 +14,7 @@ using Aliyun.Acs.Core.Profile;
 
 namespace lce.provider
 {
-    public static class SMSHelper
+    public static class SmsExt
     {
         /// <summary>
         /// 发送短信 Aliyun.SMS

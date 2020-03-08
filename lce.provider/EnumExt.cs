@@ -36,7 +36,6 @@ namespace lce.provider
         /// <summary>
         /// 获取枚举类型的数据字典
         /// </summary>
-        /// <param name="enum">枚举类型</param>
         /// <returns></returns>
         public static Dictionary<string, int> List<T>()
         {

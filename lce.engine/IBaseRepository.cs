@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace lce.engine
 {
     /// <summary>
-    /// Base repository.
+    /// Base repository interface.
     /// </summary>
     public interface IBaseRepository<T> where T : IEntity
     {
@@ -48,6 +48,11 @@ namespace lce.engine
         /// <returns></returns>
         Task<int> UpdateExcept(T entity, IList<string> properties = null);
 
+        /// <summary>
+        /// 保存，根据entity.id=0判断为新增，否则为更新
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         Task<int> Save(T entity);
 
         /// <summary>
@@ -55,6 +60,22 @@ namespace lce.engine
         /// </summary>
         /// <returns>The delete.</returns>
         /// <param name="id">Identifier.</param>
+        /// <param name="disable"></param>
+        Task<int> State(int id, bool disable = true);
+
+        /// <summary>
+        /// 禁用数据,表中必须有State字段
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="disable"></param>
+        /// <returns></returns>
+        Task<int> State(T entity, bool disable = true);
+
+        /// <summary>
+        /// delete entity.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         Task<int> Delete(int id);
 
         /// <summary>
@@ -65,7 +86,7 @@ namespace lce.engine
         Task<int> Delete(T entity);
 
         /// <summary>
-        /// delete batch
+        /// delete batch.
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>
@@ -84,7 +105,7 @@ namespace lce.engine
         /// <param name="predicate">条件</param>
         /// <param name="orders">排序字段</param>
         /// <returns></returns>
-        Task<IList<T>> FindList(Expression<Func<T, bool>> predicate, IList<OrderParam> orders = null);
+        Task<IList<T>> List(Expression<Func<T, bool>> predicate, Dictionary<string, bool> orders = null);
 
         /// <summary>
         /// page list.
@@ -94,7 +115,7 @@ namespace lce.engine
         /// <param name="predicate">条件</param>
         /// <param name="orders">排序字段</param>
         /// <returns></returns>
-        Task<IList<T>> FindList(int page, int size, Expression<Func<T, bool>> predicate, IList<OrderParam> orders = null);
+        Task<IList<T>> List(int page, int size, Expression<Func<T, bool>> predicate, Dictionary<string, bool> orders = null);
 
     }
 }

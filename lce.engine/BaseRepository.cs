@@ -21,17 +21,28 @@ namespace lce.engine
     public class BaseRepository<T> : IBaseRepository<T> where T : IEntity
     {
         readonly DbContext _context;
-
+        readonly DbSet<T> _dbSet;
+        /// <summary>
+        /// </summary>
+        /// <param name="context"></param>
         public BaseRepository(DbContext context)
         {
             _context = context;
+            _dbSet = _context.Set<T>();
         }
 
-        public async Task<int> Count(Expression<Func<T, bool>> predicate = null)
-        {
-            return await _context.Set<T>().CountAsync(predicate);
-        }
+        /// <summary>
+        /// count entity records.
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        public async Task<int> Count(Expression<Func<T, bool>> predicate = null) => await _dbSet.CountAsync(predicate);
 
+        /// <summary>
+        /// add entity.
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         public async Task<int> Add(T entity)
         {
             var crtOn = typeof(T).GetProperty("CreatedOn");
@@ -40,10 +51,16 @@ namespace lce.engine
             var mdfOn = typeof(T).GetProperty("ModifiedOn");
             if (null != mdfOn) mdfOn.SetValue(entity, DateTime.Now);
 
-            _context.Set<T>().Add(entity);
+            _dbSet.Add(entity);
             return await _context.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// update entity./update entity's properties
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="properties">null则更新所有字段，NOT NULL则更新指定字段</param>
+        /// <returns></returns>
         public async Task<int> Update(T entity, IList<string> properties = null)
         {
             var mdfOn = typeof(T).GetProperty("ModifiedOn");
@@ -65,6 +82,12 @@ namespace lce.engine
             return await _context.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// update entity except properties list
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="properties">NULL则更新时不排除字段，NOT NULL则更新指定字段以外的</param>
+        /// <returns></returns>
         public async Task<int> UpdateExcept(T entity, IList<string> properties = null)
         {
             var mdfOn = typeof(T).GetProperty("ModifiedOn");
@@ -83,7 +106,11 @@ namespace lce.engine
             return await _context.SaveChangesAsync();
         }
 
-
+        /// <summary>
+        /// 保存，根据entity.id=0判断为新增，否则为更新
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         public async Task<int> Save(T entity)
         {
             if (entity.Id != 0)
@@ -93,17 +120,55 @@ namespace lce.engine
             return await Add(entity);
         }
 
-        public async Task<int> Delete(int id)
+        /// <summary>
+        /// 禁用数据,表中必须有State字段
+        /// </summary>
+        /// <returns>The delete.</returns>
+        /// <param name="id">Identifier.</param>
+        /// <param name="disable"></param>
+        public async Task<int> State(int id, bool disable = true)
         {
             var entity = Find(x => x.Id == id).Result;
             if (null != entity)
             {
-                entity.State = 1;
+                entity.State = disable ? 1 : 0;
                 return await Update(entity, new string[] { "State" });
             }
             throw new NullReferenceException("数据不存在");
         }
 
+        /// <summary>
+        /// 禁用数据,表中必须有State字段
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="disable"></param>
+        /// <returns></returns>
+        public async Task<int> State(T entity, bool disable = true)
+        {
+            entity.State = disable ? 1 : 0;
+            return await Update(entity, new string[] { "State" });
+        }
+
+        /// <summary>
+        /// delete entity.
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<int> Delete(int id)
+        {
+            var entity = Find(x => x.Id == id).Result;
+            if (null != entity)
+            {
+                return await Delete(entity);
+            }
+            throw new NullReferenceException("数据不存在");
+        }
+
+        /// <summary>
+        /// delete entity.
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
         public async Task<int> Delete(T entity)
         {
             _context.Set<T>().Attach(entity);
@@ -111,6 +176,11 @@ namespace lce.engine
             return await _context.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// delete batch.
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
         public async Task<int> Delete(Expression<Func<T, bool>> predicate)
         {
             var list = _context.Set<T>().Where(predicate).ToList();
@@ -122,32 +192,51 @@ namespace lce.engine
             return await _context.SaveChangesAsync();
         }
 
+        /// <summary>
+        /// find.
+        /// </summary>
+        /// <param name="predicate">条件</param>
+        /// <returns></returns>
         public async Task<T> Find(Expression<Func<T, bool>> predicate)
         {
             return await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(predicate);
         }
 
-        public async Task<IList<T>> FindList(Expression<Func<T, bool>> predicate, IList<OrderParam> orders)
+        /// <summary>
+        /// list all.
+        /// </summary>
+        /// <param name="predicate">条件</param>
+        /// <param name="orders">排序字段</param>
+        /// <returns></returns>
+        public async Task<IList<T>> List(Expression<Func<T, bool>> predicate, Dictionary<string, bool> orders)
         {
             var list = _context.Set<T>().AsNoTracking().Where(predicate).AsQueryable();
             if (null != orders)
             {
                 foreach (var order in orders)
                 {
-                    list = OrderBy(list, order.Field, order.IsAsc);
+                    list = OrderBy(list, order.Key, order.Value);
                 }
             }
             return await list.ToListAsync();
         }
 
-        public async Task<IList<T>> FindList(int page, int size, Expression<Func<T, bool>> predicate, IList<OrderParam> orders)
+        /// <summary>
+        /// page list.
+        /// </summary>
+        /// <param name="page">页码</param>
+        /// <param name="size">页阀</param>
+        /// <param name="predicate">条件</param>
+        /// <param name="orders">排序字段</param>
+        /// <returns></returns>
+        public async Task<IList<T>> List(int page, int size, Expression<Func<T, bool>> predicate, Dictionary<string, bool> orders)
         {
             var list = _context.Set<T>().AsNoTracking().Where(predicate).AsQueryable();
             if (null != orders)
             {
                 foreach (var order in orders)
                 {
-                    list = OrderBy(list, order.Field, order.IsAsc);
+                    list = OrderBy(list, order.Key, order.Value);
                 }
             }
             else
@@ -158,7 +247,7 @@ namespace lce.engine
         }
 
         /// <summary>
-        ///  排序扩展
+        /// 排序扩展
         /// </summary>
         /// <param name="source"></param>
         /// <param name="propertyName"></param>

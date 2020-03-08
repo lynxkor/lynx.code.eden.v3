@@ -12,6 +12,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace lce.engine
 {
+    /// <summary>
+    /// base entity
+    /// </summary>
     public class IEntity
     {
         /// <summary>

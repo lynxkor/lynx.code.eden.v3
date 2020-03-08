@@ -14,6 +14,9 @@ using System.IO;
 
 namespace lce.provider
 {
+    /// <summary>
+    /// 图片扩展类
+    /// </summary>
     public static class ImageExt
     {
         /// <summary>

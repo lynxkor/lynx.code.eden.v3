@@ -14,6 +14,9 @@ using Aliyun.Acs.Core.Profile;
 
 namespace lce.provider
 {
+    /// <summary>
+    /// 短信扩展类
+    /// </summary>
     public static class SmsExt
     {
         /// <summary>

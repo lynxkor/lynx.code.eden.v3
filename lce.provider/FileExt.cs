@@ -9,6 +9,9 @@
 
 namespace lce.provider
 {
+    /// <summary>
+    /// 文件扩展类
+    /// </summary>
     public static class FileExt
     {
         /// <summary>

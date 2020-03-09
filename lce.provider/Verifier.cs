@@ -1,11 +1,12 @@
-﻿// action：
-// file name：${namespace}.Verifier.cs
-// author：lynx lynx.kor@163.com @ 2019/6/12 16:08
-// copyright (c) 2019 Copyright@lynxce.com
-// desc：
-// > add description for Verifier
-// revision：
-//
+﻿/* file name：lce.provider.Verifier.cs
+ * author：lynx lynx.kor@163.com @ 2019/6/12 16:08
+ * copyright (c) 2019 Copyright@lynxce.com
+ * desc：
+ * > add description for Verifier
+ * revision：
+ *
+ */
+
 using System;
 using System.Text.RegularExpressions;
 
@@ -47,10 +48,11 @@ namespace lce.provider
                     return DateTime.Now;
             }
         }
+
         /// <summary>
         /// 反回指定格式的日期字符串
         /// </summary>
-        /// <param name="Value"></param>
+        /// <param name="Value"> </param>
         /// <param name="format"></param>
         /// <returns></returns>
         public static string VerifyDateTime(this object Value, string format)
@@ -79,6 +81,7 @@ namespace lce.provider
                     return 0;
             }
         }
+
         /// <summary>
         /// 校验是否为短整型格式
         /// </summary>
@@ -100,6 +103,7 @@ namespace lce.provider
                     return 0;
             }
         }
+
         /// <summary>
         /// 校验是否为整型格式
         /// </summary>
@@ -127,12 +131,12 @@ namespace lce.provider
                     {
                         return int.Parse(Value.ToString());
                     }
-
                 }
                 else
                     return 0;
             }
         }
+
         /// <summary>
         /// 校验是否为字符串
         /// </summary>
@@ -150,6 +154,7 @@ namespace lce.provider
                     return "";
             }
         }
+
         /// <summary>
         /// 校验布尔值
         /// </summary>
@@ -177,6 +182,7 @@ namespace lce.provider
                     return false;
             }
         }
+
         /// <summary>
         /// 校验是否为double型格式
         /// </summary>
@@ -198,6 +204,7 @@ namespace lce.provider
                     return 0;
             }
         }
+
         /// <summary>
         /// 校验是否为single型格式
         /// </summary>
@@ -219,6 +226,7 @@ namespace lce.provider
                     return 0;
             }
         }
+
         /// <summary>
         /// 校验是否为Decimal型格式
         /// </summary>
@@ -240,6 +248,7 @@ namespace lce.provider
                     return 0;
             }
         }
+
         /// <summary>
         /// 校验是否为字节格式
         /// </summary>

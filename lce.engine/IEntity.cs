@@ -1,11 +1,12 @@
-﻿// action：
-// file name： IEntity.cs
-// author：lynx <lynx.kor@163.com> @ 2019/6/5 11:09
-// copyright (c) 2019 lynxce.com
-// desc：
-// > add description for IEntity
-// revision：
-// //
+﻿/* file name： IEntity.cs
+ * author：lynx <lynx.kor@163.com> @ 2019/6/5 11:09
+ * copyright (c) 2019 lynxce.com
+ * desc：
+ * > add description for IEntity
+ * revision：
+ *
+ */
+
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;

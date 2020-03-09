@@ -1,12 +1,14 @@
-﻿// action：
-// file name：${namespace}.DateTimeExt.cs
-// author：lynx lynx.kor@163.com @ 2019/6/5 23:25
-// copyright (c) 2019 lynxce.com
-// desc：
-// > add description for DateTimeExt
-// revision：
-//
+﻿/* file name：lce.provider.DateTimeExt.cs
+ * author：lynx lynx.kor@163.com @ 2019/6/5 23:25
+ * copyright (c) 2019 lynxce.com
+ * desc：
+ * > add description for DateTimeExt
+ * revision：
+ *
+ */
+
 using System;
+
 namespace lce.provider
 {
     /// <summary>
@@ -30,6 +32,7 @@ namespace lce.provider
                 return DateTime.Now;
             }
         }
+
         /// <summary>
         /// 取得某月的第一天
         /// </summary>
@@ -116,10 +119,10 @@ namespace lce.provider
         /// <summary>
         /// 根据日期和类型返回对应的开始时间和结束时间
         /// </summary>
-        /// <param name="type">类型：日、周、月、季、年</param>
-        /// <param name="date">日期</param>
+        /// <param name="type">     类型：日、周、月、季、年</param>
+        /// <param name="date">     日期</param>
         /// <param name="startDate">开始时间 yyyy-MM-dd 00:00:00</param>
-        /// <param name="endDate">结束时间 yyyy-MM-dd 23:59:59</param>
+        /// <param name="endDate">  结束时间 yyyy-MM-dd 23:59:59</param>
         public static void SwitchType4Date(this DateTime date, int type, out DateTime startDate, out DateTime endDate)
         {
             switch (type)
@@ -128,18 +131,22 @@ namespace lce.provider
                     startDate = date.WeekFirstDay();
                     endDate = startDate.WeekLastDay();
                     break;
+
                 case 3://月
                     startDate = date.MonthFirstDay();
                     endDate = startDate.MonthLastDay();
                     break;
+
                 case 4://季
                     startDate = date.QuarterFirstDay();
                     endDate = startDate.QuarterLastDay();
                     break;
+
                 case 5://年
                     startDate = date.YearFirstDay();
                     endDate = startDate.YearLastDay();
                     break;
+
                 case 1://日
                 default://默认
                     startDate = date.Date;

@@ -1,11 +1,12 @@
-﻿// action：
-// file name：lce.engine.BaseRepository.cs
-// author：lynx lynx.kor@163.com @ 2019/6/5 12:40
-// copyright (c) 2019 lynxce.com
-// desc：
-// > add description for BaseRepository
-// revision：
-//
+﻿/* file name：lce.engine.BaseRepository.cs
+ * author：lynx lynx.kor@163.com @ 2019/6/5 12:40
+ * copyright (c) 2019 lynxce.com
+ * desc：
+ * > add description for BaseRepository
+ * revision：
+ *
+ */
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +21,9 @@ namespace lce.engine
     /// </summary>
     public class BaseRepository<T> : IBaseRepository<T> where T : IEntity
     {
-        readonly DbContext _context;
-        readonly DbSet<T> _dbSet;
+        private readonly DbContext _context;
+        private readonly DbSet<T> _dbSet;
+
         /// <summary>
         /// </summary>
         /// <param name="context"></param>
@@ -58,7 +60,7 @@ namespace lce.engine
         /// <summary>
         /// update entity./update entity's properties
         /// </summary>
-        /// <param name="entity"></param>
+        /// <param name="entity">    </param>
         /// <param name="properties">null则更新所有字段，NOT NULL则更新指定字段</param>
         /// <returns></returns>
         public async Task<int> Update(T entity, IList<string> properties = null)
@@ -85,7 +87,7 @@ namespace lce.engine
         /// <summary>
         /// update entity except properties list
         /// </summary>
-        /// <param name="entity"></param>
+        /// <param name="entity">    </param>
         /// <param name="properties">NULL则更新时不排除字段，NOT NULL则更新指定字段以外的</param>
         /// <returns></returns>
         public async Task<int> UpdateExcept(T entity, IList<string> properties = null)
@@ -124,7 +126,7 @@ namespace lce.engine
         /// 禁用数据,表中必须有State字段
         /// </summary>
         /// <returns>The delete.</returns>
-        /// <param name="id">Identifier.</param>
+        /// <param name="id">     Identifier.</param>
         /// <param name="disable"></param>
         public async Task<int> State(int id, bool disable = true)
         {
@@ -140,7 +142,7 @@ namespace lce.engine
         /// <summary>
         /// 禁用数据,表中必须有State字段
         /// </summary>
-        /// <param name="entity"></param>
+        /// <param name="entity"> </param>
         /// <param name="disable"></param>
         /// <returns></returns>
         public async Task<int> State(T entity, bool disable = true)
@@ -206,7 +208,7 @@ namespace lce.engine
         /// list all.
         /// </summary>
         /// <param name="predicate">条件</param>
-        /// <param name="orders">排序字段</param>
+        /// <param name="orders">   排序字段</param>
         /// <returns></returns>
         public async Task<IList<T>> List(Expression<Func<T, bool>> predicate, Dictionary<string, bool> orders)
         {
@@ -224,10 +226,10 @@ namespace lce.engine
         /// <summary>
         /// page list.
         /// </summary>
-        /// <param name="page">页码</param>
-        /// <param name="size">页阀</param>
+        /// <param name="page">     页码</param>
+        /// <param name="size">     页阀</param>
         /// <param name="predicate">条件</param>
-        /// <param name="orders">排序字段</param>
+        /// <param name="orders">   排序字段</param>
         /// <returns></returns>
         public async Task<IList<T>> List(int page, int size, Expression<Func<T, bool>> predicate, Dictionary<string, bool> orders)
         {
@@ -249,9 +251,9 @@ namespace lce.engine
         /// <summary>
         /// 排序扩展
         /// </summary>
-        /// <param name="source"></param>
+        /// <param name="source">      </param>
         /// <param name="propertyName"></param>
-        /// <param name="isAsc"></param>
+        /// <param name="isAsc">       </param>
         /// <returns></returns>
         private IQueryable<T> OrderBy(IQueryable<T> source, string propertyName = "Id", bool isAsc = false)
         {

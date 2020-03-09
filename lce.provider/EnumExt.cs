@@ -1,11 +1,12 @@
-﻿// action：
-// file name：${namespace}.EnumExt.cs
-// author：lynx lynx.kor@163.com @ 2019/6/5 23:03
-// copyright (c) 2019 lynxce.com
-// desc：
-// > add description for EnumExt
-// revision：
-//
+﻿/* file name：lce.provider.EnumExt.cs
+ * author：lynx lynx.kor@163.com @ 2019/6/5 23:03
+ * copyright (c) 2019 lynxce.com
+ * desc：
+ * > add description for EnumExt
+ * revision：
+ *
+ */
+
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -48,7 +49,6 @@ namespace lce.provider
                 list.Add(desc, Convert.ToInt32(e));
             }
             return list;
-
         }
     }
 }

@@ -1,28 +1,30 @@
-﻿// action：
-// file name：lce.provider.EmailExt.cs
-// author：lynx lynx.kor@163.com @ 2019/6/5 23:15
-// copyright (c) 2019 lynxce.com
-// desc：
-// > add description for EmailExt
-// revision：
-//
+﻿/* file name：lce.provider.EmailExt.cs
+ * author：lynx lynx.kor@163.com @ 2019/6/5 23:15
+ * copyright (c) 2019 lynxce.com
+ * desc：
+ * > add description for EmailExt
+ * revision：
+ *
+ */
+
 using System;
+
 namespace lce.provider
 {
     /// <summary>
-    /// 
+    /// EmailExt
     /// </summary>
     public static class EmailExt
     {
         /// <summary>
         /// 发送邮件
         /// </summary>
-        /// <param name="content"></param>
-        /// <param name="subject"></param>
-        /// <param name="mailto"></param>
+        /// <param name="content"> </param>
+        /// <param name="subject"> </param>
+        /// <param name="mailto">  </param>
         /// <param name="username"></param>
         /// <param name="password"></param>
-        /// <param name="smtp"></param>
+        /// <param name="smtp">    </param>
         public static void Send(string content, string subject, string mailto, string username, string password, string smtp)
         {
             var uri = new Uri(smtp);
@@ -34,14 +36,14 @@ namespace lce.provider
         /// <summary>
         /// 发送邮件
         /// </summary>
-        /// <param name="content"></param>
-        /// <param name="subject"></param>
-        /// <param name="mailto"></param>
+        /// <param name="content"> </param>
+        /// <param name="subject"> </param>
+        /// <param name="mailto">  </param>
         /// <param name="username"></param>
         /// <param name="password"></param>
         /// <param name="mailfrom"></param>
-        /// <param name="smtp"></param>
-        /// <param name="port"></param>
+        /// <param name="smtp">    </param>
+        /// <param name="port">    </param>
         public static void Send(
             string content,
             string subject,

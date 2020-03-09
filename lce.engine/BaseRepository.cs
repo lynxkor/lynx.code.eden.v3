@@ -30,7 +30,7 @@ namespace lce.engine
         public BaseRepository(DbContext context)
         {
             _context = context;
-            _dbSet = _context.Set<T>();
+            _dbSet = context.Set<T>();
         }
 
         /// <summary>
@@ -173,7 +173,7 @@ namespace lce.engine
         /// <returns></returns>
         public async Task<int> Delete(T entity)
         {
-            _context.Set<T>().Attach(entity);
+            _dbSet.Attach(entity);
             _context.Entry<T>(entity).State = EntityState.Deleted;
             return await _context.SaveChangesAsync();
         }
@@ -185,10 +185,10 @@ namespace lce.engine
         /// <returns></returns>
         public async Task<int> Delete(Expression<Func<T, bool>> predicate)
         {
-            var list = _context.Set<T>().Where(predicate).ToList();
+            var list = _dbSet.Where(predicate).ToList();
             list.ForEach(entity =>
             {
-                _context.Set<T>().Attach(entity);
+                _dbSet.Attach(entity);
                 _context.Entry<T>(entity).State = EntityState.Deleted;
             });
             return await _context.SaveChangesAsync();
@@ -201,7 +201,7 @@ namespace lce.engine
         /// <returns></returns>
         public async Task<T> Find(Expression<Func<T, bool>> predicate)
         {
-            return await _context.Set<T>().AsNoTracking().FirstOrDefaultAsync(predicate);
+            return await _dbSet.AsNoTracking().FirstOrDefaultAsync(predicate);
         }
 
         /// <summary>
@@ -212,7 +212,7 @@ namespace lce.engine
         /// <returns></returns>
         public async Task<IList<T>> List(Expression<Func<T, bool>> predicate, Dictionary<string, bool> orders)
         {
-            var list = _context.Set<T>().AsNoTracking().Where(predicate).AsQueryable();
+            var list = _dbSet.AsNoTracking().Where(predicate).AsQueryable();
             if (null != orders)
             {
                 foreach (var order in orders)
@@ -233,7 +233,7 @@ namespace lce.engine
         /// <returns></returns>
         public async Task<IList<T>> List(int page, int size, Expression<Func<T, bool>> predicate, Dictionary<string, bool> orders)
         {
-            var list = _context.Set<T>().AsNoTracking().Where(predicate).AsQueryable();
+            var list = _dbSet.AsNoTracking().Where(predicate).AsQueryable();
             if (null != orders)
             {
                 foreach (var order in orders)

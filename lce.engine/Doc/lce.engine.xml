@@ -32,7 +32,7 @@
             <summary>
             update entity./update entity's properties
             </summary>
-            <param name="entity"></param>
+            <param name="entity">    </param>
             <param name="properties">null则更新所有字段，NOT NULL则更新指定字段</param>
             <returns></returns>
         </member>
@@ -40,7 +40,7 @@
             <summary>
             update entity except properties list
             </summary>
-            <param name="entity"></param>
+            <param name="entity">    </param>
             <param name="properties">NULL则更新时不排除字段，NOT NULL则更新指定字段以外的</param>
             <returns></returns>
         </member>
@@ -56,14 +56,14 @@
             禁用数据,表中必须有State字段
             </summary>
             <returns>The delete.</returns>
-            <param name="id">Identifier.</param>
+            <param name="id">     Identifier.</param>
             <param name="disable"></param>
         </member>
         <member name="M:lce.engine.BaseRepository`1.State(`0,System.Boolean)">
             <summary>
             禁用数据,表中必须有State字段
             </summary>
-            <param name="entity"></param>
+            <param name="entity"> </param>
             <param name="disable"></param>
             <returns></returns>
         </member>
@@ -100,26 +100,26 @@
             list all.
             </summary>
             <param name="predicate">条件</param>
-            <param name="orders">排序字段</param>
+            <param name="orders">   排序字段</param>
             <returns></returns>
         </member>
         <member name="M:lce.engine.BaseRepository`1.List(System.Int32,System.Int32,System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Collections.Generic.Dictionary{System.String,System.Boolean})">
             <summary>
             page list.
             </summary>
-            <param name="page">页码</param>
-            <param name="size">页阀</param>
+            <param name="page">     页码</param>
+            <param name="size">     页阀</param>
             <param name="predicate">条件</param>
-            <param name="orders">排序字段</param>
+            <param name="orders">   排序字段</param>
             <returns></returns>
         </member>
         <member name="M:lce.engine.BaseRepository`1.OrderBy(System.Linq.IQueryable{`0},System.String,System.Boolean)">
             <summary>
             排序扩展
             </summary>
-            <param name="source"></param>
+            <param name="source">      </param>
             <param name="propertyName"></param>
-            <param name="isAsc"></param>
+            <param name="isAsc">       </param>
             <returns></returns>
         </member>
         <member name="T:lce.engine.BaseService`1">
@@ -151,7 +151,7 @@
             <summary>
             update entity./update entity's properties
             </summary>
-            <param name="entity"></param>
+            <param name="entity">    </param>
             <param name="properties">null则更新所有字段，NOT NULL则更新指定字段</param>
             <returns></returns>
         </member>
@@ -159,7 +159,7 @@
             <summary>
             update entity except properties list
             </summary>
-            <param name="entity"></param>
+            <param name="entity">    </param>
             <param name="properties">NULL则更新时不排除字段，NOT NULL则更新指定字段以外的</param>
             <returns></returns>
         </member>
@@ -175,14 +175,14 @@
             禁用数据,表中必须有State字段
             </summary>
             <returns>The delete.</returns>
-            <param name="id">Identifier.</param>
+            <param name="id">     Identifier.</param>
             <param name="disable"></param>
         </member>
         <member name="M:lce.engine.BaseService`1.State(`0,System.Boolean)">
             <summary>
             禁用数据,表中必须有State字段
             </summary>
-            <param name="entity"></param>
+            <param name="entity"> </param>
             <param name="disable"></param>
             <returns></returns>
         </member>
@@ -219,17 +219,17 @@
             list all.
             </summary>
             <param name="predicate"></param>
-            <param name="orders"></param>
+            <param name="orders">   </param>
             <returns></returns>
         </member>
         <member name="M:lce.engine.BaseService`1.List(System.Int32,System.Int32,System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Collections.Generic.Dictionary{System.String,System.Boolean})">
             <summary>
             page list.
             </summary>
-            <param name="page">页码</param>
-            <param name="size">页阀</param>
+            <param name="page">     页码</param>
+            <param name="size">     页阀</param>
             <param name="predicate">条件</param>
-            <param name="orders">排序字段</param>
+            <param name="orders">   排序字段</param>
             <returns></returns>
         </member>
         <member name="T:lce.engine.IBaseRepository`1">
@@ -255,7 +255,7 @@
             <summary>
             update entity./update entity's properties
             </summary>
-            <param name="entity"></param>
+            <param name="entity">    </param>
             <param name="properties">null则更新所有字段，NOT NULL则更新指定字段</param>
             <returns></returns>
         </member>
@@ -263,7 +263,7 @@
             <summary>
             update entity except properties list
             </summary>
-            <param name="entity"></param>
+            <param name="entity">    </param>
             <param name="properties">NULL则更新时不排除字段，NOT NULL则更新指定字段以外的</param>
             <returns></returns>
         </member>
@@ -279,14 +279,14 @@
             禁用数据,表中必须有State字段
             </summary>
             <returns>The delete.</returns>
-            <param name="id">Identifier.</param>
+            <param name="id">     Identifier.</param>
             <param name="disable"></param>
         </member>
         <member name="M:lce.engine.IBaseRepository`1.State(`0,System.Boolean)">
             <summary>
             禁用数据,表中必须有State字段
             </summary>
-            <param name="entity"></param>
+            <param name="entity"> </param>
             <param name="disable"></param>
             <returns></returns>
         </member>
@@ -323,17 +323,17 @@
             list all.
             </summary>
             <param name="predicate">条件</param>
-            <param name="orders">排序字段</param>
+            <param name="orders">   排序字段</param>
             <returns></returns>
         </member>
         <member name="M:lce.engine.IBaseRepository`1.List(System.Int32,System.Int32,System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Collections.Generic.Dictionary{System.String,System.Boolean})">
             <summary>
             page list.
             </summary>
-            <param name="page">页码</param>
-            <param name="size">页阀</param>
+            <param name="page">     页码</param>
+            <param name="size">     页阀</param>
             <param name="predicate">条件</param>
-            <param name="orders">排序字段</param>
+            <param name="orders">   排序字段</param>
             <returns></returns>
         </member>
         <member name="T:lce.engine.IBaseService`1">
@@ -360,7 +360,7 @@
             <summary>
             update entity./update entity's properties
             </summary>
-            <param name="entity"></param>
+            <param name="entity">    </param>
             <param name="properties">null则更新所有字段，NOT NULL则更新指定字段</param>
             <returns></returns>
         </member>
@@ -368,7 +368,7 @@
             <summary>
             update entity except properties list
             </summary>
-            <param name="entity"></param>
+            <param name="entity">    </param>
             <param name="properties">NULL则更新时不排除字段，NOT NULL则更新指定字段以外的</param>
             <returns></returns>
         </member>
@@ -384,14 +384,14 @@
             禁用数据,表中必须有State字段
             </summary>
             <returns>The delete.</returns>
-            <param name="id">Identifier.</param>
-            <param name="disable"></param>∑
+            <param name="id">     Identifier.</param>
+            <param name="disable"></param>
         </member>
         <member name="M:lce.engine.IBaseService`1.State(`0,System.Boolean)">
             <summary>
             禁用数据,表中必须有State字段
             </summary>
-            <param name="entity"></param>
+            <param name="entity"> </param>
             <param name="disable"></param>
             <returns></returns>
         </member>
@@ -428,17 +428,17 @@
             list all.
             </summary>
             <param name="predicate"></param>
-            <param name="orders"></param>
+            <param name="orders">   </param>
             <returns></returns>
         </member>
         <member name="M:lce.engine.IBaseService`1.List(System.Int32,System.Int32,System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Collections.Generic.Dictionary{System.String,System.Boolean})">
             <summary>
             page list.
             </summary>
-            <param name="page">页码</param>
-            <param name="size">页阀</param>
+            <param name="page">     页码</param>
+            <param name="size">     页阀</param>
             <param name="predicate">条件</param>
-            <param name="orders">排序字段</param>
+            <param name="orders">   排序字段</param>
             <returns></returns>
         </member>
         <member name="T:lce.engine.IEntity">

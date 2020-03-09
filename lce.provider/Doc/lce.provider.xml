@@ -105,10 +105,10 @@
             <summary>
             根据日期和类型返回对应的开始时间和结束时间
             </summary>
-            <param name="type">类型：日、周、月、季、年</param>
-            <param name="date">日期</param>
+            <param name="type">     类型：日、周、月、季、年</param>
+            <param name="date">     日期</param>
             <param name="startDate">开始时间 yyyy-MM-dd 00:00:00</param>
-            <param name="endDate">结束时间 yyyy-MM-dd 23:59:59</param>
+            <param name="endDate">  结束时间 yyyy-MM-dd 23:59:59</param>
         </member>
         <member name="T:lce.provider.DistinctExt">
             <summary>
@@ -121,7 +121,7 @@
             </summary>
             <typeparam name="T"></typeparam>
             <typeparam name="V"></typeparam>
-            <param name="source"></param>
+            <param name="source">     </param>
             <param name="keySelector"></param>
             <returns></returns>
         </member>
@@ -152,31 +152,32 @@
         </member>
         <member name="T:lce.provider.EmailExt">
             <summary>
+            EmailExt
             </summary>
         </member>
         <member name="M:lce.provider.EmailExt.Send(System.String,System.String,System.String,System.String,System.String,System.String)">
             <summary>
             发送邮件
             </summary>
-            <param name="content"></param>
-            <param name="subject"></param>
-            <param name="mailto"></param>
+            <param name="content"> </param>
+            <param name="subject"> </param>
+            <param name="mailto">  </param>
             <param name="username"></param>
             <param name="password"></param>
-            <param name="smtp"></param>
+            <param name="smtp">    </param>
         </member>
         <member name="M:lce.provider.EmailExt.Send(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Int32)">
             <summary>
             发送邮件
             </summary>
-            <param name="content"></param>
-            <param name="subject"></param>
-            <param name="mailto"></param>
+            <param name="content"> </param>
+            <param name="subject"> </param>
+            <param name="mailto">  </param>
             <param name="username"></param>
             <param name="password"></param>
             <param name="mailfrom"></param>
-            <param name="smtp"></param>
-            <param name="port"></param>
+            <param name="smtp">    </param>
+            <param name="port">    </param>
         </member>
         <member name="T:lce.provider.EnumExt">
             <summary>
@@ -203,14 +204,14 @@
         </member>
         <member name="M:lce.provider.FileExt.GetSize(System.Int64)">
             <summary>
-            Gets the file size.
+            Get the file size.
             </summary>
             <returns>The size.</returns>
             <param name="contentLength">Content length.</param>
         </member>
         <member name="M:lce.provider.FileExt.GetMimeType(System.String)">
             <summary>
-            Gets the type of the MIME.
+            Get the type of the MIME.
             </summary>
             <returns>The MIME type.</returns>
             <param name="fileName">File name.</param>
@@ -234,18 +235,18 @@
             <returns>The thumbnail.</returns>
             <param name="source">Source.</param>
             <param name="target">Target.存储文件名，后缀.png，并且只能有一个(.)这应该是一个基类里的bug</param>
-            <param name="size">Size.</param>
-            <param name="side">If set to <c>true</c> side.</param>
+            <param name="size">  Size.</param>
+            <param name="side">  If set to <c>true</c> side.</param>
         </member>
         <member name="M:lce.provider.ImageExt.Thumbnail(System.Drawing.Image,System.String,System.Int32,System.Int32,System.Boolean)">
             <summary>
             Thumbnail the specified source, target, width, height and quality.
             </summary>
             <returns>The thumbnail.</returns>
-            <param name="source">Source.</param>
-            <param name="target">Target.存储文件名，后缀.png，并且只能有一个(.)这应该是一个基类里的bug</param>
-            <param name="width">Width.</param>
-            <param name="height">Height.</param>
+            <param name="source"> Source.</param>
+            <param name="target"> Target.存储文件名，后缀.png，并且只能有一个(.)这应该是一个基类里的bug</param>
+            <param name="width">  Width.</param>
+            <param name="height"> Height.</param>
             <param name="isFixed">是否比例换算后绘制到固定width,height画布中,true：是；false；画布也等比例</param>
         </member>
         <member name="M:lce.provider.ImageExt.Thumbnail(System.Drawing.Image,System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean)">
@@ -253,11 +254,11 @@
             Thumbnail the specified source, target, sWidth, sHeight, tWidth, tHeight and isFixed.
             </summary>
             <returns>The thumbnail.</returns>
-            <param name="source">Source.</param>
-            <param name="target">Target.</param>
-            <param name="sWidth">S width.</param>
+            <param name="source"> Source.</param>
+            <param name="target"> Target.</param>
+            <param name="sWidth"> S width.</param>
             <param name="sHeight">S height.</param>
-            <param name="tWidth">T width.</param>
+            <param name="tWidth"> T width.</param>
             <param name="tHeight">T height.</param>
             <param name="isFixed">If set to <c>true</c> is fixed.</param>
         </member>
@@ -271,8 +272,8 @@
             object to json string.
             </summary>
             <returns>The json.</returns>
-            <param name="obj">Object.</param>
-            <param name="indented">If set to <c>true</c> indented.</param>
+            <param name="obj">        Object.</param>
+            <param name="indented">   If set to <c>true</c> indented.</param>
             <param name="includeNull">If set to <c>true</c> include null.</param>
         </member>
         <member name="M:lce.provider.JsonExt.ToModel``1(System.String)">
@@ -307,7 +308,7 @@
             Left And Right
             </summary>
             <typeparam name="T"></typeparam>
-            <param name="left"></param>
+            <param name="left"> </param>
             <param name="right"></param>
             <returns></returns>
         </member>
@@ -316,7 +317,7 @@
             Left Or Right
             </summary>
             <typeparam name="T"></typeparam>
-            <param name="left"></param>
+            <param name="left"> </param>
             <param name="right"></param>
             <returns></returns>
         </member>
@@ -334,9 +335,9 @@
             <summary>
             发送短信 Aliyun.SMS
             </summary>
-            <param name="phones">手机号 ,分割</param>
-            <param name="content">信息内容</param>
-            <param name="signName">签名</param>
+            <param name="phones">      手机号 ,分割</param>
+            <param name="content">     信息内容</param>
+            <param name="signName">    签名</param>
             <param name="templateCode">模板ID</param>
         </member>
         <member name="T:lce.provider.Verifier">
@@ -362,7 +363,7 @@
             <summary>
             反回指定格式的日期字符串
             </summary>
-            <param name="Value"></param>
+            <param name="Value"> </param>
             <param name="format"></param>
             <returns></returns>
         </member>

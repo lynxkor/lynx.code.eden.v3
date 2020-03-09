@@ -1,0 +1,437 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>lce.provider</name>
+    </assembly>
+    <members>
+        <member name="T:lce.provider.Cryptology">
+            <summary>
+            密码/编码/验证码 生成器
+            </summary>
+        </member>
+        <member name="M:lce.provider.Cryptology.ToMd5(System.String)">
+            <summary>
+            To the md5.
+            </summary>
+            <returns>The md5.</returns>
+            <param name="input">Input.</param>
+        </member>
+        <member name="M:lce.provider.Cryptology.Captcha(System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            生成随机字符串
+            </summary>
+            <returns>The random.</returns>
+            <param name="lenght">Lenght.</param>
+            <param name="useNum">If set to <c>true</c> use number.</param>
+            <param name="useLow">If set to <c>true</c> use low.</param>
+            <param name="useUpp">If set to <c>true</c> use upp.</param>
+            <param name="useSpe">If set to <c>true</c> use special char.</param>
+        </member>
+        <member name="M:lce.provider.Cryptology.Code">
+            <summary>
+            GUID CODE WITHOUT '-'
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:lce.provider.DateTimeExt">
+            <summary>
+            Date time ext.
+            </summary>
+        </member>
+        <member name="M:lce.provider.DateTimeExt.ToDateTime(System.String)">
+            <summary>
+            string2datetime
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.DateTimeExt.MonthFirstDay(System.DateTime)">
+            <summary>
+            取得某月的第一天
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.DateTimeExt.MonthLastDay(System.DateTime)">
+            <summary>
+            取得某月的最后一天
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.DateTimeExt.YearFirstDay(System.DateTime)">
+            <summary>
+            取得某年的第一天
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.DateTimeExt.YearLastDay(System.DateTime)">
+            <summary>
+            取得某年的最后一天
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.DateTimeExt.WeekFirstDay(System.DateTime)">
+            <summary>
+            取得本周第一天（周日为第一天）
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.DateTimeExt.WeekLastDay(System.DateTime)">
+            <summary>
+            得到本周最后一天（周六为最后一天）
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.DateTimeExt.QuarterFirstDay(System.DateTime)">
+            <summary>
+            季度第一天
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.DateTimeExt.QuarterLastDay(System.DateTime)">
+            <summary>
+            季度最后一天
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.DateTimeExt.SwitchType4Date(System.DateTime,System.Int32,System.DateTime@,System.DateTime@)">
+            <summary>
+            根据日期和类型返回对应的开始时间和结束时间
+            </summary>
+            <param name="type">类型：日、周、月、季、年</param>
+            <param name="date">日期</param>
+            <param name="startDate">开始时间 yyyy-MM-dd 00:00:00</param>
+            <param name="endDate">结束时间 yyyy-MM-dd 23:59:59</param>
+        </member>
+        <member name="T:lce.provider.DistinctExt">
+            <summary>
+            DistinctExt
+            </summary>
+        </member>
+        <member name="M:lce.provider.DistinctExt.Distinct``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})">
+            <summary>
+            Distinct
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="V"></typeparam>
+            <param name="source"></param>
+            <param name="keySelector"></param>
+            <returns></returns>
+        </member>
+        <member name="T:lce.provider.CommonEqualityComparer`2">
+            <summary>
+            CommonEqualityComparer
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="V"></typeparam>
+        </member>
+        <member name="M:lce.provider.CommonEqualityComparer`2.#ctor(System.Func{`0,`1})">
+            <summary>
+            
+            </summary>
+            <param name="keySelector"></param>
+        </member>
+        <member name="M:lce.provider.CommonEqualityComparer`2.Equals(`0,`0)">
+            <summary>
+            
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.CommonEqualityComparer`2.GetHashCode(`0)">
+            <summary>
+            
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="T:lce.provider.EmailExt">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:lce.provider.EmailExt.Send(System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            发送邮件
+            </summary>
+            <param name="content"></param>
+            <param name="subject"></param>
+            <param name="mailto"></param>
+            <param name="username"></param>
+            <param name="password"></param>
+            <param name="smtp"></param>
+        </member>
+        <member name="M:lce.provider.EmailExt.Send(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Int32)">
+            <summary>
+            发送邮件
+            </summary>
+            <param name="content"></param>
+            <param name="subject"></param>
+            <param name="mailto"></param>
+            <param name="username"></param>
+            <param name="password"></param>
+            <param name="mailfrom"></param>
+            <param name="smtp"></param>
+            <param name="port"></param>
+        </member>
+        <member name="T:lce.provider.EnumExt">
+            <summary>
+            枚举扩展类
+            </summary>
+        </member>
+        <member name="M:lce.provider.EnumExt.Description(System.Enum)">
+            <summary>
+            获取枚举项描述信息
+            </summary>
+            <param name="eValue">枚举项</param>
+            <returns>枚举项描述信息</returns>
+        </member>
+        <member name="M:lce.provider.EnumExt.List``1">
+            <summary>
+            获取枚举类型的数据字典
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:lce.provider.FileExt">
+            <summary>
+            文件扩展类
+            </summary>
+        </member>
+        <member name="M:lce.provider.FileExt.GetSize(System.Int64)">
+            <summary>
+            Gets the file size.
+            </summary>
+            <returns>The size.</returns>
+            <param name="contentLength">Content length.</param>
+        </member>
+        <member name="M:lce.provider.FileExt.GetMimeType(System.String)">
+            <summary>
+            Gets the type of the MIME.
+            </summary>
+            <returns>The MIME type.</returns>
+            <param name="fileName">File name.</param>
+        </member>
+        <member name="T:lce.provider.ImageExt">
+            <summary>
+            图片扩展类
+            </summary>
+        </member>
+        <member name="M:lce.provider.ImageExt.Captcha(System.String)">
+            <summary>
+            生成Code对应的验证码图片
+            </summary>
+            <returns>The captcha.</returns>
+            <param name="code">Code.</param>
+        </member>
+        <member name="M:lce.provider.ImageExt.Thumbnail(System.Drawing.Image,System.String,System.Int32,System.Boolean)">
+            <summary>
+            Thumbnail the specified source, target, size and side.
+            </summary>
+            <returns>The thumbnail.</returns>
+            <param name="source">Source.</param>
+            <param name="target">Target.存储文件名，后缀.png，并且只能有一个(.)这应该是一个基类里的bug</param>
+            <param name="size">Size.</param>
+            <param name="side">If set to <c>true</c> side.</param>
+        </member>
+        <member name="M:lce.provider.ImageExt.Thumbnail(System.Drawing.Image,System.String,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Thumbnail the specified source, target, width, height and quality.
+            </summary>
+            <returns>The thumbnail.</returns>
+            <param name="source">Source.</param>
+            <param name="target">Target.存储文件名，后缀.png，并且只能有一个(.)这应该是一个基类里的bug</param>
+            <param name="width">Width.</param>
+            <param name="height">Height.</param>
+            <param name="isFixed">是否比例换算后绘制到固定width,height画布中,true：是；false；画布也等比例</param>
+        </member>
+        <member name="M:lce.provider.ImageExt.Thumbnail(System.Drawing.Image,System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Thumbnail the specified source, target, sWidth, sHeight, tWidth, tHeight and isFixed.
+            </summary>
+            <returns>The thumbnail.</returns>
+            <param name="source">Source.</param>
+            <param name="target">Target.</param>
+            <param name="sWidth">S width.</param>
+            <param name="sHeight">S height.</param>
+            <param name="tWidth">T width.</param>
+            <param name="tHeight">T height.</param>
+            <param name="isFixed">If set to <c>true</c> is fixed.</param>
+        </member>
+        <member name="T:lce.provider.JsonExt">
+            <summary>
+            JsonExt
+            </summary>
+        </member>
+        <member name="M:lce.provider.JsonExt.ToJson(System.Object,System.Boolean,System.Boolean)">
+            <summary>
+            object to json string.
+            </summary>
+            <returns>The json.</returns>
+            <param name="obj">Object.</param>
+            <param name="indented">If set to <c>true</c> indented.</param>
+            <param name="includeNull">If set to <c>true</c> include null.</param>
+        </member>
+        <member name="M:lce.provider.JsonExt.ToModel``1(System.String)">
+            <summary>
+            Json string to model.
+            </summary>
+            <returns>The model.</returns>
+            <param name="input">Input.</param>
+            <typeparam name="T">The 1st type parameter.</typeparam>
+        </member>
+        <member name="T:lce.provider.PredicateExt">
+            <summary>
+            lambda包装器
+            </summary>
+        </member>
+        <member name="M:lce.provider.PredicateExt.True``1">
+            <summary>
+            True
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.PredicateExt.False``1">
+            <summary>
+            False
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.PredicateExt.And``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Left And Right
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.PredicateExt.Or``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            Left Or Right
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="left"></param>
+            <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="T:lce.provider.QuerySqlExt">
+            <summary>
+            QuerySqlExt
+            </summary>
+        </member>
+        <member name="T:lce.provider.SmsExt">
+            <summary>
+            短信扩展类
+            </summary>
+        </member>
+        <member name="M:lce.provider.SmsExt.Send(System.String,System.Object,System.String,System.String)">
+            <summary>
+            发送短信 Aliyun.SMS
+            </summary>
+            <param name="phones">手机号 ,分割</param>
+            <param name="content">信息内容</param>
+            <param name="signName">签名</param>
+            <param name="templateCode">模板ID</param>
+        </member>
+        <member name="T:lce.provider.Verifier">
+            <summary>
+            Verifier
+            </summary>
+        </member>
+        <member name="M:lce.provider.Verifier.IsNumber(System.String)">
+            <summary>
+            判断对象是否为数值
+            </summary>
+            <returns><c>true</c>, if number was ised, <c>false</c> otherwise.</returns>
+            <param name="Value">Value.</param>
+        </member>
+        <member name="M:lce.provider.Verifier.VerifyDateTime(System.Object)">
+            <summary>
+            校验是否为日期格式
+            </summary>
+            <param name="Value">要校验的值</param>
+            <returns>合法日期返回传入值,非法日期返回当前日期值</returns>
+        </member>
+        <member name="M:lce.provider.Verifier.VerifyDateTime(System.Object,System.String)">
+            <summary>
+            反回指定格式的日期字符串
+            </summary>
+            <param name="Value"></param>
+            <param name="format"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.Verifier.VerifyLong(System.Object)">
+            <summary>
+            校验是否为长整型格式
+            </summary>
+            <param name="Value">要校验的值</param>
+            <returns>合法长整型返回传入值,非法长整型返回零</returns>
+        </member>
+        <member name="M:lce.provider.Verifier.VerifyShort(System.Object)">
+            <summary>
+            校验是否为短整型格式
+            </summary>
+            <param name="Value">要校验的值</param>
+            <returns>合法短整型返回传入值,非法短整型返回零</returns>
+        </member>
+        <member name="M:lce.provider.Verifier.VerifyInt(System.Object)">
+            <summary>
+            校验是否为整型格式
+            </summary>
+            <param name="Value">要校验的值</param>
+            <returns>合法整型返回传入值,非法整型返回零</returns>
+        </member>
+        <member name="M:lce.provider.Verifier.VerifyString(System.Object)">
+            <summary>
+            校验是否为字符串
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.Verifier.VerifyBool(System.Object)">
+            <summary>
+            校验布尔值
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.Verifier.VerifyDouble(System.Object)">
+            <summary>
+            校验是否为double型格式
+            </summary>
+            <param name="Value">要校验的值</param>
+            <returns>合法double型返回传入值,非法double型返回零</returns>
+        </member>
+        <member name="M:lce.provider.Verifier.VerifySingle(System.Object)">
+            <summary>
+            校验是否为single型格式
+            </summary>
+            <param name="Value">要校验的值</param>
+            <returns>合法single型返回传入值,非法single型返回零</returns>
+        </member>
+        <member name="M:lce.provider.Verifier.VerifyDecimal(System.Object)">
+            <summary>
+            校验是否为Decimal型格式
+            </summary>
+            <param name="Value">要校验的值</param>
+            <returns>合法Decimal型返回传入值,非法Decimal型返回零</returns>
+        </member>
+        <member name="M:lce.provider.Verifier.VerifyByte(System.Object)">
+            <summary>
+            校验是否为字节格式
+            </summary>
+            <param name="Value">要校验的值</param>
+            <returns>合法字节返回传入值,非法字节返回零</returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,510 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>lce.engine</name>
+    </assembly>
+    <members>
+        <member name="T:lce.engine.BaseRepository`1">
+            <summary>
+            Base repository.
+            </summary>
+        </member>
+        <member name="M:lce.engine.BaseRepository`1.#ctor(Microsoft.EntityFrameworkCore.DbContext)">
+            <summary>
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:lce.engine.BaseRepository`1.Count(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            count entity records.
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.BaseRepository`1.Add(`0)">
+            <summary>
+            add entity.
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.BaseRepository`1.Update(`0,System.Collections.Generic.IList{System.String})">
+            <summary>
+            update entity./update entity's properties
+            </summary>
+            <param name="entity"></param>
+            <param name="properties">null则更新所有字段，NOT NULL则更新指定字段</param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.BaseRepository`1.UpdateExcept(`0,System.Collections.Generic.IList{System.String})">
+            <summary>
+            update entity except properties list
+            </summary>
+            <param name="entity"></param>
+            <param name="properties">NULL则更新时不排除字段，NOT NULL则更新指定字段以外的</param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.BaseRepository`1.Save(`0)">
+            <summary>
+            保存，根据entity.id=0判断为新增，否则为更新
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.BaseRepository`1.State(System.Int32,System.Boolean)">
+            <summary>
+            禁用数据,表中必须有State字段
+            </summary>
+            <returns>The delete.</returns>
+            <param name="id">Identifier.</param>
+            <param name="disable"></param>
+        </member>
+        <member name="M:lce.engine.BaseRepository`1.State(`0,System.Boolean)">
+            <summary>
+            禁用数据,表中必须有State字段
+            </summary>
+            <param name="entity"></param>
+            <param name="disable"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.BaseRepository`1.Delete(System.Int32)">
+            <summary>
+            delete entity.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.BaseRepository`1.Delete(`0)">
+            <summary>
+            delete entity.
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.BaseRepository`1.Delete(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            delete batch.
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.BaseRepository`1.Find(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            find.
+            </summary>
+            <param name="predicate">条件</param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.BaseRepository`1.List(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Collections.Generic.Dictionary{System.String,System.Boolean})">
+            <summary>
+            list all.
+            </summary>
+            <param name="predicate">条件</param>
+            <param name="orders">排序字段</param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.BaseRepository`1.List(System.Int32,System.Int32,System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Collections.Generic.Dictionary{System.String,System.Boolean})">
+            <summary>
+            page list.
+            </summary>
+            <param name="page">页码</param>
+            <param name="size">页阀</param>
+            <param name="predicate">条件</param>
+            <param name="orders">排序字段</param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.BaseRepository`1.OrderBy(System.Linq.IQueryable{`0},System.String,System.Boolean)">
+            <summary>
+            排序扩展
+            </summary>
+            <param name="source"></param>
+            <param name="propertyName"></param>
+            <param name="isAsc"></param>
+            <returns></returns>
+        </member>
+        <member name="T:lce.engine.BaseService`1">
+            <summary>
+            base service.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:lce.engine.BaseService`1.#ctor(lce.engine.IBaseRepository{`0})">
+            <summary>
+            </summary>
+            <param name="repository"></param>
+        </member>
+        <member name="M:lce.engine.BaseService`1.Count(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            count entity records
+            </summary>
+            <returns>The count.</returns>
+            <param name="predicate">Expression.</param>
+        </member>
+        <member name="M:lce.engine.BaseService`1.Add(`0)">
+            <summary>
+            add entity.
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.BaseService`1.Update(`0,System.Collections.Generic.IList{System.String})">
+            <summary>
+            update entity./update entity's properties
+            </summary>
+            <param name="entity"></param>
+            <param name="properties">null则更新所有字段，NOT NULL则更新指定字段</param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.BaseService`1.UpdateExcept(`0,System.Collections.Generic.IList{System.String})">
+            <summary>
+            update entity except properties list
+            </summary>
+            <param name="entity"></param>
+            <param name="properties">NULL则更新时不排除字段，NOT NULL则更新指定字段以外的</param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.BaseService`1.Save(`0)">
+            <summary>
+            保存实体，如果存在刚更新
+            </summary>
+            <returns>The save.</returns>
+            <param name="entity">Entity.</param>
+        </member>
+        <member name="M:lce.engine.BaseService`1.State(System.Int32,System.Boolean)">
+            <summary>
+            禁用数据,表中必须有State字段
+            </summary>
+            <returns>The delete.</returns>
+            <param name="id">Identifier.</param>
+            <param name="disable"></param>
+        </member>
+        <member name="M:lce.engine.BaseService`1.State(`0,System.Boolean)">
+            <summary>
+            禁用数据,表中必须有State字段
+            </summary>
+            <param name="entity"></param>
+            <param name="disable"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.BaseService`1.Delete(System.Int32)">
+            <summary>
+            delete entity.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.BaseService`1.Delete(`0)">
+            <summary>
+            delete entity.
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.BaseService`1.Delete(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            delete batch.
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.BaseService`1.Find(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            find.
+            </summary>
+            <param name="predicate">条件</param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.BaseService`1.List(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Collections.Generic.Dictionary{System.String,System.Boolean})">
+            <summary>
+            list all.
+            </summary>
+            <param name="predicate"></param>
+            <param name="orders"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.BaseService`1.List(System.Int32,System.Int32,System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Collections.Generic.Dictionary{System.String,System.Boolean})">
+            <summary>
+            page list.
+            </summary>
+            <param name="page">页码</param>
+            <param name="size">页阀</param>
+            <param name="predicate">条件</param>
+            <param name="orders">排序字段</param>
+            <returns></returns>
+        </member>
+        <member name="T:lce.engine.IBaseRepository`1">
+            <summary>
+            Base repository interface.
+            </summary>
+        </member>
+        <member name="M:lce.engine.IBaseRepository`1.Count(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            count entity records
+            </summary>
+            <returns>The count.</returns>
+            <param name="predicate">Expression.</param>
+        </member>
+        <member name="M:lce.engine.IBaseRepository`1.Add(`0)">
+            <summary>
+            add entity.
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.IBaseRepository`1.Update(`0,System.Collections.Generic.IList{System.String})">
+            <summary>
+            update entity./update entity's properties
+            </summary>
+            <param name="entity"></param>
+            <param name="properties">null则更新所有字段，NOT NULL则更新指定字段</param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.IBaseRepository`1.UpdateExcept(`0,System.Collections.Generic.IList{System.String})">
+            <summary>
+            update entity except properties list
+            </summary>
+            <param name="entity"></param>
+            <param name="properties">NULL则更新时不排除字段，NOT NULL则更新指定字段以外的</param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.IBaseRepository`1.Save(`0)">
+            <summary>
+            保存，根据entity.id=0判断为新增，否则为更新
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.IBaseRepository`1.State(System.Int32,System.Boolean)">
+            <summary>
+            禁用数据,表中必须有State字段
+            </summary>
+            <returns>The delete.</returns>
+            <param name="id">Identifier.</param>
+            <param name="disable"></param>
+        </member>
+        <member name="M:lce.engine.IBaseRepository`1.State(`0,System.Boolean)">
+            <summary>
+            禁用数据,表中必须有State字段
+            </summary>
+            <param name="entity"></param>
+            <param name="disable"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.IBaseRepository`1.Delete(System.Int32)">
+            <summary>
+            delete entity.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.IBaseRepository`1.Delete(`0)">
+            <summary>
+            delete entity
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.IBaseRepository`1.Delete(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            delete batch.
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.IBaseRepository`1.Find(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            find.
+            </summary>
+            <param name="predicate">条件</param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.IBaseRepository`1.List(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Collections.Generic.Dictionary{System.String,System.Boolean})">
+            <summary>
+            list all.
+            </summary>
+            <param name="predicate">条件</param>
+            <param name="orders">排序字段</param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.IBaseRepository`1.List(System.Int32,System.Int32,System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Collections.Generic.Dictionary{System.String,System.Boolean})">
+            <summary>
+            page list.
+            </summary>
+            <param name="page">页码</param>
+            <param name="size">页阀</param>
+            <param name="predicate">条件</param>
+            <param name="orders">排序字段</param>
+            <returns></returns>
+        </member>
+        <member name="T:lce.engine.IBaseService`1">
+            <summary>
+            base service interface.
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:lce.engine.IBaseService`1.Count(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            count entity records
+            </summary>
+            <returns>The count.</returns>
+            <param name="predicate">Expression.</param>
+        </member>
+        <member name="M:lce.engine.IBaseService`1.Add(`0)">
+            <summary>
+            add entity.
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.IBaseService`1.Update(`0,System.Collections.Generic.IList{System.String})">
+            <summary>
+            update entity./update entity's properties
+            </summary>
+            <param name="entity"></param>
+            <param name="properties">null则更新所有字段，NOT NULL则更新指定字段</param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.IBaseService`1.UpdateExcept(`0,System.Collections.Generic.IList{System.String})">
+            <summary>
+            update entity except properties list
+            </summary>
+            <param name="entity"></param>
+            <param name="properties">NULL则更新时不排除字段，NOT NULL则更新指定字段以外的</param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.IBaseService`1.Save(`0)">
+            <summary>
+            保存实体，如果存在刚更新
+            </summary>
+            <returns>The save.</returns>
+            <param name="entity">Entity.</param>
+        </member>
+        <member name="M:lce.engine.IBaseService`1.State(System.Int32,System.Boolean)">
+            <summary>
+            禁用数据,表中必须有State字段
+            </summary>
+            <returns>The delete.</returns>
+            <param name="id">Identifier.</param>
+            <param name="disable"></param>∑
+        </member>
+        <member name="M:lce.engine.IBaseService`1.State(`0,System.Boolean)">
+            <summary>
+            禁用数据,表中必须有State字段
+            </summary>
+            <param name="entity"></param>
+            <param name="disable"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.IBaseService`1.Delete(System.Int32)">
+            <summary>
+            禁用数据,表中必须有State字段
+            </summary>
+            <returns>The delete.</returns>
+            <param name="id">Identifier.</param>
+        </member>
+        <member name="M:lce.engine.IBaseService`1.Delete(`0)">
+            <summary>
+            delete entity
+            </summary>
+            <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.IBaseService`1.Delete(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            delete batch.
+            </summary>
+            <param name="predicate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.IBaseService`1.Find(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            find.
+            </summary>
+            <param name="predicate">条件</param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.IBaseService`1.List(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Collections.Generic.Dictionary{System.String,System.Boolean})">
+            <summary>
+            list all.
+            </summary>
+            <param name="predicate"></param>
+            <param name="orders"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.IBaseService`1.List(System.Int32,System.Int32,System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}},System.Collections.Generic.Dictionary{System.String,System.Boolean})">
+            <summary>
+            page list.
+            </summary>
+            <param name="page">页码</param>
+            <param name="size">页阀</param>
+            <param name="predicate">条件</param>
+            <param name="orders">排序字段</param>
+            <returns></returns>
+        </member>
+        <member name="T:lce.engine.IEntity">
+            <summary>
+            base entity
+            </summary>
+        </member>
+        <member name="P:lce.engine.IEntity.Id">
+            <summary>
+            主键/ID
+            </summary>
+        </member>
+        <member name="P:lce.engine.IEntity.Code">
+            <summary>
+            代码/编码/编号
+            </summary>
+        </member>
+        <member name="P:lce.engine.IEntity.Name">
+            <summary>
+            标题/名称/姓名
+            </summary>
+        </member>
+        <member name="P:lce.engine.IEntity.Memo">
+            <summary>
+            备注/说明
+            </summary>
+        </member>
+        <member name="P:lce.engine.IEntity.State">
+            <summary>
+            状态：0:正常；1:禁用
+            </summary>
+        </member>
+        <member name="P:lce.engine.IEntity.Series">
+            <summary>
+            序号；用于排序'
+            </summary>
+        </member>
+        <member name="P:lce.engine.IEntity.OwnerId">
+            <summary>
+            所属人
+            </summary>
+        </member>
+        <member name="P:lce.engine.IEntity.OwnerOrganId">
+            <summary>
+            所属部门
+            </summary>
+        </member>
+        <member name="P:lce.engine.IEntity.CreatedBy">
+            <summary>
+            创建人
+            </summary>
+        </member>
+        <member name="P:lce.engine.IEntity.CreatedOn">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="P:lce.engine.IEntity.ModifiedBy">
+            <summary>
+            修改人
+            </summary>
+        </member>
+        <member name="P:lce.engine.IEntity.ModifiedOn">
+            <summary>
+            修改时间
+            </summary>
+        </member>
+    </members>
+</doc>

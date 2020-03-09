@@ -5,17 +5,15 @@
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DocumentationFile>bin\Debug\netstandard2.1\Doc\lce.engine.xml</DocumentationFile>
+    <DocumentationFile>Doc\lce.engine.xml</DocumentationFile>
   </PropertyGroup>
-  <ItemGroup>
-    <Compile Remove="Class1.cs" />
-    <Compile Remove="EmptyInterface.cs" />
-    <Compile Remove="EmptyCSharpFile.cs" />
-  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.2" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\lce.provider\lce.provider.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Doc\" />
   </ItemGroup>
 </Project>

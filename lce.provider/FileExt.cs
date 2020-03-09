@@ -1,11 +1,11 @@
-﻿// action：
-// file name：${namespace}.FileExt.cs
-// author：lynx lynx.kor@163.com @ 2019/6/5 23:12
-// copyright (c) 2019 lynxce.com
-// desc：
-// > add description for FileExt
-// revision：
-//
+/* action： file name：lce.provider.FileExt.cs
+* author：lynx lynx.kor@163.com @ 2019/6/5 23:12
+* copyright (c) 2019 lynxce.com
+* desc：
+* > add description for FileExt
+* revision：
+*
+*/
 
 namespace lce.provider
 {
@@ -15,7 +15,7 @@ namespace lce.provider
     public static class FileExt
     {
         /// <summary>
-        /// Gets the file size.
+        /// Get the file size.
         /// </summary>
         /// <returns>The size.</returns>
         /// <param name="contentLength">Content length.</param>
@@ -39,7 +39,7 @@ namespace lce.provider
         }
 
         /// <summary>
-        /// Gets the type of the MIME.
+        /// Get the type of the MIME.
         /// </summary>
         /// <returns>The MIME type.</returns>
         /// <param name="fileName">File name.</param>
@@ -63,38 +63,49 @@ namespace lce.provider
                 case ".xlw":
                     mimeType = "application/vnd.ms-excel";
                     break;
+
                 case ".pdf":
                     mimeType = "application/pdf";
                     break;
+
                 case ".gif":
                     mimeType = "image/gif";
                     break;
+
                 case ".bmp":
                     mimeType = "image/bmp";
                     break;
+
                 case ".ico":
                     mimeType = "image/x-icon";
                     break;
+
                 case ".jpg":
                 case ".jpeg":
                 case ".jpe":
                     mimeType = "image/jpeg";
                     break;
+
                 case ".png":
                     mimeType = "image/png";
                     break;
+
                 case ".svg":
                     mimeType = "image/svg+xml";
                     break;
+
                 case ".avi":
                     mimeType = "video/x-msvideo";
                     break;
+
                 case ".wav":
                     mimeType = "audio/x-wav";
                     break;
+
                 case ".txt":
                     mimeType = "text/plain";
                     break;
+
                 default:
                     mimeType = string.Empty;
                     break;

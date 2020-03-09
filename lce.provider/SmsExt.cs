@@ -1,11 +1,12 @@
-﻿// action：
-// file name：lce.provider.SmsExt.cs
-// author：lynx lynx.kor@163.com @ 2019/6/7 15:27
-// copyright (c) 2019 lynxce.com
-// desc：
-// > add description for SmsExt
-// revision：
-//
+/* file name：lce.provider.SmsExt.cs
+* author：lynx lynx.kor@163.com @ 2019/6/7 15:27
+* copyright (c) 2019 lynxce.com
+* desc：
+* > add description for SmsExt
+* revision：
+*
+*/
+
 using System;
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Exceptions;
@@ -22,9 +23,9 @@ namespace lce.provider
         /// <summary>
         /// 发送短信 Aliyun.SMS
         /// </summary>
-        /// <param name="phones">手机号 ,分割</param>
-        /// <param name="content">信息内容</param>
-        /// <param name="signName">签名</param>
+        /// <param name="phones">      手机号 ,分割</param>
+        /// <param name="content">     信息内容</param>
+        /// <param name="signName">    签名</param>
         /// <param name="templateCode">模板ID</param>
         public static void Send(string phones, object content, string signName = "壹途", string templateCode = "SMS_162730288")
         {

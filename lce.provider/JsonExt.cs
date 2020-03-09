@@ -1,11 +1,12 @@
-﻿// action：
-// file name：${namespace}.JsonExt.cs
-// author：lynx lynx.kor@163.com @ 2019/6/5 23:06
-// copyright (c) 2019 lynxce.com
-// desc：
-// > add description for JsonExt
-// revision：
-//
+/* file name：lce.provider.JsonExt.cs
+* author：lynx lynx.kor@163.com @ 2019/6/5 23:06
+* copyright (c) 2019 lynxce.com
+* desc：
+* > add description for JsonExt
+* revision：
+*
+*/
+
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 
@@ -20,8 +21,8 @@ namespace lce.provider
         /// object to json string.
         /// </summary>
         /// <returns>The json.</returns>
-        /// <param name="obj">Object.</param>
-        /// <param name="indented">If set to <c>true</c> indented.</param>
+        /// <param name="obj">        Object.</param>
+        /// <param name="indented">   If set to <c>true</c> indented.</param>
         /// <param name="includeNull">If set to <c>true</c> include null.</param>
         public static string ToJson(this object obj, bool indented = false, bool includeNull = false)
         {

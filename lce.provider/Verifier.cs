@@ -1,11 +1,12 @@
-﻿// action：
-// file name：${namespace}.Verifier.cs
-// author：lynx lynx.kor@163.com @ 2019/6/12 16:08
-// copyright (c) 2019 Copyright@lynxce.com
-// desc：
-// > add description for Verifier
-// revision：
-//
+/* file name：lce.provider.Verifier.cs
+* author：lynx lynx.kor@163.com @ 2019/6/12 16:08
+* copyright (c) 2019 Copyright@lynxce.com
+* desc：
+* > add description for Verifier
+* revision：
+*
+*/
+
 using System;
 using System.Text.RegularExpressions;
 
@@ -47,10 +48,11 @@ namespace lce.provider
                     return DateTime.Now;
             }
         }
+
         /// <summary>
         /// 反回指定格式的日期字符串
         /// </summary>
-        /// <param name="Value"></param>
+        /// <param name="Value"> </param>
         /// <param name="format"></param>
         /// <returns></returns>
         public static string VerifyDateTime(this object Value, string format)
@@ -127,7 +129,6 @@ namespace lce.provider
                     {
                         return int.Parse(Value.ToString());
                     }
-
                 }
                 else
                     return 0;

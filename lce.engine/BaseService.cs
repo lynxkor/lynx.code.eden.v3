@@ -1,11 +1,12 @@
-﻿// action：
-// file name：lce.engine.BaseService.cs
-// author：lynx lynx.kor@163.com @ 2019/6/5 12:54
-// copyright (c) 2019 lynxce.com
-// desc：
-// > add description for BaseService
-// revision：
-//
+/* file name：lce.engine.BaseService.cs
+* author：lynx lynx.kor@163.com @ 2019/6/5 12:54
+* copyright (c) 2019 lynxce.com
+* desc：
+* > add description for BaseService
+* revision：
+*
+*/
+
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -43,7 +44,7 @@ namespace lce.engine
         /// <summary>
         /// update entity./update entity's properties
         /// </summary>
-        /// <param name="entity"></param>
+        /// <param name="entity">    </param>
         /// <param name="properties">null则更新所有字段，NOT NULL则更新指定字段</param>
         /// <returns></returns>
         public async Task<int> Update(T entity, IList<string> properties = null) => await _repository.Update(entity, properties);
@@ -51,7 +52,7 @@ namespace lce.engine
         /// <summary>
         /// update entity except properties list
         /// </summary>
-        /// <param name="entity"></param>
+        /// <param name="entity">    </param>
         /// <param name="properties">NULL则更新时不排除字段，NOT NULL则更新指定字段以外的</param>
         /// <returns></returns>
         public async Task<int> UpdateExcept(T entity, IList<string> properties = null) => await _repository.UpdateExcept(entity, properties);
@@ -67,14 +68,14 @@ namespace lce.engine
         /// 禁用数据,表中必须有State字段
         /// </summary>
         /// <returns>The delete.</returns>
-        /// <param name="id">Identifier.</param>
+        /// <param name="id">     Identifier.</param>
         /// <param name="disable"></param>
         public async Task<int> State(int id, bool disable = true) => await _repository.State(id, disable);
 
         /// <summary>
         /// 禁用数据,表中必须有State字段
         /// </summary>
-        /// <param name="entity"></param>
+        /// <param name="entity"> </param>
         /// <param name="disable"></param>
         /// <returns></returns>
         public async Task<int> State(T entity, bool disable = true) => await _repository.State(entity, disable);
@@ -111,7 +112,7 @@ namespace lce.engine
         /// list all.
         /// </summary>
         /// <param name="predicate"></param>
-        /// <param name="orders"></param>
+        /// <param name="orders">   </param>
         /// <returns></returns>
         public async Task<IList<T>> List(Expression<Func<T, bool>> predicate, Dictionary<string, bool> orders)
             => await _repository.List(predicate, orders);
@@ -119,10 +120,10 @@ namespace lce.engine
         /// <summary>
         /// page list.
         /// </summary>
-        /// <param name="page">页码</param>
-        /// <param name="size">页阀</param>
+        /// <param name="page">     页码</param>
+        /// <param name="size">     页阀</param>
         /// <param name="predicate">条件</param>
-        /// <param name="orders">排序字段</param>
+        /// <param name="orders">   排序字段</param>
         /// <returns></returns>
         public async Task<IList<T>> List(int page, int size, Expression<Func<T, bool>> predicate, Dictionary<string, bool> orders)
             => await _repository.List(page, size, predicate, orders);

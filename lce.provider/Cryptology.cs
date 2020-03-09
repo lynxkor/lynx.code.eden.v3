@@ -1,11 +1,12 @@
-﻿// action：
-// file name：${namespace}.Cryptology.cs
-// author：lynx lynx.kor@163.com @ 2019/6/6 16:32
-// copyright (c) 2019 lynxce.com
-// desc：
-// > add description for Cryptology
-// revision：
-//
+/* file name：lce.provider.Cryptology.cs
+* author：lynx lynx.kor@163.com @ 2019/6/6 16:32
+* copyright (c) 2019 lynxce.com
+* desc：
+* > add description for Cryptology
+* revision：
+*
+*/
+
 using System;
 using System.Security.Cryptography;
 using System.Text;
@@ -65,6 +66,5 @@ namespace lce.provider
             var code = Guid.NewGuid();
             return code.ToString().Replace("-", "");
         }
-
     }
 }

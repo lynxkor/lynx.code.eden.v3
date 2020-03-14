@@ -282,6 +282,49 @@
             <param name="smtp">    </param>
             <param name="port">    </param>
         </member>
+        <member name="T:lce.provider.EntityExt">
+            <summary>
+            Entity Ext
+            </summary>
+        </member>
+        <member name="M:lce.provider.EntityExt.Mapping``2(``0)">
+            <summary>
+            Mapping T to R.
+            </summary>
+            <typeparam name="T">source type</typeparam>
+            <typeparam name="R">target type</typeparam>
+            <param name="source">source</param>
+            <returns>target</returns>
+        </member>
+        <member name="M:lce.provider.EntityExt.Mapping``2(``0,``1)">
+            <summary>
+            Mappging T to R.
+            </summary>
+            <typeparam name="T">source type</typeparam>
+            <typeparam name="R">target type</typeparam>
+            <param name="source"></param>
+            <param name="result"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.EntityExt.Mapping``2(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Mapping List t to List R.
+            </summary>
+            <typeparam name="T">source type</typeparam>
+            <typeparam name="R">target type</typeparam>
+            <param name="source">source list</param>
+            <returns>target list</returns>
+        </member>
+        <member name="M:lce.provider.EntityExt.Compare``1(``0,``0,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Compare modified.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source"></param>
+            <param name="target"></param>
+            <param name="exclude"></param>
+            <returns></returns>
+        </member>
         <member name="T:lce.provider.EnumExt">
             <summary>
             枚举扩展类

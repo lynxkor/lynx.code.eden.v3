@@ -13,6 +13,7 @@
             <summary>
             </summary>
             <param name="context"></param>
+            <param name="caller"></param>
         </member>
         <member name="M:lce.engine.BaseRepository`1.Count(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
             <summary>
@@ -504,6 +505,11 @@
         <member name="P:lce.engine.IEntity.ModifiedOn">
             <summary>
             修改时间
+            </summary>
+        </member>
+        <member name="T:lce.engine.IUser">
+            <summary>
+            系统用户基类
             </summary>
         </member>
         <member name="P:lce.engine.IUser.Id">

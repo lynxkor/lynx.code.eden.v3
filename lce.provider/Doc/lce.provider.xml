@@ -4,6 +4,109 @@
         <name>lce.provider</name>
     </assembly>
     <members>
+        <member name="T:lce.provider.ActionResults.BaseResponse`1">
+            <summary>
+            请求响应体
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:lce.provider.ActionResults.BaseResponse`1.#ctor">
+            <summary>
+            实例化
+            </summary>
+        </member>
+        <member name="M:lce.provider.ActionResults.BaseResponse`1.#ctor(lce.provider.Enums.ResponseCode)">
+            <summary>
+            实例化
+            </summary>
+            <param name="code">状态码</param>
+        </member>
+        <member name="M:lce.provider.ActionResults.BaseResponse`1.#ctor(lce.provider.Enums.ResponseCode,System.String)">
+            <summary>
+            实例化
+            </summary>
+            <param name="code">状态码</param>
+            <param name="msg">状态信息</param>
+        </member>
+        <member name="M:lce.provider.ActionResults.BaseResponse`1.#ctor(`0)">
+            <summary>
+            实例化
+            </summary>
+            <param name="data">数据体</param>
+        </member>
+        <member name="M:lce.provider.ActionResults.BaseResponse`1.#ctor(lce.provider.Enums.ResponseCode,`0)">
+            <summary>
+            实例化
+            </summary>
+            <param name="code">状态码</param>
+            <param name="data">数据体</param>
+        </member>
+        <member name="M:lce.provider.ActionResults.BaseResponse`1.#ctor(lce.provider.Enums.ResponseCode,System.String,`0)">
+            <summary>
+            实例化
+            </summary>
+            <param name="code">状态码</param>
+            <param name="msg">状态信息</param>
+            <param name="data">数据体</param>
+        </member>
+        <member name="P:lce.provider.ActionResults.BaseResponse`1.Code">
+            <summary>
+            状态码
+            </summary>
+        </member>
+        <member name="P:lce.provider.ActionResults.BaseResponse`1.Msg">
+            <summary>
+            状态信息
+            </summary>
+        </member>
+        <member name="P:lce.provider.ActionResults.BaseResponse`1.Data">
+            <summary>
+            返回的数据内容
+            </summary>
+        </member>
+        <member name="T:lce.provider.ActionResults.PageResponse`1">
+            <summary>
+            分页/列表请求响应体
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:lce.provider.ActionResults.PageResponse`1.#ctor">
+            <summary>
+            实例化
+            </summary>
+        </member>
+        <member name="M:lce.provider.ActionResults.PageResponse`1.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            实例化
+            </summary>
+            <param name="page">页码</param>
+            <param name="size">面阀</param>
+            <param name="total">总数</param>
+        </member>
+        <member name="M:lce.provider.ActionResults.PageResponse`1.#ctor(System.Int32,System.Int32,System.Int32,`0)">
+            <summary>
+            实例化
+            </summary>
+            <param name="page">页码</param>
+            <param name="size">页阀</param>
+            <param name="total">总数</param>
+            <param name="data">数据体</param>
+        </member>
+        <member name="P:lce.provider.ActionResults.PageResponse`1.Page">
+            <summary>
+            页码
+            </summary>
+        </member>
+        <member name="P:lce.provider.ActionResults.PageResponse`1.Size">
+            <summary>
+            页阀
+            </summary>
+        </member>
+        <member name="P:lce.provider.ActionResults.PageResponse`1.Total">
+            <summary>
+            总数
+            </summary>
+        </member>
         <member name="T:lce.provider.Cryptology">
             <summary>
             密码/编码/验证码 生成器
@@ -196,6 +299,36 @@
             获取枚举类型的数据字典
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:lce.provider.Enums.ResponseCode">
+            <summary>
+            响应代码/状态信息
+            </summary>
+        </member>
+        <member name="F:lce.provider.Enums.ResponseCode.SUCCESS">
+            <summary>
+            操作成功
+            </summary>
+        </member>
+        <member name="F:lce.provider.Enums.ResponseCode.BAD_REQUEST">
+            <summary>
+            请求出错
+            </summary>
+        </member>
+        <member name="F:lce.provider.Enums.ResponseCode.UN_AUTHORIZED">
+            <summary>
+            身份验证失败/无权访问
+            </summary>
+        </member>
+        <member name="F:lce.provider.Enums.ResponseCode.REQUEST_TIMEOUT">
+            <summary>
+            请求响应超时
+            </summary>
+        </member>
+        <member name="F:lce.provider.Enums.ResponseCode.SERVER_ERROR">
+            <summary>
+            服务一般性错误
+            </summary>
         </member>
         <member name="T:lce.provider.FileExt">
             <summary>

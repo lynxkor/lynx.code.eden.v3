@@ -23,14 +23,17 @@ namespace lce.engine
     {
         private readonly DbContext _context;
         private readonly DbSet<T> _dbSet;
+        private readonly IUser _caller;
 
         /// <summary>
         /// </summary>
         /// <param name="context"></param>
-        public BaseRepository(DbContext context)
+        /// <param name="caller"></param>
+        public BaseRepository(DbContext context, IUser caller)
         {
             _context = context;
             _dbSet = context.Set<T>();
+            _caller = caller;
         }
 
         /// <summary>
@@ -47,11 +50,12 @@ namespace lce.engine
         /// <returns></returns>
         public async Task<int> Add(T entity)
         {
-            var crtOn = typeof(T).GetProperty("CreatedOn");
-            if (null != crtOn) crtOn.SetValue(entity, DateTime.Now);
-
-            var mdfOn = typeof(T).GetProperty("ModifiedOn");
-            if (null != mdfOn) mdfOn.SetValue(entity, DateTime.Now);
+            entity.CreatedBy = _caller.Id;
+            entity.CreatedOn = DateTime.Now;
+            entity.ModifiedBy = _caller.Id;
+            entity.ModifiedOn = DateTime.Now;
+            entity.OwnerId = _caller.Id;
+            entity.OwnerOrganId = _caller.OrganId;
 
             _dbSet.Add(entity);
             return await _context.SaveChangesAsync();
@@ -65,8 +69,8 @@ namespace lce.engine
         /// <returns></returns>
         public async Task<int> Update(T entity, IList<string> properties = null)
         {
-            var mdfOn = typeof(T).GetProperty("ModifiedOn");
-            if (null != mdfOn) mdfOn.SetValue(entity, DateTime.Now);
+            entity.ModifiedBy = _caller.Id;
+            entity.ModifiedOn = DateTime.Now;
 
             if (null != properties && properties.Count > 0)
             {
@@ -92,8 +96,8 @@ namespace lce.engine
         /// <returns></returns>
         public async Task<int> UpdateExcept(T entity, IList<string> properties = null)
         {
-            var mdfOn = typeof(T).GetProperty("ModifiedOn");
-            if (null != mdfOn) mdfOn.SetValue(entity, DateTime.Now);
+            entity.ModifiedBy = _caller.Id;
+            entity.ModifiedOn = DateTime.Now;
 
             _context.Entry<T>(entity).State = EntityState.Modified;
             _context.Entry<T>(entity).Property("CreatedOn").IsModified = false;

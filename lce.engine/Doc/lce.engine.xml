@@ -9,7 +9,7 @@
             Base repository.
             </summary>
         </member>
-        <member name="M:lce.engine.BaseRepository`1.#ctor(Microsoft.EntityFrameworkCore.DbContext)">
+        <member name="M:lce.engine.BaseRepository`1.#ctor(Microsoft.EntityFrameworkCore.DbContext,lce.engine.IUser)">
             <summary>
             </summary>
             <param name="context"></param>
@@ -504,6 +504,36 @@
         <member name="P:lce.engine.IEntity.ModifiedOn">
             <summary>
             修改时间
+            </summary>
+        </member>
+        <member name="P:lce.engine.IUser.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:lce.engine.IUser.Name">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:lce.engine.IUser.OrganId">
+            <summary>
+            组织Id
+            </summary>
+        </member>
+        <member name="P:lce.engine.IUser.OrganName">
+            <summary>
+            组织名称
+            </summary>
+        </member>
+        <member name="P:lce.engine.IUser.CompId">
+            <summary>
+            公司Id
+            </summary>
+        </member>
+        <member name="P:lce.engine.IUser.CompName">
+            <summary>
+            公司名称
             </summary>
         </member>
     </members>

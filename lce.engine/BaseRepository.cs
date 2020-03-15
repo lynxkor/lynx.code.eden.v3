@@ -29,12 +29,12 @@ namespace lce.engine
         /// <summary>
         /// </summary>
         /// <param name="context"></param>
-        /// <param name="claims"></param>
-        public BaseRepository(DbContext context, IClaimsAccessor claims)
+        /// <param name="caller"></param>
+        public BaseRepository(DbContext context, IUser caller)
         {
             _context = context;
             _dbSet = context.Set<T>();
-            _caller = claims.CurrentUser;
+            _caller = caller;
         }
 
         /// <summary>

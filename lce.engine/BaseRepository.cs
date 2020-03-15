@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using lce.provider.Auth;
 using Microsoft.EntityFrameworkCore;
 
 namespace lce.engine
@@ -29,11 +30,11 @@ namespace lce.engine
         /// </summary>
         /// <param name="context"></param>
         /// <param name="caller"></param>
-        public BaseRepository(DbContext context, IUser caller)
+        public BaseRepository(DbContext context, IClaimsAccessor claims)
         {
             _context = context;
             _dbSet = context.Set<T>();
-            _caller = caller;
+            _caller = claims.CurrentUser;
         }
 
         /// <summary>

@@ -4,6 +4,101 @@
         <name>lce.engine</name>
     </assembly>
     <members>
+        <member name="T:lce.engine.CurrentUser">
+            <summary>
+            CurrentUser
+            </summary>
+        </member>
+        <member name="M:lce.engine.CurrentUser.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:lce.engine.CurrentUser.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:lce.engine.CurrentUser.Name">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:lce.engine.CurrentUser.OrganId">
+            <summary>
+            组织Id
+            </summary>
+        </member>
+        <member name="P:lce.engine.CurrentUser.OrganName">
+            <summary>
+            组织名称
+            </summary>
+        </member>
+        <member name="P:lce.engine.CurrentUser.CompId">
+            <summary>
+            公司Id
+            </summary>
+        </member>
+        <member name="P:lce.engine.CurrentUser.CompName">
+            <summary>
+            公司名称
+            </summary>
+        </member>
+        <member name="P:lce.engine.CurrentUser.RoleIds">
+            <summary>
+            角色
+            </summary>
+        </member>
+        <member name="T:lce.engine.IPrincipalAccessor">
+            <summary>
+            身份注入器
+            </summary>
+        </member>
+        <member name="P:lce.engine.IPrincipalAccessor.CurrentUser">
+            <summary>
+            当前用户
+            </summary>
+        </member>
+        <member name="T:lce.engine.IUser">
+            <summary>
+            系统用户基类
+            </summary>
+        </member>
+        <member name="P:lce.engine.IUser.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:lce.engine.IUser.Name">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:lce.engine.IUser.OrganId">
+            <summary>
+            组织Id
+            </summary>
+        </member>
+        <member name="P:lce.engine.IUser.OrganName">
+            <summary>
+            组织名称
+            </summary>
+        </member>
+        <member name="P:lce.engine.IUser.CompId">
+            <summary>
+            公司Id
+            </summary>
+        </member>
+        <member name="P:lce.engine.IUser.CompName">
+            <summary>
+            公司名称
+            </summary>
+        </member>
+        <member name="P:lce.engine.IUser.RoleIds">
+            <summary>
+            角色
+            </summary>
+        </member>
         <member name="T:lce.engine.BaseRepository`1">
             <summary>
             Base repository.
@@ -505,41 +600,6 @@
         <member name="P:lce.engine.IEntity.ModifiedOn">
             <summary>
             修改时间
-            </summary>
-        </member>
-        <member name="T:lce.engine.IUser">
-            <summary>
-            系统用户基类
-            </summary>
-        </member>
-        <member name="P:lce.engine.IUser.Id">
-            <summary>
-            Id
-            </summary>
-        </member>
-        <member name="P:lce.engine.IUser.Name">
-            <summary>
-            姓名
-            </summary>
-        </member>
-        <member name="P:lce.engine.IUser.OrganId">
-            <summary>
-            组织Id
-            </summary>
-        </member>
-        <member name="P:lce.engine.IUser.OrganName">
-            <summary>
-            组织名称
-            </summary>
-        </member>
-        <member name="P:lce.engine.IUser.CompId">
-            <summary>
-            公司Id
-            </summary>
-        </member>
-        <member name="P:lce.engine.IUser.CompName">
-            <summary>
-            公司名称
             </summary>
         </member>
     </members>

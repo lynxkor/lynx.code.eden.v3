@@ -1,11 +1,11 @@
-﻿// /* file name：${namespace}.ServiceProviderAttribute.cs
-// * author：lynx <lynx.kor@163.com> @ 2020/3/14 20:23
-// * copyright (c) 2020 Copyright@lynxce.com
-// * desc：
-// * > add description for ServiceProviderAttribute
-// * revision：
-// *
-// */
+﻿/* file name：${namespace}.ServiceProviderAttribute.cs
+* author：lynx <lynx.kor@163.com> @ 2020/3/14 20:23
+* copyright (c) 2020 Copyright@lynxce.com
+* desc：
+* > add description for ServiceProviderAttribute
+* revision：
+*
+*/
 using System;
 using Microsoft.Extensions.DependencyInjection;
 

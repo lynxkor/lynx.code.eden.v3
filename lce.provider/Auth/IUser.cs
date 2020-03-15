@@ -1,12 +1,14 @@
-﻿// /* file name：${namespace}.IUser.cs
-// * author：lynx <lynx.kor@163.com> @ 2020/3/14 13:14
-// * copyright (c) 2020 Copyright@lynxce.com
-// * desc：
-// * > add description for IUser
-// * revision：
-// *
-// */
-namespace lce.engine
+﻿/* file name：${namespace}.IUser.cs
+* author：lynx <lynx.kor@163.com> @ 2020/3/14 13:14
+* copyright (c) 2020 Copyright@lynxce.com
+* desc：
+* > add description for IUser
+* revision：
+*
+*/
+using System.Collections.Generic;
+
+namespace lce.provider.Auth
 {
     /// <summary>
     /// 系统用户基类
@@ -22,6 +24,11 @@ namespace lce.engine
         /// 姓名
         /// </summary>
         string Name { get; set; }
+
+        /// <summary>
+        /// 用户名
+        /// </summary>
+        string UserName { get; set; }
 
         /// <summary>
         /// 组织Id
@@ -42,5 +49,11 @@ namespace lce.engine
         /// 公司名称
         /// </summary>
         string CompName { get; set; }
+
+        /// <summary>
+        /// 角色
+        /// </summary>
+        IList<string> RoleIds { get; set; }
+
     }
 }

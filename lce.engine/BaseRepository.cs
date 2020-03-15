@@ -29,7 +29,7 @@ namespace lce.engine
         /// <summary>
         /// </summary>
         /// <param name="context"></param>
-        /// <param name="caller"></param>
+        /// <param name="claims"></param>
         public BaseRepository(DbContext context, IClaimsAccessor claims)
         {
             _context = context;

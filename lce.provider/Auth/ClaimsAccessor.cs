@@ -13,16 +13,14 @@ using System.Security.Claims;
 namespace lce.provider.Auth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class ClaimsAccessor : IClaimsAccessor
-    {  /// <summary>
-       /// 
-       /// </summary>
+    {
+        /// <summary>
+        /// </summary>
         protected IPrincipalAccessor _principalAccessor { get; }
 
         /// <summary>
-        /// 
         /// </summary>
         public ClaimsAccessor(IPrincipalAccessor principalAccessor)
         {
@@ -36,7 +34,6 @@ namespace lce.provider.Auth
         }
 
         /// <summary>
-        /// 
         /// </summary>
         public IUser CurrentUser { get; }
     }

@@ -17,6 +17,7 @@ namespace lce.provider.Requsts
     /// <para>日期时间为空时默认取当前时间;</para>
     /// <para>时间维度为1010~1050时取Date[0]计算对应日期所在的时间维度第一天到最后一天;</para>
     /// <para>时间维度为1060时根据Date中两个日期时间值指定区间用作运算</para>
+    /// </summary>
     public class ReportQuery
     {
         /// <summary>

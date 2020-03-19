@@ -1,12 +1,12 @@
-﻿/* file name：${namespace}.BaseResponse.cs
+﻿/* file name：${namespace}.BaseResult.cs
 * author：lynx <lynx.kor@163.com> @ 2020/3/14 11:45
 * copyright (c) 2020 Copyright@lynxce.com
 * desc：
-* > add description for BaseResponse
+* > add description for BaseResult
 * revision：
 *
 */
-using System;
+
 using lce.provider.Enums;
 
 namespace lce.provider.ActionResults
@@ -15,18 +15,18 @@ namespace lce.provider.ActionResults
     /// 请求响应体
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class BaseResponse<T>
+    public class BaseResult<T>
     {
         /// <summary>
         /// 实例化
         /// </summary>
-        public BaseResponse() { }
+        public BaseResult() { }
 
         /// <summary>
         /// 实例化
         /// </summary>
         /// <param name="code">状态码</param>
-        public BaseResponse(ResponseCode code) : this()
+        public BaseResult(ResponseCode code) : this()
         {
             Code = code;
             Msg = code.Description();
@@ -37,7 +37,7 @@ namespace lce.provider.ActionResults
         /// </summary>
         /// <param name="code">状态码</param>
         /// <param name="msg">状态信息</param>
-        public BaseResponse(ResponseCode code, string msg) : this()
+        public BaseResult(ResponseCode code, string msg) : this()
         {
             Code = code;
             Msg = msg;
@@ -47,7 +47,7 @@ namespace lce.provider.ActionResults
         /// 实例化
         /// </summary>
         /// <param name="data">数据体</param>
-        public BaseResponse(T data) : this()
+        public BaseResult(T data) : this()
         {
             Data = data;
         }
@@ -57,7 +57,7 @@ namespace lce.provider.ActionResults
         /// </summary>
         /// <param name="code">状态码</param>
         /// <param name="data">数据体</param>
-        public BaseResponse(ResponseCode code, T data) : this()
+        public BaseResult(ResponseCode code, T data) : this()
         {
             Code = code;
             Msg = code.Description();
@@ -70,7 +70,7 @@ namespace lce.provider.ActionResults
         /// <param name="code">状态码</param>
         /// <param name="msg">状态信息</param>
         /// <param name="data">数据体</param>
-        public BaseResponse(ResponseCode code, string msg, T data) : this()
+        public BaseResult(ResponseCode code, string msg, T data) : this()
         {
             Code = code;
             Msg = msg;

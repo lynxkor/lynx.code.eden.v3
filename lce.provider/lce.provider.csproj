@@ -20,7 +20,8 @@
     <Folder Include="Enums\" />
     <Folder Include="ActionResults\" />
     <Folder Include="Attributes\" />
-    <Folder Include="auth\" />
+    <Folder Include="Requsts\" />
+    <Folder Include="Auth\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="aliyun-net-sdk-core">

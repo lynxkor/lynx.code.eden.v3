@@ -8,6 +8,7 @@
 */
 
 using System;
+using lce.provider.Enums;
 
 namespace lce.provider
 {
@@ -32,6 +33,34 @@ namespace lce.provider
                 return DateTime.Now;
             }
         }
+        /// <summary>
+        /// Format yyyy-MM-dd
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public static string FormatShort(this DateTime input)
+        {
+            return input.Format("yyyy-MM-dd");
+        }
+
+        /// <summary>
+        /// Format datetime,default yyyy-MM-dd HH:mm:ss
+        /// </summary>
+        /// <param name="input"></param>
+        /// <param name="format"></param>
+        /// <returns></returns>
+        public static string Format(this DateTime input, string format = "yyyy-MM-dd HH:mm:ss")
+        {
+            try
+            {
+                return input.ToString(format);
+            }
+            catch
+            {
+                return "参数有误";
+            }
+        }
+
         /// <summary>
         /// 取得某月的第一天
         /// </summary>
@@ -116,33 +145,43 @@ namespace lce.provider
         }
 
         /// <summary>
+        /// 季度
+        /// </summary>
+        /// <param name="dateTime"></param>
+        /// <returns></returns>
+        public static int Quarter(this DateTime dateTime)
+        {
+            return dateTime.Month / 3 + 1;
+        }
+
+        /// <summary>
         /// 根据日期和类型返回对应的开始时间和结束时间
         /// </summary>
         /// <param name="type">     类型：日、周、月、季、年</param>
         /// <param name="date">     日期</param>
         /// <param name="startDate">开始时间 yyyy-MM-dd 00:00:00</param>
         /// <param name="endDate">  结束时间 yyyy-MM-dd 23:59:59</param>
-        public static void SwitchType4Date(this DateTime date, int type, out DateTime startDate, out DateTime endDate)
+        public static void SwitchType4Date(this DateTime date, DateType type, out DateTime startDate, out DateTime endDate)
         {
             switch (type)
             {
-                case 2://周
+                case DateType.Week://周
                     startDate = date.WeekFirstDay();
                     endDate = startDate.WeekLastDay();
                     break;
-                case 3://月
+                case DateType.Month://月
                     startDate = date.MonthFirstDay();
                     endDate = startDate.MonthLastDay();
                     break;
-                case 4://季
+                case DateType.Quarter://季
                     startDate = date.QuarterFirstDay();
                     endDate = startDate.QuarterLastDay();
                     break;
-                case 5://年
+                case DateType.Year://年
                     startDate = date.YearFirstDay();
                     endDate = startDate.YearLastDay();
                     break;
-                case 1://日
+                case DateType.Day://日
                 default://默认
                     startDate = date.Date;
                     endDate = startDate.AddDays(1).AddSeconds(-1);

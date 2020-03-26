@@ -32,7 +32,7 @@ namespace lce.provider
             R result = Activator.CreateInstance<R>();
             return source.Mapping(result);
         }
-
+        
         /// <summary>
         /// Mappging T to R.
         /// </summary>

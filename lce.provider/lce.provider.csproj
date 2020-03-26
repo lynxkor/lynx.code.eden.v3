@@ -1,31 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DocumentationFile>Doc\lce.provider.xml</DocumentationFile>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="3.1.2" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Doc\" />
-    <Folder Include="using\" />
-    <Folder Include="Enums\" />
-    <Folder Include="ActionResults\" />
-    <Folder Include="Attributes\" />
-    <Folder Include="Requsts\" />
-    <Folder Include="Auth\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="aliyun-net-sdk-core">
-      <HintPath>using\aliyun-net-sdk-core.dll</HintPath>
-    </Reference>
-  </ItemGroup>
+    <PropertyGroup>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
+        <Company>lynxce.com</Company>
+        <Authors>lynx.kor</Authors>
+    </PropertyGroup>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+        <DocumentationFile>Doc\lce.provider.xml</DocumentationFile>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
+        <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.2" />
+        <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
+        <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="3.1.2" />
+        <PackageReference Include="aliyun-net-sdk-core" Version="1.5.3" />
+    </ItemGroup>
+    <ItemGroup>
+        <Folder Include="Doc\" />
+        <Folder Include="Enums\" />
+        <Folder Include="ActionResults\" />
+        <Folder Include="Attributes\" />
+        <Folder Include="Requsts\" />
+        <Folder Include="Auth\" />
+    </ItemGroup>
 </Project>

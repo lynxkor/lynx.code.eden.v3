@@ -35,6 +35,13 @@ namespace lce.engine
         Task<int> Add(T entity);
 
         /// <summary>
+        /// add entities
+        /// </summary>
+        /// <param name="enities"></param>
+        /// <returns></returns>
+        Task<int> AddRange(IEnumerable<T> enities);
+
+        /// <summary>
         /// update entity./update entity's properties
         /// </summary>
         /// <param name="entity">    </param>

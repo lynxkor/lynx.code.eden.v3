@@ -63,6 +63,20 @@ namespace lce.engine
         }
 
         /// <summary>
+        /// add range entity
+        /// </summary>
+        /// <param name="entities"></param>
+        /// <returns></returns>
+        public async Task<int> AddRange(IEnumerable<T> entities)
+        {
+            foreach (var entity in entities)
+            {
+                await Add(entity);
+            }
+            return 1;
+        }
+
+        /// <summary>
         /// update entity./update entity's properties
         /// </summary>
         /// <param name="entity">    </param>

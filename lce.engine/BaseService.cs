@@ -42,6 +42,13 @@ namespace lce.engine
         public async Task<int> Add(T entity) => await _repository.Add(entity);
 
         /// <summary>
+        /// add entites
+        /// </summary>
+        /// <param name="entities"></param>
+        /// <returns></returns>
+        public async Task<int> AddRange(IEnumerable<T> entities) => await _repository.AddRange(entities);
+
+        /// <summary>
         /// update entity./update entity's properties
         /// </summary>
         /// <param name="entity">    </param>

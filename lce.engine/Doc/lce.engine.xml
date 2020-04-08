@@ -29,6 +29,13 @@
             <param name="entity"></param>
             <returns></returns>
         </member>
+        <member name="M:lce.engine.BaseRepository`1.AddRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            add range entity
+            </summary>
+            <param name="entities"></param>
+            <returns></returns>
+        </member>
         <member name="M:lce.engine.BaseRepository`1.Update(`0,System.Collections.Generic.IList{System.String})">
             <summary>
             update entity./update entity's properties
@@ -148,6 +155,13 @@
             <param name="entity"></param>
             <returns></returns>
         </member>
+        <member name="M:lce.engine.BaseService`1.AddRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            add entites
+            </summary>
+            <param name="entities"></param>
+            <returns></returns>
+        </member>
         <member name="M:lce.engine.BaseService`1.Update(`0,System.Collections.Generic.IList{System.String})">
             <summary>
             update entity./update entity's properties
@@ -250,6 +264,13 @@
             add entity.
             </summary>
             <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.IBaseRepository`1.AddRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            add entities
+            </summary>
+            <param name="entities"></param>
             <returns></returns>
         </member>
         <member name="M:lce.engine.IBaseRepository`1.Update(`0,System.Collections.Generic.IList{System.String})">
@@ -355,6 +376,13 @@
             add entity.
             </summary>
             <param name="entity"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.engine.IBaseService`1.AddRange(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            add entities
+            </summary>
+            <param name="enities"></param>
             <returns></returns>
         </member>
         <member name="M:lce.engine.IBaseService`1.Update(`0,System.Collections.Generic.IList{System.String})">

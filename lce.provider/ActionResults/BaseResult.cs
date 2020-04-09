@@ -18,12 +18,12 @@ namespace lce.provider.ActionResults
     public class BaseResult<T>
     {
         /// <summary>
-        /// 实例化
+        /// 请求响应体
         /// </summary>
         public BaseResult() { }
 
         /// <summary>
-        /// 实例化
+        /// 请求响应体
         /// </summary>
         /// <param name="code">状态码</param>
         public BaseResult(ResponseCode code) : this()
@@ -33,7 +33,7 @@ namespace lce.provider.ActionResults
         }
 
         /// <summary>
-        /// 实例化
+        /// 请求响应体
         /// </summary>
         /// <param name="code">状态码</param>
         /// <param name="msg">状态信息</param>

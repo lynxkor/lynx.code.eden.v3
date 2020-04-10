@@ -12,18 +12,18 @@
         </member>
         <member name="M:lce.provider.ActionResults.BaseResult`1.#ctor">
             <summary>
-            实例化
+            请求响应体
             </summary>
         </member>
         <member name="M:lce.provider.ActionResults.BaseResult`1.#ctor(lce.provider.Enums.ResponseCode)">
             <summary>
-            实例化
+            请求响应体
             </summary>
             <param name="code">状态码</param>
         </member>
         <member name="M:lce.provider.ActionResults.BaseResult`1.#ctor(lce.provider.Enums.ResponseCode,System.String)">
             <summary>
-            实例化
+            请求响应体
             </summary>
             <param name="code">状态码</param>
             <param name="msg">状态信息</param>

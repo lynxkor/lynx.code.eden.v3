@@ -6,12 +6,12 @@
 * revision：
 *
 */
-using System;
+
+using lce.provider.Enums;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using lce.provider.Enums;
 
 namespace lce.provider
 {
@@ -20,6 +20,15 @@ namespace lce.provider
     /// </summary>
     public static class HttpClientExt
     {
+        /// <summary>
+        /// Post
+        /// </summary>
+        /// <param name="url">        </param>
+        /// <param name="param">      </param>
+        /// <param name="headers">    </param>
+        /// <param name="contentType"></param>
+        /// <param name="charSet">    </param>
+        /// <returns></returns>
         public static Dictionary<ResponseCode, string> Post(string url
             , Dictionary<string, string> param = null
             , Dictionary<string, string> headers = null
@@ -64,7 +73,6 @@ namespace lce.provider
             }
             catch (WebException ex)
             {
-
                 return new Dictionary<ResponseCode, string>()
                 {
                     {ResponseCode.SERVER_ERROR,ex.Message}

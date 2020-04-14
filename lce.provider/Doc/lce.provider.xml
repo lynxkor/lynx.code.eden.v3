@@ -618,6 +618,11 @@
             <returns>The MIME type.</returns>
             <param name="fileName">File name.</param>
         </member>
+        <member name="T:lce.provider.HttpClientExt">
+            <summary>
+            HttpClientExt
+            </summary>
+        </member>
         <member name="T:lce.provider.ImageExt">
             <summary>
             图片扩展类

@@ -20,6 +20,9 @@ namespace lce.engine
     /// <typeparam name="T"></typeparam>
     public class BaseService<T> : IBaseService<T> where T : IEntity
     {
+        /// <summary>
+        /// T's Repository
+        /// </summary>
         protected readonly IBaseRepository<T> _repository;
 
         /// <summary>

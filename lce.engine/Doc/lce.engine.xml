@@ -136,6 +136,11 @@
             </summary>
             <typeparam name="T"></typeparam>
         </member>
+        <member name="F:lce.engine.BaseService`1._repository">
+            <summary>
+            T's Repository
+            </summary>
+        </member>
         <member name="M:lce.engine.BaseService`1.#ctor(lce.engine.IBaseRepository{`0})">
             <summary>
             </summary>

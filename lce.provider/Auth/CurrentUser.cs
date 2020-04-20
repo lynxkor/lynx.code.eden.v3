@@ -17,7 +17,6 @@ namespace lce.provider.Auth
     public class CurrentUser : IUser
     {
         /// <summary>
-        /// 
         /// </summary>
         public CurrentUser()
         {
@@ -26,40 +25,41 @@ namespace lce.provider.Auth
         /// <summary>
         /// Id
         /// </summary>
-        public int Id { get; set; }
+        public int Id { get; set; } = 0;
 
         /// <summary>
         /// 姓名
         /// </summary>
-        public string Name { get; set; }
+        public string Name { get; set; } = "SYS";
 
         /// <summary>
         /// 用户名
         /// </summary>
-        public string UserName { get; set; }
+        public string UserName { get; set; } = "SYS";
+
         /// <summary>
         /// 组织Id
         /// </summary>
-        public int OrganId { get; set; }
+        public int OrganId { get; set; } = 0;
 
         /// <summary>
         /// 组织名称
         /// </summary>
-        public string OrganName { get; set; }
+        public string OrganName { get; set; } = "SYS";
 
         /// <summary>
         /// 公司Id
         /// </summary>
-        public int CompId { get; set; }
+        public int CompId { get; set; } = 0;
 
         /// <summary>
         /// 公司名称
         /// </summary>
-        public string CompName { get; set; }
+        public string CompName { get; set; } = "SYS";
 
         /// <summary>
         /// 角色
         /// </summary>
-        public IList<string> RoleIds { get; set; }
+        public IList<string> RoleIds { get; set; } = new string[] { "ALL" };
     }
 }

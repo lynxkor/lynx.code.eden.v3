@@ -152,7 +152,6 @@
         </member>
         <member name="M:lce.provider.Auth.CurrentUser.#ctor">
             <summary>
-            
             </summary>
         </member>
         <member name="P:lce.provider.Auth.CurrentUser.Id">
@@ -622,6 +621,17 @@
             <summary>
             HttpClientExt
             </summary>
+        </member>
+        <member name="M:lce.provider.HttpClientExt.Post(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.String)">
+            <summary>
+            Post
+            </summary>
+            <param name="url">        </param>
+            <param name="param">      </param>
+            <param name="headers">    </param>
+            <param name="contentType"></param>
+            <param name="charSet">    </param>
+            <returns></returns>
         </member>
         <member name="T:lce.provider.ImageExt">
             <summary>

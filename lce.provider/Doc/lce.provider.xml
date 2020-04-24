@@ -743,6 +743,38 @@
             QuerySqlExt
             </summary>
         </member>
+        <member name="M:lce.provider.QuerySqlExt.Condition(System.String,System.Nullable{System.Int32})">
+            <summary>
+            拼接查询条件
+            </summary>
+            <param name="name"> </param>
+            <param name="value"></param>
+            <returns>AND {name} = {value}</returns>
+        </member>
+        <member name="M:lce.provider.QuerySqlExt.Condition(System.String,System.String)">
+            <summary>
+            拼接查询条件
+            </summary>
+            <param name="name"> </param>
+            <param name="value"></param>
+            <returns>AND {name} = '{value}'</returns>
+        </member>
+        <member name="M:lce.provider.QuerySqlExt.Condition(System.String,System.Collections.Generic.IList{System.Int32})">
+            <summary>
+            拼接查询条件
+            </summary>
+            <param name="name">  </param>
+            <param name="values"></param>
+            <returns>AND {name} = {values}/IN({values})</returns>
+        </member>
+        <member name="M:lce.provider.QuerySqlExt.Condition(System.String,System.Collections.Generic.IList{System.String})">
+            <summary>
+            拼接查询条件
+            </summary>
+            <param name="name">  </param>
+            <param name="values"></param>
+            <returns>AND {name} = '{values}'/IN('{values}')</returns>
+        </member>
         <member name="T:lce.provider.Requsts.BaseQuery">
             <summary>
             查询基类

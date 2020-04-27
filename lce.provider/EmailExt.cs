@@ -24,23 +24,6 @@ namespace lce.provider
         /// <param name="mailto">  </param>
         /// <param name="username"></param>
         /// <param name="password"></param>
-        /// <param name="smtp">    </param>
-        public static void Send(string content, string subject, string mailto, string username, string password, string smtp)
-        {
-            var uri = new Uri(smtp);
-            var host = uri.Host.ToLower().Replace("www.", "");
-            var mailfrom = string.Format("{0}@{1}", username, host);
-            Send(content, subject, mailto, username, password, mailfrom, smtp);
-        }
-
-        /// <summary>
-        /// 发送邮件
-        /// </summary>
-        /// <param name="content"> </param>
-        /// <param name="subject"> </param>
-        /// <param name="mailto">  </param>
-        /// <param name="username"></param>
-        /// <param name="password"></param>
         /// <param name="mailfrom"></param>
         /// <param name="smtp">    </param>
         /// <param name="port">    </param>

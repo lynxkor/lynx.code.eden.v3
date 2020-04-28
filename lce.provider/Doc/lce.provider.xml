@@ -448,17 +448,6 @@
             EmailExt
             </summary>
         </member>
-        <member name="M:lce.provider.EmailExt.Send(System.String,System.String,System.String,System.String,System.String,System.String)">
-            <summary>
-            发送邮件
-            </summary>
-            <param name="content"> </param>
-            <param name="subject"> </param>
-            <param name="mailto">  </param>
-            <param name="username"></param>
-            <param name="password"></param>
-            <param name="smtp">    </param>
-        </member>
         <member name="M:lce.provider.EmailExt.Send(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.Int32)">
             <summary>
             发送邮件

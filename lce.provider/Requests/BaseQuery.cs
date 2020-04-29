@@ -7,7 +7,7 @@
 *
 */
 
-namespace lce.provider.Requsts
+namespace lce.provider.Requests
 {
     /// <summary>
     /// 查询基类

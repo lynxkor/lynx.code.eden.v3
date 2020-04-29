@@ -10,7 +10,7 @@ using System;
 using System.Collections.Generic;
 using lce.provider.Enums;
 
-namespace lce.provider.Requsts
+namespace lce.provider.Requests
 {
     /// <summary>
     /// 通用报表查询参数

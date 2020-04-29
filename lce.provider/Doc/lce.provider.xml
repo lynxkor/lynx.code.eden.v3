@@ -764,37 +764,37 @@
             <param name="values"></param>
             <returns>AND {name} = '{values}'/IN('{values}')</returns>
         </member>
-        <member name="T:lce.provider.Requsts.BaseQuery">
+        <member name="T:lce.provider.Requests.BaseQuery">
             <summary>
             查询基类
             </summary>
         </member>
-        <member name="P:lce.provider.Requsts.BaseQuery.Keyword">
+        <member name="P:lce.provider.Requests.BaseQuery.Keyword">
             <summary>
             关键字
             </summary>
         </member>
-        <member name="T:lce.provider.Requsts.PageQuery">
+        <member name="T:lce.provider.Requests.PageQuery">
             <summary>
             分頁查询
             </summary>
         </member>
-        <member name="P:lce.provider.Requsts.PageQuery.Page">
+        <member name="P:lce.provider.Requests.PageQuery.Page">
             <summary>
             頁码
             </summary>
         </member>
-        <member name="P:lce.provider.Requsts.PageQuery.Size">
+        <member name="P:lce.provider.Requests.PageQuery.Size">
             <summary>
             頁阀
             </summary>
         </member>
-        <member name="P:lce.provider.Requsts.PageQuery.Orders">
+        <member name="P:lce.provider.Requests.PageQuery.Orders">
             <summary>
             排序条件
             </summary>
         </member>
-        <member name="T:lce.provider.Requsts.ReportQuery">
+        <member name="T:lce.provider.Requests.ReportQuery">
             <summary>
             通用报表查询参数
             <para>日期时间为空时默认取当前时间;</para>
@@ -802,13 +802,13 @@
             <para>时间维度为1060时根据Date中两个日期时间值指定区间用作运算</para>
             </summary>
         </member>
-        <member name="P:lce.provider.Requsts.ReportQuery.DateType">
+        <member name="P:lce.provider.Requests.ReportQuery.DateType">
             <summary>
             时间维度 1010:年，1020:月，1030:日，1040:周，1050:季，1060:自定义区间
             <code>DateTimeExt.DateType</code>
             </summary>
         </member>
-        <member name="P:lce.provider.Requsts.ReportQuery.Date">
+        <member name="P:lce.provider.Requests.ReportQuery.Date">
             <summary>
             日期时间
             </summary>

@@ -9,7 +9,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace lce.provider.Requsts
+namespace lce.provider.Requests
 {
     /// <summary>
     /// 分頁查询

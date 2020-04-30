@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using lce.provider;
 using lce.provider.Auth;
 using Microsoft.EntityFrameworkCore;
 
@@ -29,7 +30,7 @@ namespace lce.engine
         /// <summary>
         /// </summary>
         /// <param name="context"></param>
-        /// <param name="caller"></param>
+        /// <param name="caller"> </param>
         public BaseRepository(DbContext context, IUser caller)
         {
             _context = context;
@@ -57,6 +58,8 @@ namespace lce.engine
             entity.ModifiedOn = DateTime.Now;
             entity.OwnerId = _caller.Id;
             entity.OwnerOrganId = _caller.OrganId;
+            if (string.IsNullOrEmpty(entity.Code)) entity.Code = Cryptology.Code();
+            if (string.IsNullOrEmpty(entity.Name)) entity.Name = DateTime.Now.ToCode();
 
             _dbSet.Add(entity);
             return await _context.SaveChangesAsync();

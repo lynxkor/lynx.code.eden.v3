@@ -48,7 +48,7 @@ namespace lce.provider
             if (useNum) dic += "0123456789";
             if (useLow) dic += "abcdefghijklmnopqrstuvwxyz";
             if (useUpp) dic += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-            if (useSpe) dic += "!\\\"#$%&'()*+,-./:;<=>?@[\\\\]^_`{|}~";
+            if (useSpe) dic += "!#$%&'()*+,-./:;<=>?@[]^_`{|}~";
             var dicLength = dic.Length - 1;
             for (int i = 0; i < lenght; i++)
             {
@@ -58,13 +58,12 @@ namespace lce.provider
         }
 
         /// <summary>
-        /// GUID CODE WITHOUT '-'
+        /// GUID 2 UUID CODE
         /// </summary>
         /// <returns></returns>
         public static string Code()
         {
-            var code = Guid.NewGuid();
-            return code.ToString().Replace("-", "");
+            return Guid.NewGuid().ToString("N");
         }
     }
 }

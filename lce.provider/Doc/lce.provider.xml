@@ -327,7 +327,15 @@
             <summary>
             Format datetime,default yyyy-MM-dd HH:mm:ss
             </summary>
-            <param name="input"></param>
+            <param name="input"> </param>
+            <param name="format"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.DateTimeExt.ToCode(System.DateTime,System.String)">
+            <summary>
+            Format datetime 4 code
+            </summary>
+            <param name="input"> </param>
             <param name="format"></param>
             <returns></returns>
         </member>

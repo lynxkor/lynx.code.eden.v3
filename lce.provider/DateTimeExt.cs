@@ -33,6 +33,7 @@ namespace lce.provider
                 return DateTime.Now;
             }
         }
+
         /// <summary>
         /// Format yyyy-MM-dd
         /// </summary>
@@ -46,10 +47,28 @@ namespace lce.provider
         /// <summary>
         /// Format datetime,default yyyy-MM-dd HH:mm:ss
         /// </summary>
-        /// <param name="input"></param>
+        /// <param name="input"> </param>
         /// <param name="format"></param>
         /// <returns></returns>
         public static string Format(this DateTime input, string format = "yyyy-MM-dd HH:mm:ss")
+        {
+            try
+            {
+                return input.ToString(format);
+            }
+            catch
+            {
+                return "参数有误";
+            }
+        }
+
+        /// <summary>
+        /// Format datetime 4 code
+        /// </summary>
+        /// <param name="input"> </param>
+        /// <param name="format"></param>
+        /// <returns></returns>
+        public static string ToCode(this DateTime input, string format = "yyyyMMddHHmmss")
         {
             try
             {
@@ -169,18 +188,22 @@ namespace lce.provider
                     startDate = date.WeekFirstDay();
                     endDate = startDate.WeekLastDay();
                     break;
+
                 case DateType.Month://月
                     startDate = date.MonthFirstDay();
                     endDate = startDate.MonthLastDay();
                     break;
+
                 case DateType.Quarter://季
                     startDate = date.QuarterFirstDay();
                     endDate = startDate.QuarterLastDay();
                     break;
+
                 case DateType.Year://年
                     startDate = date.YearFirstDay();
                     endDate = startDate.YearLastDay();
                     break;
+
                 case DateType.Day://日
                 default://默认
                     startDate = date.Date;

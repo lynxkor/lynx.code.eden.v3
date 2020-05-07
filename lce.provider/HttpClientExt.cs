@@ -36,38 +36,36 @@ namespace lce.provider
         {
             try
             {
-                using (var httpClient = new HttpClient())
+                using var httpClient = new HttpClient();
+                var body = "";
+                if (null != param && param.Count > 0)
                 {
-                    var body = "";
-                    if (null != param && param.Count > 0)
+                    body = param.ToJson();
+                }
+                HttpResponseMessage response = null;
+                using (HttpContent content = new StringContent(body))
+                {
+                    content.Headers.ContentType = new MediaTypeHeaderValue(contentType)
                     {
-                        body = param.ToJson();
-                    }
-                    HttpResponseMessage response = null;
-                    using (HttpContent content = new StringContent(body))
+                        CharSet = charSet
+                    };
+                    if (null != headers)
                     {
-                        content.Headers.ContentType = new MediaTypeHeaderValue(contentType)
+                        foreach (var item in headers)
                         {
-                            CharSet = charSet
-                        };
-                        if (null != headers)
-                        {
-                            foreach (var item in headers)
-                            {
-                                content.Headers.Add(item.Key, item.Value);
-                            }
+                            content.Headers.Add(item.Key, item.Value);
                         }
-                        response = httpClient.PostAsync(url, content).Result;
                     }
-                    if (response != null && response.IsSuccessStatusCode)
+                    response = httpClient.PostAsync(url, content).Result;
+                }
+                if (response != null && response.IsSuccessStatusCode)
+                {
+                    using (response)
                     {
-                        using (response)
-                        {
-                            return new Dictionary<ResponseCode, string>
+                        return new Dictionary<ResponseCode, string>
                             {
                                 { (ResponseCode)response.StatusCode, response.Content.ReadAsStringAsync().Result }
                             };
-                        }
                     }
                 }
             }

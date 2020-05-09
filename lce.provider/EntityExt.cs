@@ -6,11 +6,12 @@
 * revision：
 *
 */
+
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Newtonsoft.Json;
 
 namespace lce.provider
 {
@@ -32,7 +33,7 @@ namespace lce.provider
             R result = Activator.CreateInstance<R>();
             return source.Mapping(result);
         }
-        
+
         /// <summary>
         /// Mappging T to R.
         /// </summary>
@@ -67,13 +68,12 @@ namespace lce.provider
             return source.Select(x => x.Mapping<T, R>());
         }
 
-
         /// <summary>
         /// Compare modified.
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="source"></param>
-        /// <param name="target"></param>
+        /// <param name="source"> </param>
+        /// <param name="target"> </param>
         /// <param name="exclude"></param>
         /// <returns></returns>
         public static Dictionary<string, object> Compare<T>(this T source, T target, IEnumerable<string> exclude = null) where T : class

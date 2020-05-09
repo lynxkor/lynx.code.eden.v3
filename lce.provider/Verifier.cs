@@ -81,6 +81,7 @@ namespace lce.provider
                     return 0;
             }
         }
+
         /// <summary>
         /// 校验是否为短整型格式
         /// </summary>
@@ -102,6 +103,7 @@ namespace lce.provider
                     return 0;
             }
         }
+
         /// <summary>
         /// 校验是否为整型格式
         /// </summary>
@@ -134,6 +136,7 @@ namespace lce.provider
                     return 0;
             }
         }
+
         /// <summary>
         /// 校验是否为字符串
         /// </summary>
@@ -151,6 +154,7 @@ namespace lce.provider
                     return "";
             }
         }
+
         /// <summary>
         /// 校验布尔值
         /// </summary>
@@ -178,6 +182,7 @@ namespace lce.provider
                     return false;
             }
         }
+
         /// <summary>
         /// 校验是否为double型格式
         /// </summary>
@@ -199,6 +204,7 @@ namespace lce.provider
                     return 0;
             }
         }
+
         /// <summary>
         /// 校验是否为single型格式
         /// </summary>
@@ -220,6 +226,7 @@ namespace lce.provider
                     return 0;
             }
         }
+
         /// <summary>
         /// 校验是否为Decimal型格式
         /// </summary>
@@ -241,6 +248,7 @@ namespace lce.provider
                     return 0;
             }
         }
+
         /// <summary>
         /// 校验是否为字节格式
         /// </summary>

@@ -54,6 +54,7 @@ namespace lce.provider
                 case ".dot":
                     mimeType = "application/msword";
                     break;
+
                 case ".xls":
                 case ".xlsx":
                 case ".xla":

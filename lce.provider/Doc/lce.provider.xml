@@ -26,7 +26,7 @@
             请求响应体
             </summary>
             <param name="code">状态码</param>
-            <param name="msg">状态信息</param>
+            <param name="msg"> 状态信息</param>
         </member>
         <member name="M:lce.provider.ActionResults.BaseResult`1.#ctor(`0)">
             <summary>
@@ -46,7 +46,7 @@
             实例化
             </summary>
             <param name="code">状态码</param>
-            <param name="msg">状态信息</param>
+            <param name="msg"> 状态信息</param>
             <param name="data">数据体</param>
         </member>
         <member name="P:lce.provider.ActionResults.BaseResult`1.Code">
@@ -79,18 +79,18 @@
             <summary>
             实例化
             </summary>
-            <param name="page">頁码</param>
-            <param name="size">頁阀</param>
+            <param name="page"> 頁码</param>
+            <param name="size"> 頁阀</param>
             <param name="total">总数</param>
         </member>
         <member name="M:lce.provider.ActionResults.PageResult`1.#ctor(System.Int32,System.Int32,System.Int32,`0)">
             <summary>
             实例化
             </summary>
-            <param name="page">頁码</param>
-            <param name="size">頁阀</param>
+            <param name="page"> 頁码</param>
+            <param name="size"> 頁阀</param>
             <param name="total">总数</param>
-            <param name="data">数据体</param>
+            <param name="data"> 数据体</param>
         </member>
         <member name="P:lce.provider.ActionResults.PageResult`1.Page">
             <summary>
@@ -126,7 +126,7 @@
             <summary>
             构造函数
             </summary>
-            <param name="type">服务类型</param>
+            <param name="type">    服务类型</param>
             <param name="lifetime">生命周期</param>
         </member>
         <member name="T:lce.provider.Auth.ClaimsAccessor">
@@ -196,7 +196,6 @@
         </member>
         <member name="T:lce.provider.Auth.IClaimsAccessor">
             <summary>
-            
             </summary>
         </member>
         <member name="P:lce.provider.Auth.IClaimsAccessor.CurrentUser">
@@ -261,18 +260,15 @@
         </member>
         <member name="T:lce.provider.Auth.PrincipalAccessor">
             <summary>
-            
             </summary>
         </member>
         <member name="M:lce.provider.Auth.PrincipalAccessor.#ctor(Microsoft.AspNetCore.Http.IHttpContextAccessor)">
             <summary>
-            
             </summary>
             <param name="httpContextAccessor"></param>
         </member>
         <member name="P:lce.provider.Auth.PrincipalAccessor.Principal">
             <summary>
-            
             </summary>
         </member>
         <member name="T:lce.provider.Cryptology">
@@ -507,8 +503,8 @@
             Compare modified.
             </summary>
             <typeparam name="T"></typeparam>
-            <param name="source"></param>
-            <param name="target"></param>
+            <param name="source"> </param>
+            <param name="target"> </param>
             <param name="exclude"></param>
             <returns></returns>
         </member>

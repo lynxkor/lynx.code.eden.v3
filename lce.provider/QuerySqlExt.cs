@@ -70,7 +70,5 @@ namespace lce.provider
             else
                 return $@"AND {name} IN({string.Join(",", values.Select(x => $@"'{x}'"))}) ";
         }
-
-
     }
 }

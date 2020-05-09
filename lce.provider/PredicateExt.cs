@@ -4,7 +4,7 @@
 * copyright (c) 2019 lynxce.com
 * > add description for PredicateExt
 * desc：what can you use this.
-* var where = PredicateExt.True<model>(); 
+* var where = PredicateExt.True<model>();
 * or where = PredicateExt.False<model>();
 * where = where.And(x=>x.feild1 == value1);
 * where = where.Or(x=>x.feild2 == value2);

@@ -23,8 +23,8 @@ namespace lce.provider.ActionResults
         /// <summary>
         /// 实例化
         /// </summary>
-        /// <param name="page">頁码</param>
-        /// <param name="size">頁阀</param>
+        /// <param name="page"> 頁码</param>
+        /// <param name="size"> 頁阀</param>
         /// <param name="total">总数</param>
         public PageResult(int page, int size, int total) : base()
         {
@@ -36,10 +36,10 @@ namespace lce.provider.ActionResults
         /// <summary>
         /// 实例化
         /// </summary>
-        /// <param name="page">頁码</param>
-        /// <param name="size">頁阀</param>
+        /// <param name="page"> 頁码</param>
+        /// <param name="size"> 頁阀</param>
         /// <param name="total">总数</param>
-        /// <param name="data">数据体</param>
+        /// <param name="data"> 数据体</param>
         public PageResult(int page, int size, int total, T data) : base(data)
         {
             Page = page;

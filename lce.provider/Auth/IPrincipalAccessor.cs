@@ -6,6 +6,7 @@
 * revision：
 *
 */
+
 using System.Security.Claims;
 
 namespace lce.provider.Auth
@@ -20,5 +21,4 @@ namespace lce.provider.Auth
         /// </summary>
         ClaimsPrincipal Principal { get; }
     }
-
 }

@@ -36,7 +36,7 @@ namespace lce.provider.ActionResults
         /// 请求响应体
         /// </summary>
         /// <param name="code">状态码</param>
-        /// <param name="msg">状态信息</param>
+        /// <param name="msg"> 状态信息</param>
         public BaseResult(ResponseCode code, string msg) : this()
         {
             Code = code;
@@ -68,7 +68,7 @@ namespace lce.provider.ActionResults
         /// 实例化
         /// </summary>
         /// <param name="code">状态码</param>
-        /// <param name="msg">状态信息</param>
+        /// <param name="msg"> 状态信息</param>
         /// <param name="data">数据体</param>
         public BaseResult(ResponseCode code, string msg, T data) : this()
         {

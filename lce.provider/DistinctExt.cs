@@ -31,6 +31,7 @@ namespace lce.provider
             return source.Distinct(new CommonEqualityComparer<T, V>(keySelector));
         }
     }
+
     /// <summary>
     /// CommonEqualityComparer
     /// </summary>

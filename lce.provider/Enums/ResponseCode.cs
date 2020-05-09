@@ -6,7 +6,7 @@
 * revision：
 *
 */
-using System;
+
 using System.ComponentModel;
 
 namespace lce.provider.Enums
@@ -46,5 +46,4 @@ namespace lce.provider.Enums
         [Description("服务一般性错误")]
         SERVER_ERROR = 500,
     }
-
 }

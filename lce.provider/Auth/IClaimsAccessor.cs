@@ -6,11 +6,10 @@
 * revision：
 *
 */
-using System;
+
 namespace lce.provider.Auth
 {
     /// <summary>
-    /// 
     /// </summary>
     public interface IClaimsAccessor
     {

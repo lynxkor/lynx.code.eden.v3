@@ -6,8 +6,9 @@
 * revision：
 *
 */
-using System;
+
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace lce.provider.Attributes
 {
@@ -30,7 +31,7 @@ namespace lce.provider.Attributes
         /// <summary>
         /// 构造函数
         /// </summary>
-        /// <param name="type">服务类型</param>
+        /// <param name="type">    服务类型</param>
         /// <param name="lifetime">生命周期</param>
         public ServiceProviderAttribute(Type type, ServiceLifetime lifetime = ServiceLifetime.Transient)
         {

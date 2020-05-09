@@ -7,8 +7,8 @@
 *
 */
 
-using System;
 using lce.provider.Enums;
+using System;
 
 namespace lce.provider
 {

@@ -6,6 +6,7 @@
 * revision：
 *
 */
+
 using System.Collections.Generic;
 
 namespace lce.provider.Auth
@@ -54,6 +55,5 @@ namespace lce.provider.Auth
         /// 角色
         /// </summary>
         IList<string> RoleIds { get; set; }
-
     }
 }

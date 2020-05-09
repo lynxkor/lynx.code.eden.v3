@@ -6,28 +6,27 @@
 * revision：
 *
 */
-using System;
-using System.Security.Claims;
+
 using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
 
 namespace lce.provider.Auth
 {
     /// <summary>
-    /// 
     /// </summary>
     public class PrincipalAccessor : IPrincipalAccessor
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
+
         /// <summary>
-        /// 
         /// </summary>
         /// <param name="httpContextAccessor"></param>
         public PrincipalAccessor(IHttpContextAccessor httpContextAccessor)
         {
             _httpContextAccessor = httpContextAccessor;
         }
+
         /// <summary>
-        /// 
         /// </summary>
         public ClaimsPrincipal Principal => _httpContextAccessor.HttpContext?.User;
     }

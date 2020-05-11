@@ -65,5 +65,45 @@ namespace lce.provider
         {
             return Guid.NewGuid().ToString("N");
         }
+
+        /// <summary>
+        /// 根据时间产生有序的GUID编码
+        /// </summary>
+        /// <returns></returns>
+        public static Guid GenerateGuid()
+        {
+            var guidArray = Guid.NewGuid().ToByteArray();
+
+            var baseDate = new DateTime(1900, 1, 1);
+            var now = DateTime.Now;
+            var days = new TimeSpan(now.Ticks - baseDate.Ticks);
+            var msecs = now.TimeOfDay;
+
+            var daysArray = BitConverter.GetBytes(days.Days);
+            var msecsArray = BitConverter.GetBytes((long)(msecs.TotalMilliseconds / 3.333333));
+            Array.Reverse(daysArray);
+            Array.Reverse(msecsArray);
+
+            Array.Copy(daysArray, daysArray.Length - 2, guidArray, guidArray.Length - 6, 2);
+            Array.Copy(msecsArray, msecsArray.Length - 4, guidArray, guidArray.Length - 4, 4);
+
+            return new Guid(guidArray);
+        }
+
+        /// <summary>
+        /// 以日期生成十六进制版本编码
+        /// </summary>
+        /// <param name="prefix"> </param>
+        /// <param name="useTime"></param>
+        /// <returns></returns>
+        public static string Version(string prefix = "", bool useTime = false)
+        {
+            var dt = DateTime.Now;
+            var y = Convert.ToString(dt.Year.Right(2, '0').ToInt32(), 16);
+            var m = Convert.ToString(dt.Month, 16);
+            var d = dt.Day.ToString().Right(2, '0');
+            var code = $@"{prefix}{y}{m}{d}{(useTime ? dt.ToString("HHmmssffff") : "")}"; //prefix, y, m, d, time
+            return code.ToUpper();
+        }
     }
 }

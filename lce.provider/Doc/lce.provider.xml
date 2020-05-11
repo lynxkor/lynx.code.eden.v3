@@ -300,6 +300,20 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:lce.provider.Cryptology.GenerateGuid">
+            <summary>
+            根据时间产生有序的GUID编码
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.Cryptology.Version(System.String,System.Boolean)">
+            <summary>
+            以日期生成十六进制版本编码
+            </summary>
+            <param name="prefix"> </param>
+            <param name="useTime"></param>
+            <returns></returns>
+        </member>
         <member name="T:lce.provider.DateTimeExt">
             <summary>
             Date time ext.
@@ -831,6 +845,83 @@
             <param name="signName">    签名</param>
             <param name="templateCode">模板ID</param>
         </member>
+        <member name="T:lce.provider.StringExt">
+            <summary>
+            action：StringExt
+            </summary>
+        </member>
+        <member name="M:lce.provider.StringExt.ToInt32(System.String)">
+            <summary>
+            string to int32.
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.StringExt.Left(System.String,System.Int32)">
+            <summary>
+            left {length} char of string.
+            </summary>
+            <param name="input"> </param>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.StringExt.Left(System.String,System.Int32,System.Char)">
+            <summary>
+            left {length} char of string supplement with {supplemen}.
+            </summary>
+            <param name="input">     </param>
+            <param name="length">    </param>
+            <param name="supplement"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.StringExt.Right(System.Int32,System.Int32)">
+            <summary>
+            right {length} char of string.
+            </summary>
+            <param name="input"> </param>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.StringExt.Right(System.Int32,System.Int32,System.Char)">
+            <summary>
+            right {length} char of string supplement with {supplemen}.
+            </summary>
+            <param name="input">     </param>
+            <param name="length">    </param>
+            <param name="supplement"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.StringExt.Right(System.String,System.Int32)">
+            <summary>
+            right {length} char of string.
+            </summary>
+            <param name="input"> </param>
+            <param name="length"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.StringExt.Right(System.String,System.Int32,System.Char)">
+            <summary>
+            right {length} char of string supplement with {supplemen}.
+            </summary>
+            <param name="input">     </param>
+            <param name="length">    </param>
+            <param name="supplement">长度不度时(前)补位字符</param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.StringExt.ToHex(System.String)">
+            <summary>
+            字符串转换成十六进制
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.StringExt.ToHex(System.Int32)">
+            <summary>
+            十进制2十六进制
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="T:lce.provider.Verifier">
             <summary>
             Verifier
@@ -920,6 +1011,27 @@
             </summary>
             <param name="Value">要校验的值</param>
             <returns>合法字节返回传入值,非法字节返回零</returns>
+        </member>
+        <member name="T:lce.provider.XmlExt">
+            <summary>
+            action：XmlExt
+            </summary>
+        </member>
+        <member name="M:lce.provider.XmlExt.XmlToModel``1(System.String)">
+            <summary>
+            Xml to model.
+            </summary>
+            <returns>The model.</returns>
+            <param name="xml">Xml.</param>
+            <typeparam name="T">The 1st type parameter.</typeparam>
+        </member>
+        <member name="M:lce.provider.XmlExt.ToXml``1(``0)">
+            <summary>
+            Model to the xml.
+            </summary>
+            <returns>The xml.</returns>
+            <param name="model">Model.</param>
+            <typeparam name="T">The 1st type parameter.</typeparam>
         </member>
     </members>
 </doc>

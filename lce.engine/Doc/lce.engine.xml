@@ -4,6 +4,185 @@
         <name>lce.engine</name>
     </assembly>
     <members>
+        <member name="T:lce.provider.Auth.ClaimsAccessor">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:lce.provider.Auth.ClaimsAccessor._principalAccessor">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:lce.provider.Auth.ClaimsAccessor.#ctor(lce.provider.Auth.IPrincipalAccessor)">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:lce.provider.Auth.ClaimsAccessor.CurrentUser">
+            <summary>
+            </summary>
+        </member>
+        <member name="T:lce.provider.Auth.CurrentUser">
+            <summary>
+            CurrentUser
+            </summary>
+        </member>
+        <member name="M:lce.provider.Auth.CurrentUser.#ctor">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:lce.provider.Auth.CurrentUser.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:lce.provider.Auth.CurrentUser.Name">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:lce.provider.Auth.CurrentUser.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:lce.provider.Auth.CurrentUser.OrganId">
+            <summary>
+            组织Id
+            </summary>
+        </member>
+        <member name="P:lce.provider.Auth.CurrentUser.OrganName">
+            <summary>
+            组织名称
+            </summary>
+        </member>
+        <member name="P:lce.provider.Auth.CurrentUser.CompId">
+            <summary>
+            公司Id
+            </summary>
+        </member>
+        <member name="P:lce.provider.Auth.CurrentUser.CompName">
+            <summary>
+            公司名称
+            </summary>
+        </member>
+        <member name="P:lce.provider.Auth.CurrentUser.RoleIds">
+            <summary>
+            角色
+            </summary>
+        </member>
+        <member name="T:lce.provider.Auth.IClaimsAccessor">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:lce.provider.Auth.IClaimsAccessor.CurrentUser">
+            <summary>
+            当前用户
+            </summary>
+        </member>
+        <member name="T:lce.provider.Auth.IPrincipalAccessor">
+            <summary>
+            身份注入器
+            </summary>
+        </member>
+        <member name="P:lce.provider.Auth.IPrincipalAccessor.Principal">
+            <summary>
+            当前用户
+            </summary>
+        </member>
+        <member name="T:lce.provider.Auth.IUser">
+            <summary>
+            系统用户基类
+            </summary>
+        </member>
+        <member name="P:lce.provider.Auth.IUser.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:lce.provider.Auth.IUser.Name">
+            <summary>
+            姓名
+            </summary>
+        </member>
+        <member name="P:lce.provider.Auth.IUser.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:lce.provider.Auth.IUser.OrganId">
+            <summary>
+            组织Id
+            </summary>
+        </member>
+        <member name="P:lce.provider.Auth.IUser.OrganName">
+            <summary>
+            组织名称
+            </summary>
+        </member>
+        <member name="P:lce.provider.Auth.IUser.CompId">
+            <summary>
+            公司Id
+            </summary>
+        </member>
+        <member name="P:lce.provider.Auth.IUser.CompName">
+            <summary>
+            公司名称
+            </summary>
+        </member>
+        <member name="P:lce.provider.Auth.IUser.RoleIds">
+            <summary>
+            角色
+            </summary>
+        </member>
+        <member name="T:lce.provider.Auth.PrincipalAccessor">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:lce.provider.Auth.PrincipalAccessor.#ctor(Microsoft.AspNetCore.Http.IHttpContextAccessor)">
+            <summary>
+            </summary>
+            <param name="httpContextAccessor"></param>
+        </member>
+        <member name="P:lce.provider.Auth.PrincipalAccessor.Principal">
+            <summary>
+            </summary>
+        </member>
+        <member name="T:lce.provider.QuerySqlExt">
+            <summary>
+            QuerySqlExt
+            </summary>
+        </member>
+        <member name="M:lce.provider.QuerySqlExt.Condition(System.String,System.Nullable{System.Int32})">
+            <summary>
+            拼接查询条件
+            </summary>
+            <param name="name"> </param>
+            <param name="value"></param>
+            <returns>AND {name} = {value}</returns>
+        </member>
+        <member name="M:lce.provider.QuerySqlExt.Condition(System.String,System.String)">
+            <summary>
+            拼接查询条件
+            </summary>
+            <param name="name"> </param>
+            <param name="value"></param>
+            <returns>AND {name} = '{value}'</returns>
+        </member>
+        <member name="M:lce.provider.QuerySqlExt.Condition(System.String,System.Collections.Generic.IList{System.Int32})">
+            <summary>
+            拼接查询条件
+            </summary>
+            <param name="name">  </param>
+            <param name="values"></param>
+            <returns>AND {name} = {values}/IN({values})</returns>
+        </member>
+        <member name="M:lce.provider.QuerySqlExt.Condition(System.String,System.Collections.Generic.IList{System.String})">
+            <summary>
+            拼接查询条件
+            </summary>
+            <param name="name">  </param>
+            <param name="values"></param>
+            <returns>AND {name} = '{values}'/IN('{values}')</returns>
+        </member>
         <member name="T:lce.engine.BaseRepository`1">
             <summary>
             Base repository.

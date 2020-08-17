@@ -27,11 +27,10 @@ namespace lce.provider
         /// <returns>枚举项描述信息</returns>
         public static string Description(this Enum eValue)
         {
-            var typeInfo = eValue.GetType().GetTypeInfo();
-            var memberInfo = typeInfo.GetMember(eValue.ToString()).First();
-            var descriptionAttribute =
-              memberInfo.GetCustomAttribute<DescriptionAttribute>();
-            return descriptionAttribute.Description;
+            var fieldinfo = eValue.GetType().GetField(eValue.ToString());
+            if (null == fieldinfo) return eValue.ToString();
+            var desc = fieldinfo.GetCustomAttribute<DescriptionAttribute>();
+            return null != desc ? desc.Description : eValue.ToString();
         }
 
         /// <summary>

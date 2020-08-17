@@ -1,8 +1,8 @@
-﻿/* file name：${namespace}.BaseResult.cs
+﻿/* file name：${namespace}.BaseResponse.cs
 * author：lynx <lynx.kor@163.com> @ 2020/3/14 11:45
 * copyright (c) 2020 Copyright@lynxce.com
 * desc：
-* > add description for BaseResult
+* > add description for BaseResponse
 * revision：
 *
 */
@@ -15,18 +15,18 @@ namespace lce.provider.ActionResults
     /// 请求响应体
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class BaseResult<T>
+    public class BaseResponse<T>
     {
         /// <summary>
         /// 请求响应体
         /// </summary>
-        public BaseResult() { }
+        public BaseResponse() { }
 
         /// <summary>
         /// 请求响应体
         /// </summary>
         /// <param name="code">状态码</param>
-        public BaseResult(ResponseCode code) : this()
+        public BaseResponse(ResponseCode code) : this()
         {
             Code = code;
             Msg = code.Description();
@@ -37,7 +37,7 @@ namespace lce.provider.ActionResults
         /// </summary>
         /// <param name="code">状态码</param>
         /// <param name="msg"> 状态信息</param>
-        public BaseResult(ResponseCode code, string msg) : this()
+        public BaseResponse(ResponseCode code, string msg) : this()
         {
             Code = code;
             Msg = msg;
@@ -47,7 +47,7 @@ namespace lce.provider.ActionResults
         /// 实例化
         /// </summary>
         /// <param name="data">数据体</param>
-        public BaseResult(T data) : this()
+        public BaseResponse(T data) : this()
         {
             Data = data;
         }
@@ -57,7 +57,7 @@ namespace lce.provider.ActionResults
         /// </summary>
         /// <param name="code">状态码</param>
         /// <param name="data">数据体</param>
-        public BaseResult(ResponseCode code, T data) : this()
+        public BaseResponse(ResponseCode code, T data) : this()
         {
             Code = code;
             Msg = code.Description();
@@ -70,7 +70,7 @@ namespace lce.provider.ActionResults
         /// <param name="code">状态码</param>
         /// <param name="msg"> 状态信息</param>
         /// <param name="data">数据体</param>
-        public BaseResult(ResponseCode code, string msg, T data) : this()
+        public BaseResponse(ResponseCode code, string msg, T data) : this()
         {
             Code = code;
             Msg = msg;

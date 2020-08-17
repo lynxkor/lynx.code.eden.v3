@@ -29,6 +29,16 @@ namespace lce.provider
         }
 
         /// <summary>
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public static int ToInt32(this object input)
+        {
+            try { return Convert.ToInt32(input); }
+            catch { return -1; }
+        }
+
+        /// <summary>
         /// left {length} char of string.
         /// </summary>
         /// <param name="input"> </param>

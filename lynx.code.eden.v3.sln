@@ -1,9 +1,12 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lce.provider", "lce.provider\lce.provider.csproj", "{34194B3E-1FA0-4F9D-96BE-1F2B27D7DCBC}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30330.147
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lce.provider", "lce.provider\lce.provider.csproj", "{34194B3E-1FA0-4F9D-96BE-1F2B27D7DCBC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lce.engine", "lce.engine\lce.engine.csproj", "{3D4E1102-50CB-4D00-87C3-0A5A2A33E973}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "lce.engine", "lce.engine\lce.engine.csproj", "{3D4E1102-50CB-4D00-87C3-0A5A2A33E973}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lce.mscrm.engine", "lce.mscrm.engine\lce.mscrm.engine.csproj", "{ED44C5AD-348D-46E4-8355-A671A8338515}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,5 +22,15 @@ Global
 		{3D4E1102-50CB-4D00-87C3-0A5A2A33E973}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D4E1102-50CB-4D00-87C3-0A5A2A33E973}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D4E1102-50CB-4D00-87C3-0A5A2A33E973}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED44C5AD-348D-46E4-8355-A671A8338515}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED44C5AD-348D-46E4-8355-A671A8338515}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED44C5AD-348D-46E4-8355-A671A8338515}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED44C5AD-348D-46E4-8355-A671A8338515}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A5F0479A-8836-4E42-AD39-E077A4AA0CE8}
 	EndGlobalSection
 EndGlobal

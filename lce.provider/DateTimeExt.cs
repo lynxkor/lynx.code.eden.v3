@@ -7,8 +7,8 @@
 *
 */
 
-using lce.provider.Enums;
 using System;
+using lce.provider.Enums;
 
 namespace lce.provider
 {
@@ -18,11 +18,11 @@ namespace lce.provider
     public static class DateTimeExt
     {
         /// <summary>
-        /// string2datetime
+        /// string 2 datetime
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public static DateTime ToDateTime(this string input)
+        public static DateTime ToDateTime(this object input)
         {
             try
             {
@@ -30,7 +30,24 @@ namespace lce.provider
             }
             catch
             {
-                return DateTime.Now;
+                return DateTime.MinValue;
+            }
+        }
+
+        /// <summary>
+        /// string 2 utc
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public static DateTime ToUTC(this object input)
+        {
+            try
+            {
+                return Convert.ToDateTime(input).ToUniversalTime();
+            }
+            catch
+            {
+                return DateTime.MinValue;
             }
         }
 

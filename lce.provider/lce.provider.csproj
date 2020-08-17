@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
         <Company>lynxce.com</Company>
         <Authors>lynx.kor</Authors>
     </PropertyGroup>
@@ -9,19 +9,25 @@
         <DocumentationFile>Doc\lce.provider.xml</DocumentationFile>
     </PropertyGroup>
     <ItemGroup>
+        <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
         <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
         <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.2" />
-        <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
-        <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="3.1.2" />
         <PackageReference Include="aliyun-net-sdk-core" Version="1.5.3" />
     </ItemGroup>
     <ItemGroup>
         <Folder Include="Doc\" />
         <Folder Include="Enums\" />
-        <Folder Include="ActionResults\" />
-        <Folder Include="Attributes\" />
         <Folder Include="Requests\" />
-        <Folder Include="Auth\" />
+    </ItemGroup>
+    <ItemGroup>
+      <Reference Include="System.ComponentModel.DataAnnotations">
+        <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.ComponentModel.DataAnnotations.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+    <ItemGroup>
+      <None Update="Doc\lce.provider.xml">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 </Project>

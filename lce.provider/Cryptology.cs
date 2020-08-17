@@ -25,8 +25,10 @@ namespace lce.provider
         /// <param name="input">Input.</param>
         public static string ToMd5(this string input)
         {
-            using var provider = MD5.Create();
-            return BitConverter.ToString(provider.ComputeHash(Encoding.UTF8.GetBytes(input))).Replace("-", "").ToUpper();
+            using (var provider = MD5.Create())
+            {
+                return BitConverter.ToString(provider.ComputeHash(Encoding.UTF8.GetBytes(input))).Replace("-", "").ToUpper();
+            }
         }
 
         /// <summary>

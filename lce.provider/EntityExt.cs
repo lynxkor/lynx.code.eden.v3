@@ -29,7 +29,7 @@ namespace lce.provider
         /// <returns>target</returns>
         public static R Mapping<T, R>(this T source) where R : class where T : class
         {
-            if (null == source) return default;
+            if (null == source) return default(R);
             R result = Activator.CreateInstance<R>();
             return source.Mapping(result);
         }

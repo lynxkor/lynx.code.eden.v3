@@ -50,7 +50,7 @@ namespace lce.provider
             }
             catch
             {
-                return default;
+                return default(T);
             }
         }
     }

@@ -4,44 +4,44 @@
         <name>lce.provider</name>
     </assembly>
     <members>
-        <member name="T:lce.provider.ActionResults.BaseResult`1">
+        <member name="T:lce.provider.ActionResults.BaseResponse`1">
             <summary>
             请求响应体
             </summary>
             <typeparam name="T"></typeparam>
         </member>
-        <member name="M:lce.provider.ActionResults.BaseResult`1.#ctor">
+        <member name="M:lce.provider.ActionResults.BaseResponse`1.#ctor">
             <summary>
             请求响应体
             </summary>
         </member>
-        <member name="M:lce.provider.ActionResults.BaseResult`1.#ctor(lce.provider.Enums.ResponseCode)">
+        <member name="M:lce.provider.ActionResults.BaseResponse`1.#ctor(lce.provider.Enums.ResponseCode)">
             <summary>
             请求响应体
             </summary>
             <param name="code">状态码</param>
         </member>
-        <member name="M:lce.provider.ActionResults.BaseResult`1.#ctor(lce.provider.Enums.ResponseCode,System.String)">
+        <member name="M:lce.provider.ActionResults.BaseResponse`1.#ctor(lce.provider.Enums.ResponseCode,System.String)">
             <summary>
             请求响应体
             </summary>
             <param name="code">状态码</param>
             <param name="msg"> 状态信息</param>
         </member>
-        <member name="M:lce.provider.ActionResults.BaseResult`1.#ctor(`0)">
+        <member name="M:lce.provider.ActionResults.BaseResponse`1.#ctor(`0)">
             <summary>
             实例化
             </summary>
             <param name="data">数据体</param>
         </member>
-        <member name="M:lce.provider.ActionResults.BaseResult`1.#ctor(lce.provider.Enums.ResponseCode,`0)">
+        <member name="M:lce.provider.ActionResults.BaseResponse`1.#ctor(lce.provider.Enums.ResponseCode,`0)">
             <summary>
             实例化
             </summary>
             <param name="code">状态码</param>
             <param name="data">数据体</param>
         </member>
-        <member name="M:lce.provider.ActionResults.BaseResult`1.#ctor(lce.provider.Enums.ResponseCode,System.String,`0)">
+        <member name="M:lce.provider.ActionResults.BaseResponse`1.#ctor(lce.provider.Enums.ResponseCode,System.String,`0)">
             <summary>
             实例化
             </summary>
@@ -49,33 +49,33 @@
             <param name="msg"> 状态信息</param>
             <param name="data">数据体</param>
         </member>
-        <member name="P:lce.provider.ActionResults.BaseResult`1.Code">
+        <member name="P:lce.provider.ActionResults.BaseResponse`1.Code">
             <summary>
             状态码
             </summary>
         </member>
-        <member name="P:lce.provider.ActionResults.BaseResult`1.Msg">
+        <member name="P:lce.provider.ActionResults.BaseResponse`1.Msg">
             <summary>
             状态信息
             </summary>
         </member>
-        <member name="P:lce.provider.ActionResults.BaseResult`1.Data">
+        <member name="P:lce.provider.ActionResults.BaseResponse`1.Data">
             <summary>
             返回的数据内容
             </summary>
         </member>
-        <member name="T:lce.provider.ActionResults.PageResult`1">
+        <member name="T:lce.provider.ActionResults.PageResponse`1">
             <summary>
             分頁/列表请求响应体
             </summary>
             <typeparam name="T"></typeparam>
         </member>
-        <member name="M:lce.provider.ActionResults.PageResult`1.#ctor">
+        <member name="M:lce.provider.ActionResults.PageResponse`1.#ctor">
             <summary>
             实例化
             </summary>
         </member>
-        <member name="M:lce.provider.ActionResults.PageResult`1.#ctor(System.Int32,System.Int32,System.Int32)">
+        <member name="M:lce.provider.ActionResults.PageResponse`1.#ctor(System.Int32,System.Int32,System.Int32)">
             <summary>
             实例化
             </summary>
@@ -83,7 +83,7 @@
             <param name="size"> 頁阀</param>
             <param name="total">总数</param>
         </member>
-        <member name="M:lce.provider.ActionResults.PageResult`1.#ctor(System.Int32,System.Int32,System.Int32,`0)">
+        <member name="M:lce.provider.ActionResults.PageResponse`1.#ctor(System.Int32,System.Int32,System.Int32,`0)">
             <summary>
             实例化
             </summary>
@@ -92,17 +92,17 @@
             <param name="total">总数</param>
             <param name="data"> 数据体</param>
         </member>
-        <member name="P:lce.provider.ActionResults.PageResult`1.Page">
+        <member name="P:lce.provider.ActionResults.PageResponse`1.Page">
             <summary>
             頁码
             </summary>
         </member>
-        <member name="P:lce.provider.ActionResults.PageResult`1.Size">
+        <member name="P:lce.provider.ActionResults.PageResponse`1.Size">
             <summary>
             頁阀
             </summary>
         </member>
-        <member name="P:lce.provider.ActionResults.PageResult`1.Total">
+        <member name="P:lce.provider.ActionResults.PageResponse`1.Total">
             <summary>
             总数
             </summary>
@@ -129,147 +129,41 @@
             <param name="type">    服务类型</param>
             <param name="lifetime">生命周期</param>
         </member>
-        <member name="T:lce.provider.Auth.ClaimsAccessor">
+        <member name="T:lce.provider.Validation.ValidElementsAttribute">
             <summary>
+            action：ValidElementsAttribute
             </summary>
         </member>
-        <member name="P:lce.provider.Auth.ClaimsAccessor._principalAccessor">
+        <member name="M:lce.provider.Validation.ValidElementsAttribute.#ctor(System.Int32)">
             <summary>
+            序列最小数量
+            </summary>
+            <param name="minElements"></param>
+        </member>
+        <member name="M:lce.provider.Validation.ValidElementsAttribute.IsValid(System.Object)">
+            <summary>
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="T:lce.provider.ConfigExt">
+            <summary>
+            action：ConfigExt
             </summary>
         </member>
-        <member name="M:lce.provider.Auth.ClaimsAccessor.#ctor(lce.provider.Auth.IPrincipalAccessor)">
+        <member name="M:lce.provider.ConfigExt.Get(System.String)">
             <summary>
+            获取配置信息
             </summary>
+            <param name="key">配置项</param>
+            <returns></returns>
         </member>
-        <member name="P:lce.provider.Auth.ClaimsAccessor.CurrentUser">
+        <member name="M:lce.provider.ConfigExt.Set(System.String,System.String)">
             <summary>
+            设置配置信息
             </summary>
-        </member>
-        <member name="T:lce.provider.Auth.CurrentUser">
-            <summary>
-            CurrentUser
-            </summary>
-        </member>
-        <member name="M:lce.provider.Auth.CurrentUser.#ctor">
-            <summary>
-            </summary>
-        </member>
-        <member name="P:lce.provider.Auth.CurrentUser.Id">
-            <summary>
-            Id
-            </summary>
-        </member>
-        <member name="P:lce.provider.Auth.CurrentUser.Name">
-            <summary>
-            姓名
-            </summary>
-        </member>
-        <member name="P:lce.provider.Auth.CurrentUser.UserName">
-            <summary>
-            用户名
-            </summary>
-        </member>
-        <member name="P:lce.provider.Auth.CurrentUser.OrganId">
-            <summary>
-            组织Id
-            </summary>
-        </member>
-        <member name="P:lce.provider.Auth.CurrentUser.OrganName">
-            <summary>
-            组织名称
-            </summary>
-        </member>
-        <member name="P:lce.provider.Auth.CurrentUser.CompId">
-            <summary>
-            公司Id
-            </summary>
-        </member>
-        <member name="P:lce.provider.Auth.CurrentUser.CompName">
-            <summary>
-            公司名称
-            </summary>
-        </member>
-        <member name="P:lce.provider.Auth.CurrentUser.RoleIds">
-            <summary>
-            角色
-            </summary>
-        </member>
-        <member name="T:lce.provider.Auth.IClaimsAccessor">
-            <summary>
-            </summary>
-        </member>
-        <member name="P:lce.provider.Auth.IClaimsAccessor.CurrentUser">
-            <summary>
-            当前用户
-            </summary>
-        </member>
-        <member name="T:lce.provider.Auth.IPrincipalAccessor">
-            <summary>
-            身份注入器
-            </summary>
-        </member>
-        <member name="P:lce.provider.Auth.IPrincipalAccessor.Principal">
-            <summary>
-            当前用户
-            </summary>
-        </member>
-        <member name="T:lce.provider.Auth.IUser">
-            <summary>
-            系统用户基类
-            </summary>
-        </member>
-        <member name="P:lce.provider.Auth.IUser.Id">
-            <summary>
-            Id
-            </summary>
-        </member>
-        <member name="P:lce.provider.Auth.IUser.Name">
-            <summary>
-            姓名
-            </summary>
-        </member>
-        <member name="P:lce.provider.Auth.IUser.UserName">
-            <summary>
-            用户名
-            </summary>
-        </member>
-        <member name="P:lce.provider.Auth.IUser.OrganId">
-            <summary>
-            组织Id
-            </summary>
-        </member>
-        <member name="P:lce.provider.Auth.IUser.OrganName">
-            <summary>
-            组织名称
-            </summary>
-        </member>
-        <member name="P:lce.provider.Auth.IUser.CompId">
-            <summary>
-            公司Id
-            </summary>
-        </member>
-        <member name="P:lce.provider.Auth.IUser.CompName">
-            <summary>
-            公司名称
-            </summary>
-        </member>
-        <member name="P:lce.provider.Auth.IUser.RoleIds">
-            <summary>
-            角色
-            </summary>
-        </member>
-        <member name="T:lce.provider.Auth.PrincipalAccessor">
-            <summary>
-            </summary>
-        </member>
-        <member name="M:lce.provider.Auth.PrincipalAccessor.#ctor(Microsoft.AspNetCore.Http.IHttpContextAccessor)">
-            <summary>
-            </summary>
-            <param name="httpContextAccessor"></param>
-        </member>
-        <member name="P:lce.provider.Auth.PrincipalAccessor.Principal">
-            <summary>
-            </summary>
+            <param name="key">  配置项</param>
+            <param name="value">值</param>
         </member>
         <member name="T:lce.provider.Cryptology">
             <summary>
@@ -319,9 +213,16 @@
             Date time ext.
             </summary>
         </member>
-        <member name="M:lce.provider.DateTimeExt.ToDateTime(System.String)">
+        <member name="M:lce.provider.DateTimeExt.ToDateTime(System.Object)">
             <summary>
-            string2datetime
+            string 2 datetime
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.DateTimeExt.ToUTC(System.Object)">
+            <summary>
+            string 2 utc
             </summary>
             <param name="input"></param>
             <returns></returns>
@@ -631,13 +532,37 @@
         </member>
         <member name="M:lce.provider.HttpClientExt.Post(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.String)">
             <summary>
-            Post
+            POST
             </summary>
             <param name="url">        </param>
             <param name="param">      </param>
             <param name="headers">    </param>
             <param name="contentType"></param>
             <param name="charSet">    </param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.HttpClientExt.Post(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.String,System.String,System.String)">
+            <summary>
+            POST
+            </summary>
+            <param name="url">        </param>
+            <param name="body">       </param>
+            <param name="headers">    </param>
+            <param name="token">      </param>
+            <param name="scheme">     </param>
+            <param name="contentType"></param>
+            <param name="charSet">    </param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.HttpClientExt.Get(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.String,System.String)">
+            <summary>
+            GET
+            </summary>
+            <param name="url">        </param>
+            <param name="headers">    </param>
+            <param name="token">      </param>
+            <param name="scheme">     </param>
+            <param name="contentType"></param>
             <returns></returns>
         </member>
         <member name="T:lce.provider.ImageExt">
@@ -708,6 +633,108 @@
             <param name="input">Input.</param>
             <typeparam name="T">The 1st type parameter.</typeparam>
         </member>
+        <member name="T:lce.provider.WriteLog">
+            <summary>
+            写入日志(委托)
+            </summary>
+            <param name="logType">日志级别</param>
+            <param name="message">日志描述</param>
+        </member>
+        <member name="T:lce.provider.WriteInfo">
+            <summary>
+            把信息写入日志(委托)
+            </summary>
+            <param name="message">日志描述</param>
+        </member>
+        <member name="T:lce.provider.WriteErr">
+            <summary>
+            把错误写入日志(委托)
+            </summary>
+            <param name="message">日志描述 ex.Message会自动加上</param>
+            <param name="ex">     异常信息</param>
+        </member>
+        <member name="T:lce.provider.LogExt">
+             <summary>
+             概述：日志文件处理器
+            <para>文件：Toolkit.Log.Log</para>
+            <para>作者：Lynx.kor</para>
+            <para>创建时间：2016/5/25 10:10:58</para>
+            <para>描述：appSettings add namevalue</para>
+            <code><add key = "LogPath" value="C:\Log\" /></code>
+            <code><add key = "SoftName" value="Toolkit"/></code>
+            <para>> add description for Log 修改历史：</para>
+             </summary>
+        </member>
+        <member name="F:lce.provider.LogExt.write">
+            <summary>
+            写入日志(委托)
+            </summary>
+        </member>
+        <member name="F:lce.provider.LogExt.i">
+            <summary>
+            把信息写入日志(委托)
+            </summary>
+        </member>
+        <member name="F:lce.provider.LogExt.e">
+            <summary>
+            把错误写入日志(委托)
+            </summary>
+        </member>
+        <member name="P:lce.provider.LogExt.LogDir">
+            <summary>
+            日志目录
+            </summary>
+        </member>
+        <member name="P:lce.provider.LogExt.SoftName">
+            <summary>
+            应用程序名
+            </summary>
+        </member>
+        <member name="P:lce.provider.LogExt.LogSize">
+            <summary>
+            每个日志文件大小(M)
+            </summary>
+        </member>
+        <member name="M:lce.provider.LogExt.#cctor">
+            <summary>
+            日志器构造
+            </summary>
+        </member>
+        <member name="M:lce.provider.LogExt.writeLine(lce.provider.LogType,System.String,System.Exception,System.String)">
+            <summary>
+            写入日志
+            </summary>
+            <param name="logType">日志级别</param>
+            <param name="message">日志描述</param>
+            <param name="ex">     异常信息</param>
+            <param name="logPath"></param>
+        </member>
+        <member name="M:lce.provider.LogExt.GetRing">
+            <summary>
+            时间戳/年轮
+            </summary>
+            <returns>e.g.13C10T15:55:55:444</returns>
+        </member>
+        <member name="T:lce.provider.LogType">
+            <summary>
+            日志级别
+            </summary>
+        </member>
+        <member name="F:lce.provider.LogType.INFO">
+            <summary>
+            信息
+            </summary>
+        </member>
+        <member name="F:lce.provider.LogType.DEBUG">
+            <summary>
+            调试
+            </summary>
+        </member>
+        <member name="F:lce.provider.LogType.ERROR">
+            <summary>
+            异常
+            </summary>
+        </member>
         <member name="T:lce.provider.PredicateExt">
             <summary>
             lambda包装器
@@ -744,43 +771,6 @@
             <param name="left"> </param>
             <param name="right"></param>
             <returns></returns>
-        </member>
-        <member name="T:lce.provider.QuerySqlExt">
-            <summary>
-            QuerySqlExt
-            </summary>
-        </member>
-        <member name="M:lce.provider.QuerySqlExt.Condition(System.String,System.Nullable{System.Int32})">
-            <summary>
-            拼接查询条件
-            </summary>
-            <param name="name"> </param>
-            <param name="value"></param>
-            <returns>AND {name} = {value}</returns>
-        </member>
-        <member name="M:lce.provider.QuerySqlExt.Condition(System.String,System.String)">
-            <summary>
-            拼接查询条件
-            </summary>
-            <param name="name"> </param>
-            <param name="value"></param>
-            <returns>AND {name} = '{value}'</returns>
-        </member>
-        <member name="M:lce.provider.QuerySqlExt.Condition(System.String,System.Collections.Generic.IList{System.Int32})">
-            <summary>
-            拼接查询条件
-            </summary>
-            <param name="name">  </param>
-            <param name="values"></param>
-            <returns>AND {name} = {values}/IN({values})</returns>
-        </member>
-        <member name="M:lce.provider.QuerySqlExt.Condition(System.String,System.Collections.Generic.IList{System.String})">
-            <summary>
-            拼接查询条件
-            </summary>
-            <param name="name">  </param>
-            <param name="values"></param>
-            <returns>AND {name} = '{values}'/IN('{values}')</returns>
         </member>
         <member name="T:lce.provider.Requests.BaseQuery">
             <summary>
@@ -853,6 +843,12 @@
         <member name="M:lce.provider.StringExt.ToInt32(System.String)">
             <summary>
             string to int32.
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.StringExt.ToInt32(System.Object)">
+            <summary>
             </summary>
             <param name="input"></param>
             <returns></returns>

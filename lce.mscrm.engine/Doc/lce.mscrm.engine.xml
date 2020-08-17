@@ -766,15 +766,6 @@
             <param name="values"></param>
             <returns>AND {name} = '{values}'/IN('{values}')</returns>
         </member>
-        <member name="M:lce.mscrm.engine.SqlQueryExt.Query``1(System.Data.Entity.DbContext,System.String)">
-            <summary>
-            执行SQL查询
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="context"> </param>
-            <param name="querySql"></param>
-            <returns></returns>
-        </member>
         <member name="M:lce.mscrm.engine.SqlQueryExt.Query``1(System.Data.Entity.DbContext,System.String,System.Data.SqlClient.SqlParameter[],System.Nullable{System.Guid})">
             <summary>
             执行SQL查询

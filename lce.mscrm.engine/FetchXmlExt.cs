@@ -339,6 +339,7 @@ $@"<link-entity name='{linkEntity}' from='{from}' to='{to}' link-type='{linkType
         /// <returns></returns>
         public override string ToString()
         {
+            if (null == Value && Operator == "eq") return "";
             var type = Value.GetType();
             //var baseType = type.BaseType;
             if (type.Name == "Int32[]")

@@ -78,18 +78,6 @@ namespace lce.mscrm.engine
         /// 执行SQL查询
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="context"> </param>
-        /// <param name="querySql"></param>
-        /// <returns></returns>
-        public static IList<T> Query<T>(this DbContext context, string querySql)
-        {
-            return context.Query<T>(querySql);
-        }
-
-        /// <summary>
-        /// 执行SQL查询
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
         /// <param name="context">   </param>
         /// <param name="caller">    </param>
         /// <param name="querySql">  </param>
@@ -104,7 +92,9 @@ namespace lce.mscrm.engine
                             SET context_info @binUserGuid;
                             {querySql}";
             }
-            return context.Database.SqlQuery<T>(querySql, parameters).ToListAsync().Result;
+            if (null != parameters)
+                return context.Database.SqlQuery<T>(querySql, parameters).ToListAsync().Result;
+            return context.Database.SqlQuery<T>(querySql).ToListAsync().Result;
         }
 
         /// <summary>

@@ -9,7 +9,7 @@
 
 using lce.provider.Enums;
 
-namespace lce.provider.ActionResults
+namespace lce.provider.Responses
 {
     /// <summary>
     /// 请求响应体

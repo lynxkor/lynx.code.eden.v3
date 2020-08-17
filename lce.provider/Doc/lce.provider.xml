@@ -4,109 +4,6 @@
         <name>lce.provider</name>
     </assembly>
     <members>
-        <member name="T:lce.provider.ActionResults.BaseResponse`1">
-            <summary>
-            请求响应体
-            </summary>
-            <typeparam name="T"></typeparam>
-        </member>
-        <member name="M:lce.provider.ActionResults.BaseResponse`1.#ctor">
-            <summary>
-            请求响应体
-            </summary>
-        </member>
-        <member name="M:lce.provider.ActionResults.BaseResponse`1.#ctor(lce.provider.Enums.ResponseCode)">
-            <summary>
-            请求响应体
-            </summary>
-            <param name="code">状态码</param>
-        </member>
-        <member name="M:lce.provider.ActionResults.BaseResponse`1.#ctor(lce.provider.Enums.ResponseCode,System.String)">
-            <summary>
-            请求响应体
-            </summary>
-            <param name="code">状态码</param>
-            <param name="msg"> 状态信息</param>
-        </member>
-        <member name="M:lce.provider.ActionResults.BaseResponse`1.#ctor(`0)">
-            <summary>
-            实例化
-            </summary>
-            <param name="data">数据体</param>
-        </member>
-        <member name="M:lce.provider.ActionResults.BaseResponse`1.#ctor(lce.provider.Enums.ResponseCode,`0)">
-            <summary>
-            实例化
-            </summary>
-            <param name="code">状态码</param>
-            <param name="data">数据体</param>
-        </member>
-        <member name="M:lce.provider.ActionResults.BaseResponse`1.#ctor(lce.provider.Enums.ResponseCode,System.String,`0)">
-            <summary>
-            实例化
-            </summary>
-            <param name="code">状态码</param>
-            <param name="msg"> 状态信息</param>
-            <param name="data">数据体</param>
-        </member>
-        <member name="P:lce.provider.ActionResults.BaseResponse`1.Code">
-            <summary>
-            状态码
-            </summary>
-        </member>
-        <member name="P:lce.provider.ActionResults.BaseResponse`1.Msg">
-            <summary>
-            状态信息
-            </summary>
-        </member>
-        <member name="P:lce.provider.ActionResults.BaseResponse`1.Data">
-            <summary>
-            返回的数据内容
-            </summary>
-        </member>
-        <member name="T:lce.provider.ActionResults.PageResponse`1">
-            <summary>
-            分頁/列表请求响应体
-            </summary>
-            <typeparam name="T"></typeparam>
-        </member>
-        <member name="M:lce.provider.ActionResults.PageResponse`1.#ctor">
-            <summary>
-            实例化
-            </summary>
-        </member>
-        <member name="M:lce.provider.ActionResults.PageResponse`1.#ctor(System.Int32,System.Int32,System.Int32)">
-            <summary>
-            实例化
-            </summary>
-            <param name="page"> 頁码</param>
-            <param name="size"> 頁阀</param>
-            <param name="total">总数</param>
-        </member>
-        <member name="M:lce.provider.ActionResults.PageResponse`1.#ctor(System.Int32,System.Int32,System.Int32,`0)">
-            <summary>
-            实例化
-            </summary>
-            <param name="page"> 頁码</param>
-            <param name="size"> 頁阀</param>
-            <param name="total">总数</param>
-            <param name="data"> 数据体</param>
-        </member>
-        <member name="P:lce.provider.ActionResults.PageResponse`1.Page">
-            <summary>
-            頁码
-            </summary>
-        </member>
-        <member name="P:lce.provider.ActionResults.PageResponse`1.Size">
-            <summary>
-            頁阀
-            </summary>
-        </member>
-        <member name="P:lce.provider.ActionResults.PageResponse`1.Total">
-            <summary>
-            总数
-            </summary>
-        </member>
         <member name="T:lce.provider.Attributes.ServiceProviderAttribute">
             <summary>
             用于标记服务，便于注入注册
@@ -819,6 +716,109 @@
         <member name="P:lce.provider.Requests.ReportQuery.Date">
             <summary>
             日期时间
+            </summary>
+        </member>
+        <member name="T:lce.provider.Responses.BaseResponse`1">
+            <summary>
+            请求响应体
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:lce.provider.Responses.BaseResponse`1.#ctor">
+            <summary>
+            请求响应体
+            </summary>
+        </member>
+        <member name="M:lce.provider.Responses.BaseResponse`1.#ctor(lce.provider.Enums.ResponseCode)">
+            <summary>
+            请求响应体
+            </summary>
+            <param name="code">状态码</param>
+        </member>
+        <member name="M:lce.provider.Responses.BaseResponse`1.#ctor(lce.provider.Enums.ResponseCode,System.String)">
+            <summary>
+            请求响应体
+            </summary>
+            <param name="code">状态码</param>
+            <param name="msg"> 状态信息</param>
+        </member>
+        <member name="M:lce.provider.Responses.BaseResponse`1.#ctor(`0)">
+            <summary>
+            实例化
+            </summary>
+            <param name="data">数据体</param>
+        </member>
+        <member name="M:lce.provider.Responses.BaseResponse`1.#ctor(lce.provider.Enums.ResponseCode,`0)">
+            <summary>
+            实例化
+            </summary>
+            <param name="code">状态码</param>
+            <param name="data">数据体</param>
+        </member>
+        <member name="M:lce.provider.Responses.BaseResponse`1.#ctor(lce.provider.Enums.ResponseCode,System.String,`0)">
+            <summary>
+            实例化
+            </summary>
+            <param name="code">状态码</param>
+            <param name="msg"> 状态信息</param>
+            <param name="data">数据体</param>
+        </member>
+        <member name="P:lce.provider.Responses.BaseResponse`1.Code">
+            <summary>
+            状态码
+            </summary>
+        </member>
+        <member name="P:lce.provider.Responses.BaseResponse`1.Msg">
+            <summary>
+            状态信息
+            </summary>
+        </member>
+        <member name="P:lce.provider.Responses.BaseResponse`1.Data">
+            <summary>
+            返回的数据内容
+            </summary>
+        </member>
+        <member name="T:lce.provider.Responses.PageResponse`1">
+            <summary>
+            分頁/列表请求响应体
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:lce.provider.Responses.PageResponse`1.#ctor">
+            <summary>
+            实例化
+            </summary>
+        </member>
+        <member name="M:lce.provider.Responses.PageResponse`1.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            实例化
+            </summary>
+            <param name="page"> 頁码</param>
+            <param name="size"> 頁阀</param>
+            <param name="total">总数</param>
+        </member>
+        <member name="M:lce.provider.Responses.PageResponse`1.#ctor(System.Int32,System.Int32,System.Int32,`0)">
+            <summary>
+            实例化
+            </summary>
+            <param name="page"> 頁码</param>
+            <param name="size"> 頁阀</param>
+            <param name="total">总数</param>
+            <param name="data"> 数据体</param>
+        </member>
+        <member name="P:lce.provider.Responses.PageResponse`1.Page">
+            <summary>
+            頁码
+            </summary>
+        </member>
+        <member name="P:lce.provider.Responses.PageResponse`1.Size">
+            <summary>
+            頁阀
+            </summary>
+        </member>
+        <member name="P:lce.provider.Responses.PageResponse`1.Total">
+            <summary>
+            总数
             </summary>
         </member>
         <member name="T:lce.provider.SmsExt">

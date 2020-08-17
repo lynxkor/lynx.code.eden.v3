@@ -7,7 +7,7 @@
 *
 */
 
-namespace lce.provider.ActionResults
+namespace lce.provider.Responses
 {
     /// <summary>
     /// 分頁/列表请求响应体

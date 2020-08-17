@@ -7,9 +7,9 @@
 *
 */
 
-using lce.provider.Enums;
 using System;
 using System.Collections.Generic;
+using lce.provider.Enums;
 
 namespace lce.provider.Requests
 {

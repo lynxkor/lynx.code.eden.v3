@@ -7,11 +7,11 @@
 *
 */
 
+using System;
 using Aliyun.Acs.Core;
 using Aliyun.Acs.Core.Exceptions;
 using Aliyun.Acs.Core.Http;
 using Aliyun.Acs.Core.Profile;
-using System;
 
 namespace lce.provider
 {

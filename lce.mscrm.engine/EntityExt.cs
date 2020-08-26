@@ -130,7 +130,10 @@ namespace lce.mscrm.engine
                             break;
 
                         case EntityDataType.EntityReference:
-                            p.SetValue(result, entity.GetAttributeValue<EntityReference>(column.Name).Id);
+                            if (!column.IsLookUpName)
+                                p.SetValue(result, entity.GetAttributeValue<EntityReference>(column.Name).Id);
+                            else
+                                p.SetValue(result, entity.GetAttributeValue<EntityReference>(column.Name).Name);
                             break;
 
                         case EntityDataType.Money:

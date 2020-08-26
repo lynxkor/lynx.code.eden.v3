@@ -4,40 +4,6 @@
         <name>lce.mscrm.engine</name>
     </assembly>
     <members>
-        <member name="T:lce.mscrm.engine.Attributes.EntityColumnAttribute">
-            <summary>
-            实体字段
-            </summary>
-        </member>
-        <member name="P:lce.mscrm.engine.Attributes.EntityColumnAttribute.Name">
-            <summary>
-            名称
-            </summary>
-        </member>
-        <member name="P:lce.mscrm.engine.Attributes.EntityColumnAttribute.DataType">
-            <summary>
-            数据类型
-            </summary>
-        </member>
-        <member name="P:lce.mscrm.engine.Attributes.EntityColumnAttribute.LookUp">
-            <summary>
-            关联对象；实体/选项集
-            </summary>
-        </member>
-        <member name="M:lce.mscrm.engine.Attributes.EntityColumnAttribute.#ctor(System.String,lce.mscrm.engine.Attributes.EntityDataType)">
-            <summary>
-            构造函数
-            </summary>
-            <param name="name">    字段名</param>
-            <param name="dataType">数据类型</param>
-        </member>
-        <member name="M:lce.mscrm.engine.Attributes.EntityColumnAttribute.#ctor(System.String,System.String)">
-            <summary>
-            构造函数 LookUp
-            </summary>
-            <param name="name">  字段名</param>
-            <param name="lookUp">关联对象</param>
-        </member>
         <member name="T:lce.mscrm.engine.Attributes.EntityDataType">
             <summary>
             Entity数据类型
@@ -91,6 +57,46 @@
         <member name="F:lce.mscrm.engine.Attributes.EntityDataType.EntityReference">
             <summary>
             LookUp
+            </summary>
+        </member>
+        <member name="T:lce.mscrm.engine.Attributes.EntityColumnAttribute">
+            <summary>
+            实体字段
+            </summary>
+        </member>
+        <member name="M:lce.mscrm.engine.Attributes.EntityColumnAttribute.#ctor(System.String,lce.mscrm.engine.Attributes.EntityDataType)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="name">    字段名</param>
+            <param name="dataType">数据类型</param>
+        </member>
+        <member name="M:lce.mscrm.engine.Attributes.EntityColumnAttribute.#ctor(System.String,System.String,System.Boolean)">
+            <summary>
+            构造函数 LookUp
+            </summary>
+            <param name="name">        字段名</param>
+            <param name="lookUp">      关联对象</param>
+            <param name="isLookUpName">是否关联对象的名称</param>
+        </member>
+        <member name="P:lce.mscrm.engine.Attributes.EntityColumnAttribute.DataType">
+            <summary>
+            数据类型
+            </summary>
+        </member>
+        <member name="P:lce.mscrm.engine.Attributes.EntityColumnAttribute.IsLookUpName">
+            <summary>
+            是否关联对象的名称，仅LookUp不为空时用于逻辑判定，用到Entity序列化至Model使用
+            </summary>
+        </member>
+        <member name="P:lce.mscrm.engine.Attributes.EntityColumnAttribute.LookUp">
+            <summary>
+            关联对象；实体
+            </summary>
+        </member>
+        <member name="P:lce.mscrm.engine.Attributes.EntityColumnAttribute.Name">
+            <summary>
+            名称
             </summary>
         </member>
         <member name="T:lce.mscrm.engine.Attributes.EntityNameAttribute">

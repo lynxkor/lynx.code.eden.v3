@@ -12,51 +12,6 @@ using System;
 namespace lce.mscrm.engine.Attributes
 {
     /// <summary>
-    /// 实体字段
-    /// </summary>
-    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
-    public sealed class EntityColumnAttribute : Attribute
-    {
-        /// <summary>
-        /// 名称
-        /// </summary>
-        public string Name { get; }
-
-        /// <summary>
-        /// 数据类型
-        /// </summary>
-        public EntityDataType DataType { get; }
-
-        /// <summary>
-        /// 关联对象；实体/选项集
-        /// </summary>
-        public string LookUp { get; set; }
-
-        /// <summary>
-        /// 构造函数
-        /// </summary>
-        /// <param name="name">    字段名</param>
-        /// <param name="dataType">数据类型</param>
-        public EntityColumnAttribute(string name, EntityDataType dataType = EntityDataType.String)
-        {
-            Name = name;
-            DataType = dataType;
-        }
-
-        /// <summary>
-        /// 构造函数 LookUp
-        /// </summary>
-        /// <param name="name">  字段名</param>
-        /// <param name="lookUp">关联对象</param>
-        public EntityColumnAttribute(string name, string lookUp)
-        {
-            DataType = EntityDataType.EntityReference;
-            Name = name;
-            LookUp = lookUp;
-        }
-    }
-
-    /// <summary>
     /// Entity数据类型
     /// </summary>
     public enum EntityDataType
@@ -110,5 +65,57 @@ namespace lce.mscrm.engine.Attributes
         /// LookUp
         /// </summary>
         EntityReference
+    }
+
+    /// <summary>
+    /// 实体字段
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
+    public sealed class EntityColumnAttribute : Attribute
+    {
+        /// <summary>
+        /// 构造函数
+        /// </summary>
+        /// <param name="name">    字段名</param>
+        /// <param name="dataType">数据类型</param>
+        public EntityColumnAttribute(string name, EntityDataType dataType = EntityDataType.String)
+        {
+            Name = name;
+            DataType = dataType;
+        }
+
+        /// <summary>
+        /// 构造函数 LookUp
+        /// </summary>
+        /// <param name="name">        字段名</param>
+        /// <param name="lookUp">      关联对象</param>
+        /// <param name="isLookUpName">是否关联对象的名称</param>
+        public EntityColumnAttribute(string name, string lookUp, bool isLookUpName = false)
+        {
+            DataType = EntityDataType.EntityReference;
+            Name = name;
+            LookUp = lookUp;
+            IsLookUpName = isLookUpName;
+        }
+
+        /// <summary>
+        /// 数据类型
+        /// </summary>
+        public EntityDataType DataType { get; }
+
+        /// <summary>
+        /// 是否关联对象的名称，仅LookUp不为空时用于逻辑判定，用到Entity序列化至Model使用
+        /// </summary>
+        public bool IsLookUpName { get; set; } = false;
+
+        /// <summary>
+        /// 关联对象；实体
+        /// </summary>
+        public string LookUp { get; set; }
+
+        /// <summary>
+        /// 名称
+        /// </summary>
+        public string Name { get; }
     }
 }

@@ -8,6 +8,7 @@
 */
 
 using System;
+using System.Linq;
 using System.Reflection;
 using lce.mscrm.engine.Attributes;
 using lce.provider;
@@ -32,9 +33,10 @@ namespace lce.mscrm.engine
         public static Entity ToEntity<T>(this T model) where T : class
         {
             if (null == model) return null;
-            var type = typeof(T);
-            var entityName = (EntityNameAttribute)Attribute.GetCustomAttribute(type, typeof(EntityNameAttribute));
+            var type = model.GetType();
+            var entityName = (EntityNameAttribute)Attribute.GetCustomAttributes(type, typeof(EntityNameAttribute), true).FirstOrDefault();
             if (null == entityName) return null;
+
             var entity = new Entity($"{entityName.Prefix}{entityName.Name}");
 
             var fields = type.GetProperties();

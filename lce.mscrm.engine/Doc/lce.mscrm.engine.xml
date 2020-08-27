@@ -104,6 +104,13 @@
             实体
             </summary>
         </member>
+        <member name="M:lce.mscrm.engine.Attributes.EntityNameAttribute.#ctor(System.String,System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="name">  entity name</param>
+            <param name="prefix">prefix</param>
+        </member>
         <member name="P:lce.mscrm.engine.Attributes.EntityNameAttribute.Name">
             <summary>
             名称
@@ -113,13 +120,6 @@
             <summary>
             前缀
             </summary>
-        </member>
-        <member name="M:lce.mscrm.engine.Attributes.EntityNameAttribute.#ctor(System.String,System.String)">
-            <summary>
-            构造函数
-            </summary>
-            <param name="name">  entity name</param>
-            <param name="prefix">prefix</param>
         </member>
         <member name="T:lce.mscrm.engine.BaseRepository">
             <summary>

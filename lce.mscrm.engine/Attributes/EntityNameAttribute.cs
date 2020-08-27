@@ -14,19 +14,9 @@ namespace lce.mscrm.engine.Attributes
     /// <summary>
     /// 实体
     /// </summary>
-    [AttributeUsage(AttributeTargets.Class | AttributeTargets.Property, AllowMultiple = false, Inherited = false)]
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = false, Inherited = true)]
     public sealed class EntityNameAttribute : Attribute
     {
-        /// <summary>
-        /// 名称
-        /// </summary>
-        public string Name { get; }
-
-        /// <summary>
-        /// 前缀
-        /// </summary>
-        public string Prefix { get; }
-
         /// <summary>
         /// 构造函数
         /// </summary>
@@ -37,5 +27,15 @@ namespace lce.mscrm.engine.Attributes
             Name = name;
             Prefix = prefix;
         }
+
+        /// <summary>
+        /// 名称
+        /// </summary>
+        public string Name { get; }
+
+        /// <summary>
+        /// 前缀
+        /// </summary>
+        public string Prefix { get; }
     }
 }

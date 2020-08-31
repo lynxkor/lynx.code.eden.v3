@@ -110,6 +110,7 @@ namespace lce.mscrm.engine
             foreach (var p in properties)
             {
                 var column = p.GetCustomAttribute<EntityColumnAttribute>();
+                if (null == column) continue;
                 if (entity.Contains(column.Name))
                 {
                     switch (column.DataType)

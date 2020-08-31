@@ -111,6 +111,11 @@ namespace lce.mscrm.engine
             {
                 var column = p.GetCustomAttribute<EntityColumnAttribute>();
                 if (null == column) continue;
+                if (column.Name == "id")
+                {
+                    p.SetValue(result, entity.Id.ToString());
+                    continue;
+                }
                 if (entity.Contains(column.Name))
                 {
                     switch (column.DataType)

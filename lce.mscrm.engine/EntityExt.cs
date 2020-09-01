@@ -118,35 +118,72 @@ namespace lce.mscrm.engine
                 }
                 if (entity.Contains(column.Name))
                 {
-                    switch (column.DataType)
+                    if (column.IsAlias)
                     {
-                        case EntityDataType.Guid:
-                        case EntityDataType.Int:
-                        case EntityDataType.String:
-                        case EntityDataType.Decimal:
-                        case EntityDataType.Double:
-                        case EntityDataType.Bool:
-                            p.SetValue(result, entity[column.Name]);
-                            break;
+                        var value = ((AliasedValue)entity[column.Name]).Value;
+                        switch (column.DataType)
+                        {
+                            case EntityDataType.Guid:
+                            case EntityDataType.Int:
+                            case EntityDataType.String:
+                            case EntityDataType.Decimal:
+                            case EntityDataType.Double:
+                            case EntityDataType.Bool:
+                                p.SetValue(result, value);
+                                break;
 
-                        case EntityDataType.DateTime:
-                            p.SetValue(result, entity.GetAttributeValue<DateTime>(column.Name).ToLocalTime());
-                            break;
+                            case EntityDataType.DateTime:
+                                p.SetValue(result, ((DateTime)value).ToLocalTime());
+                                break;
 
-                        case EntityDataType.OptionSetValue:
-                            p.SetValue(result, entity.GetAttributeValue<OptionSetValue>(column.Name).Value);
-                            break;
+                            case EntityDataType.OptionSetValue:
+                                p.SetValue(result, ((OptionSetValue)value).Value);
+                                break;
 
-                        case EntityDataType.EntityReference:
-                            if (!column.IsLookUpName)
-                                p.SetValue(result, entity.GetAttributeValue<EntityReference>(column.Name).Id);
-                            else
-                                p.SetValue(result, entity.GetAttributeValue<EntityReference>(column.Name).Name);
-                            break;
+                            case EntityDataType.EntityReference:
+                                if (!column.IsLookUpName)
+                                    p.SetValue(result, ((EntityReference)value).Id);
+                                else
+                                    p.SetValue(result, ((EntityReference)value).Name);
+                                break;
 
-                        case EntityDataType.Money:
-                            p.SetValue(result, entity.GetAttributeValue<Money>(column.Name).Value);
-                            break;
+                            case EntityDataType.Money:
+                                p.SetValue(result, ((Money)value).Value);
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        switch (column.DataType)
+                        {
+                            case EntityDataType.Guid:
+                            case EntityDataType.Int:
+                            case EntityDataType.String:
+                            case EntityDataType.Decimal:
+                            case EntityDataType.Double:
+                            case EntityDataType.Bool:
+                                p.SetValue(result, entity[column.Name]);
+                                break;
+
+                            case EntityDataType.DateTime:
+                                p.SetValue(result, entity.GetAttributeValue<DateTime>(column.Name).ToLocalTime());
+                                break;
+
+                            case EntityDataType.OptionSetValue:
+                                p.SetValue(result, entity.GetAttributeValue<OptionSetValue>(column.Name).Value);
+                                break;
+
+                            case EntityDataType.EntityReference:
+                                if (!column.IsLookUpName)
+                                    p.SetValue(result, entity.GetAttributeValue<EntityReference>(column.Name).Id);
+                                else
+                                    p.SetValue(result, entity.GetAttributeValue<EntityReference>(column.Name).Name);
+                                break;
+
+                            case EntityDataType.Money:
+                                p.SetValue(result, entity.GetAttributeValue<Money>(column.Name).Value);
+                                break;
+                        }
                     }
                 }
             }

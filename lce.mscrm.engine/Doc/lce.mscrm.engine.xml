@@ -64,12 +64,13 @@
             实体字段
             </summary>
         </member>
-        <member name="M:lce.mscrm.engine.Attributes.EntityColumnAttribute.#ctor(System.String,lce.mscrm.engine.Attributes.EntityDataType)">
+        <member name="M:lce.mscrm.engine.Attributes.EntityColumnAttribute.#ctor(System.String,lce.mscrm.engine.Attributes.EntityDataType,System.Boolean)">
             <summary>
             构造函数
             </summary>
             <param name="name">    字段名</param>
             <param name="dataType">数据类型</param>
+            <param name="isalias"> </param>
         </member>
         <member name="M:lce.mscrm.engine.Attributes.EntityColumnAttribute.#ctor(System.String,System.String,System.Boolean)">
             <summary>
@@ -82,6 +83,11 @@
         <member name="P:lce.mscrm.engine.Attributes.EntityColumnAttribute.DataType">
             <summary>
             数据类型
+            </summary>
+        </member>
+        <member name="P:lce.mscrm.engine.Attributes.EntityColumnAttribute.IsAlias">
+            <summary>
+            是否关联实体字段
             </summary>
         </member>
         <member name="P:lce.mscrm.engine.Attributes.EntityColumnAttribute.IsLookUpName">

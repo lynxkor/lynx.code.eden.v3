@@ -78,10 +78,12 @@ namespace lce.mscrm.engine.Attributes
         /// </summary>
         /// <param name="name">    字段名</param>
         /// <param name="dataType">数据类型</param>
-        public EntityColumnAttribute(string name, EntityDataType dataType = EntityDataType.String)
+        /// <param name="isalias"> </param>
+        public EntityColumnAttribute(string name, EntityDataType dataType = EntityDataType.String, bool isalias = false)
         {
             Name = name;
             DataType = dataType;
+            IsAlias = isalias;
         }
 
         /// <summary>
@@ -102,6 +104,11 @@ namespace lce.mscrm.engine.Attributes
         /// 数据类型
         /// </summary>
         public EntityDataType DataType { get; }
+
+        /// <summary>
+        /// 是否关联实体字段
+        /// </summary>
+        public bool IsAlias { get; set; } = false;
 
         /// <summary>
         /// 是否关联对象的名称，仅LookUp不为空时用于逻辑判定，用到Entity序列化至Model使用

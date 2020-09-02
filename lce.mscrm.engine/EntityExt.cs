@@ -120,7 +120,7 @@ namespace lce.mscrm.engine
                 {
                     if (column.IsAlias)
                     {
-                        var value = ((AliasedValue)entity[column.Name]).Value;
+                        var value = entity.GetAttributeValue<AliasedValue>(column.Name).Value;
                         switch (column.DataType)
                         {
                             case EntityDataType.Guid:

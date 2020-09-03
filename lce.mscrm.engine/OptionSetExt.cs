@@ -13,7 +13,7 @@ using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Messages;
 using Microsoft.Xrm.Sdk.Metadata;
 
-namespace lce.provider
+namespace lce.mscrm.engine
 {
     /// <summary>
     /// action:OptionSetExt
@@ -21,13 +21,12 @@ namespace lce.provider
     public static class OptionSetExt
     {
         /// <summary>
-        /// 获取选项集列表 这个效率更高，建议用这个
+        /// 根据entity获取EntityMetadata
         /// </summary>
-        /// <param name="service">      </param>
-        /// <param name="entityName">   </param>
-        /// <param name="attributeName"></param>
+        /// <param name="service">   </param>
+        /// <param name="entityName"></param>
         /// <returns></returns>
-        public static IList<KeyValuePair<string, int>> OptionSet(this IOrganizationService service, string entityName, string attributeName)
+        public static EntityMetadata EntityMetadata(this IOrganizationService service, string entityName)
         {
             var request = new RetrieveEntityRequest
             {
@@ -35,13 +34,7 @@ namespace lce.provider
                 EntityFilters = EntityFilters.Attributes
             };
             var response = (RetrieveEntityResponse)service.Execute(request);
-            var entityMetadata = response.EntityMetadata;
-            var metadata = (PicklistAttributeMetadata)entityMetadata.Attributes.Where(x => x.LogicalName.Equals(attributeName) && x.AttributeType.Value == AttributeTypeCode.Picklist).FirstOrDefault();
-            if (null != metadata)
-            {
-                return metadata.OptionSet.Options.Select(x => new KeyValuePair<string, int>(x.Label.UserLocalizedLabel.Label, x.Value.Value)).ToList();
-            }
-            return null;
+            return response.EntityMetadata;
         }
 
         /// <summary>
@@ -53,6 +46,7 @@ namespace lce.provider
         /// <returns></returns>
         public static string OptionLabel(this EntityMetadata entity, string attributeName, int optionValue)
         {
+            if (null == entity) return string.Empty;
             if (optionValue == -1) return string.Empty;
             var metadata = (PicklistAttributeMetadata)entity.Attributes.Where(x => x.LogicalName.Equals(attributeName)
                                                 && x.AttributeType.Value == AttributeTypeCode.Picklist).FirstOrDefault();
@@ -65,23 +59,23 @@ namespace lce.provider
         }
 
         /// <summary>
-        /// 通过选项描述获取选项值 这个效率更高，建议用这个 通过OptionsSetExt.EntityMetadata 先获取EntityMetadata
+        /// 通过选项值获取选项描述
         /// </summary>
-        /// <param name="entity">       </param>
-        /// <param name="attributeName"></param>
-        /// <param name="optionLabel">  </param>
+        /// <param name="service">      </param>
+        /// <param name="optionSetName"></param>
+        /// <param name="optionValue">  </param>
         /// <returns></returns>
-        public static int OptionValue(this EntityMetadata entity, string attributeName, string optionLabel)
+        public static string OptionLabel(this IOrganizationService service, string optionSetName, int optionValue)
         {
-            if (string.IsNullOrEmpty(optionLabel)) return -1;
-            var metadata = (PicklistAttributeMetadata)entity.Attributes.Where(x => x.LogicalName.Equals(attributeName)
-                                                && x.AttributeType.Value == AttributeTypeCode.Picklist).FirstOrDefault();
-            if (null != metadata)
+            var request = new RetrieveOptionSetRequest
             {
-                var option = metadata.OptionSet.Options.Where(x => x.Label.UserLocalizedLabel.Label == optionLabel).FirstOrDefault();
-                if (null != option) return option.Value ?? -1;
-            }
-            return -1;
+                Name = optionSetName
+            };
+            var response = (RetrieveOptionSetResponse)service.Execute(request);
+            var metadata = (OptionSetMetadata)response.OptionSetMetadata;
+            var option = metadata.Options.Where(x => x.Value == optionValue).FirstOrDefault();
+            if (null != option) return option.Label.UserLocalizedLabel.Label;
+            return string.Empty;
         }
 
         /// <summary>
@@ -107,6 +101,30 @@ namespace lce.provider
                     results.Add(new KeyValuePair<string, int>(item.Label.UserLocalizedLabel.Label, item.Value.Value));
                 }
                 return results;
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// 获取选项集列表 这个效率更高，建议用这个
+        /// </summary>
+        /// <param name="service">      </param>
+        /// <param name="entityName">   </param>
+        /// <param name="attributeName"></param>
+        /// <returns></returns>
+        public static IList<KeyValuePair<string, int>> OptionSet(this IOrganizationService service, string entityName, string attributeName)
+        {
+            var request = new RetrieveEntityRequest
+            {
+                LogicalName = entityName,
+                EntityFilters = EntityFilters.Attributes
+            };
+            var response = (RetrieveEntityResponse)service.Execute(request);
+            var entityMetadata = response.EntityMetadata;
+            var metadata = (PicklistAttributeMetadata)entityMetadata.Attributes.Where(x => x.LogicalName.Equals(attributeName) && x.AttributeType.Value == AttributeTypeCode.Picklist).FirstOrDefault();
+            if (null != metadata)
+            {
+                return metadata.OptionSet.Options.Select(x => new KeyValuePair<string, int>(x.Label.UserLocalizedLabel.Label, x.Value.Value)).ToList();
             }
             return null;
         }
@@ -154,40 +172,23 @@ namespace lce.provider
         }
 
         /// <summary>
-        /// 根据entity获取EntityMetadata
+        /// 通过选项描述获取选项值 这个效率更高，建议用这个 通过OptionsSetExt.EntityMetadata 先获取EntityMetadata
         /// </summary>
-        /// <param name="service">   </param>
-        /// <param name="entityName"></param>
+        /// <param name="entity">       </param>
+        /// <param name="attributeName"></param>
+        /// <param name="optionLabel">  </param>
         /// <returns></returns>
-        public static EntityMetadata EntityMetadata(this IOrganizationService service, string entityName)
+        public static int OptionValue(this EntityMetadata entity, string attributeName, string optionLabel)
         {
-            var request = new RetrieveEntityRequest
+            if (string.IsNullOrEmpty(optionLabel)) return -1;
+            var metadata = (PicklistAttributeMetadata)entity.Attributes.Where(x => x.LogicalName.Equals(attributeName)
+                                                && x.AttributeType.Value == AttributeTypeCode.Picklist).FirstOrDefault();
+            if (null != metadata)
             {
-                LogicalName = entityName,
-                EntityFilters = EntityFilters.Attributes
-            };
-            var response = (RetrieveEntityResponse)service.Execute(request);
-            return response.EntityMetadata;
-        }
-
-        /// <summary>
-        /// 通过选项值获取选项描述
-        /// </summary>
-        /// <param name="service">      </param>
-        /// <param name="optionSetName"></param>
-        /// <param name="optionValue">  </param>
-        /// <returns></returns>
-        public static string OptionLabel(this IOrganizationService service, string optionSetName, int optionValue)
-        {
-            var request = new RetrieveOptionSetRequest
-            {
-                Name = optionSetName
-            };
-            var response = (RetrieveOptionSetResponse)service.Execute(request);
-            var metadata = (OptionSetMetadata)response.OptionSetMetadata;
-            var option = metadata.Options.Where(x => x.Value == optionValue).FirstOrDefault();
-            if (null != option) return option.Label.UserLocalizedLabel.Label;
-            return string.Empty;
+                var option = metadata.OptionSet.Options.Where(x => x.Label.UserLocalizedLabel.Label == optionLabel).FirstOrDefault();
+                if (null != option) return option.Value ?? -1;
+            }
+            return -1;
         }
 
         /// <summary>

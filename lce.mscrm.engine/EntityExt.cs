@@ -13,6 +13,7 @@ using System.Reflection;
 using lce.mscrm.engine.Attributes;
 using lce.provider;
 using Microsoft.Xrm.Sdk;
+using Microsoft.Xrm.Sdk.Metadata;
 
 namespace lce.mscrm.engine
 {
@@ -101,9 +102,10 @@ namespace lce.mscrm.engine
         /// <para>Model's property need flag EntityColumnAttribute.</para>
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="entity"></param>
+        /// <param name="entity">  </param>
+        /// <param name="metadata"></param>
         /// <returns></returns>
-        public static T ToModel<T>(this Entity entity) where T : class
+        public static T ToModel<T>(this Entity entity, EntityMetadata metadata = null) where T : class
         {
             var result = Activator.CreateInstance<T>();
             var properties = typeof(T).GetProperties();
@@ -137,7 +139,11 @@ namespace lce.mscrm.engine
                                 break;
 
                             case EntityDataType.OptionSetValue:
-                                p.SetValue(result, ((OptionSetValue)value).Value);
+                                var optionValue = ((OptionSetValue)value).Value;
+                                if (column.IsOptionName)
+                                    p.SetValue(result, metadata.OptionLabel(column.Name, optionValue));
+                                else
+                                    p.SetValue(result, optionValue);
                                 break;
 
                             case EntityDataType.EntityReference:
@@ -170,7 +176,11 @@ namespace lce.mscrm.engine
                                 break;
 
                             case EntityDataType.OptionSetValue:
-                                p.SetValue(result, entity.GetAttributeValue<OptionSetValue>(column.Name).Value);
+                                var optionValue = entity.GetAttributeValue<OptionSetValue>(column.Name).Value;
+                                if (column.IsOptionName)
+                                    p.SetValue(result, metadata.OptionLabel(column.Name, optionValue));
+                                else
+                                    p.SetValue(result, optionValue);
                                 break;
 
                             case EntityDataType.EntityReference:

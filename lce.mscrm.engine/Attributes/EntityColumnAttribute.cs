@@ -76,14 +76,16 @@ namespace lce.mscrm.engine.Attributes
         /// <summary>
         /// 构造函数
         /// </summary>
-        /// <param name="name">    字段名</param>
-        /// <param name="dataType">数据类型</param>
-        /// <param name="isalias"> </param>
-        public EntityColumnAttribute(string name, EntityDataType dataType = EntityDataType.String, bool isalias = false)
+        /// <param name="name">        字段名</param>
+        /// <param name="dataType">    数据类型</param>
+        /// <param name="isAlias">     是否别名</param>
+        /// <param name="isOptionName"></param>
+        public EntityColumnAttribute(string name, EntityDataType dataType = EntityDataType.String, bool isAlias = false, bool isOptionName = false)
         {
             Name = name;
             DataType = dataType;
-            IsAlias = isalias;
+            IsAlias = isAlias;
+            IsOptionName = isOptionName;
         }
 
         /// <summary>
@@ -92,12 +94,14 @@ namespace lce.mscrm.engine.Attributes
         /// <param name="name">        字段名</param>
         /// <param name="lookUp">      关联对象</param>
         /// <param name="isLookUpName">是否关联对象的名称</param>
-        public EntityColumnAttribute(string name, string lookUp, bool isLookUpName = false)
+        /// <param name="isAlias">     是否别名</param>
+        public EntityColumnAttribute(string name, string lookUp, bool isLookUpName = false, bool isAlias = false)
         {
             DataType = EntityDataType.EntityReference;
             Name = name;
             LookUp = lookUp;
             IsLookUpName = isLookUpName;
+            IsAlias = isAlias;
         }
 
         /// <summary>
@@ -114,6 +118,11 @@ namespace lce.mscrm.engine.Attributes
         /// 是否关联对象的名称，仅LookUp不为空时用于逻辑判定，用到Entity序列化至Model使用
         /// </summary>
         public bool IsLookUpName { get; set; } = false;
+
+        /// <summary>
+        /// 是否选项集名称，仅DataType为OptionSetValue时用于逻辑判定
+        /// </summary>
+        public bool IsOptionName { get; set; } = false;
 
         /// <summary>
         /// 关联对象；实体

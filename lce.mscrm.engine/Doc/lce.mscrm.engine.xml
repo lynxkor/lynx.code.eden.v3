@@ -64,21 +64,23 @@
             实体字段
             </summary>
         </member>
-        <member name="M:lce.mscrm.engine.Attributes.EntityColumnAttribute.#ctor(System.String,lce.mscrm.engine.Attributes.EntityDataType,System.Boolean)">
+        <member name="M:lce.mscrm.engine.Attributes.EntityColumnAttribute.#ctor(System.String,lce.mscrm.engine.Attributes.EntityDataType,System.Boolean,System.Boolean)">
             <summary>
             构造函数
             </summary>
-            <param name="name">    字段名</param>
-            <param name="dataType">数据类型</param>
-            <param name="isalias"> </param>
+            <param name="name">        字段名</param>
+            <param name="dataType">    数据类型</param>
+            <param name="isAlias">     是否别名</param>
+            <param name="isOptionName"></param>
         </member>
-        <member name="M:lce.mscrm.engine.Attributes.EntityColumnAttribute.#ctor(System.String,System.String,System.Boolean)">
+        <member name="M:lce.mscrm.engine.Attributes.EntityColumnAttribute.#ctor(System.String,System.String,System.Boolean,System.Boolean)">
             <summary>
             构造函数 LookUp
             </summary>
             <param name="name">        字段名</param>
             <param name="lookUp">      关联对象</param>
             <param name="isLookUpName">是否关联对象的名称</param>
+            <param name="isAlias">     是否别名</param>
         </member>
         <member name="P:lce.mscrm.engine.Attributes.EntityColumnAttribute.DataType">
             <summary>
@@ -93,6 +95,11 @@
         <member name="P:lce.mscrm.engine.Attributes.EntityColumnAttribute.IsLookUpName">
             <summary>
             是否关联对象的名称，仅LookUp不为空时用于逻辑判定，用到Entity序列化至Model使用
+            </summary>
+        </member>
+        <member name="P:lce.mscrm.engine.Attributes.EntityColumnAttribute.IsOptionName">
+            <summary>
+            是否选项集名称，仅DataType为OptionSetValue时用于逻辑判定
             </summary>
         </member>
         <member name="P:lce.mscrm.engine.Attributes.EntityColumnAttribute.LookUp">
@@ -172,13 +179,14 @@
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:lce.mscrm.engine.EntityExt.ToModel``1(Microsoft.Xrm.Sdk.Entity)">
+        <member name="M:lce.mscrm.engine.EntityExt.ToModel``1(Microsoft.Xrm.Sdk.Entity,Microsoft.Xrm.Sdk.Metadata.EntityMetadata)">
             <summary>
             Dynamics Entity To Model
             <para>Model's property need flag EntityColumnAttribute.</para>
             </summary>
             <typeparam name="T"></typeparam>
-            <param name="entity"></param>
+            <param name="entity">  </param>
+            <param name="metadata"></param>
             <returns></returns>
         </member>
         <member name="T:lce.mscrm.engine.FetchXmlExt">
@@ -446,6 +454,79 @@
             <param name="service">   </param>
             <param name="entityName"></param>
             <param name="filterXml"> </param>
+            <returns></returns>
+        </member>
+        <member name="T:lce.mscrm.engine.OptionSetExt">
+            <summary>
+            action:OptionSetExt
+            </summary>
+        </member>
+        <member name="M:lce.mscrm.engine.OptionSetExt.EntityMetadata(Microsoft.Xrm.Sdk.IOrganizationService,System.String)">
+            <summary>
+            根据entity获取EntityMetadata
+            </summary>
+            <param name="service">   </param>
+            <param name="entityName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.mscrm.engine.OptionSetExt.OptionLabel(Microsoft.Xrm.Sdk.Metadata.EntityMetadata,System.String,System.Int32)">
+            <summary>
+            通过选项值获取选项描述 这个效率更高，建议用这个 通过OptionsSetExt.EntityMetadata 先获取EntityMetadata
+            </summary>
+            <param name="entity">       EntityMetadata</param>
+            <param name="attributeName"></param>
+            <param name="optionValue">  </param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.mscrm.engine.OptionSetExt.OptionLabel(Microsoft.Xrm.Sdk.IOrganizationService,System.String,System.Int32)">
+            <summary>
+            通过选项值获取选项描述
+            </summary>
+            <param name="service">      </param>
+            <param name="optionSetName"></param>
+            <param name="optionValue">  </param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.mscrm.engine.OptionSetExt.OptionList(Microsoft.Xrm.Sdk.IOrganizationService,System.String)">
+            <summary>
+            获取选项集列表
+            </summary>
+            <param name="service">      </param>
+            <param name="optionSetName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.mscrm.engine.OptionSetExt.OptionSet(Microsoft.Xrm.Sdk.IOrganizationService,System.String,System.String)">
+            <summary>
+            获取选项集列表 这个效率更高，建议用这个
+            </summary>
+            <param name="service">      </param>
+            <param name="entityName">   </param>
+            <param name="attributeName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.mscrm.engine.OptionSetExt.OptionSet(Microsoft.Xrm.Sdk.IOrganizationService,System.String)">
+            <summary>
+            </summary>
+            <param name="service">      </param>
+            <param name="optionSetName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.mscrm.engine.OptionSetExt.OptionValue(Microsoft.Xrm.Sdk.Metadata.EntityMetadata,System.String,System.String)">
+            <summary>
+            通过选项描述获取选项值 这个效率更高，建议用这个 通过OptionsSetExt.EntityMetadata 先获取EntityMetadata
+            </summary>
+            <param name="entity">       </param>
+            <param name="attributeName"></param>
+            <param name="optionLabel">  </param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.mscrm.engine.OptionSetExt.OptionValue(Microsoft.Xrm.Sdk.IOrganizationService,System.String,System.String)">
+            <summary>
+            通过选项描述获取选项值
+            </summary>
+            <param name="service">      </param>
+            <param name="optionSetName"></param>
+            <param name="optionLabel">  </param>
             <returns></returns>
         </member>
         <member name="T:lce.mscrm.engine.ServiceProxyExt">
@@ -796,79 +877,6 @@
             <param name="context">   </param>
             <param name="commandSql"></param>
             <param name="parameters"></param>
-            <returns></returns>
-        </member>
-        <member name="T:lce.provider.OptionSetExt">
-            <summary>
-            action:OptionSetExt
-            </summary>
-        </member>
-        <member name="M:lce.provider.OptionSetExt.OptionSet(Microsoft.Xrm.Sdk.IOrganizationService,System.String,System.String)">
-            <summary>
-            获取选项集列表 这个效率更高，建议用这个
-            </summary>
-            <param name="service">      </param>
-            <param name="entityName">   </param>
-            <param name="attributeName"></param>
-            <returns></returns>
-        </member>
-        <member name="M:lce.provider.OptionSetExt.OptionLabel(Microsoft.Xrm.Sdk.Metadata.EntityMetadata,System.String,System.Int32)">
-            <summary>
-            通过选项值获取选项描述 这个效率更高，建议用这个 通过OptionsSetExt.EntityMetadata 先获取EntityMetadata
-            </summary>
-            <param name="entity">       EntityMetadata</param>
-            <param name="attributeName"></param>
-            <param name="optionValue">  </param>
-            <returns></returns>
-        </member>
-        <member name="M:lce.provider.OptionSetExt.OptionValue(Microsoft.Xrm.Sdk.Metadata.EntityMetadata,System.String,System.String)">
-            <summary>
-            通过选项描述获取选项值 这个效率更高，建议用这个 通过OptionsSetExt.EntityMetadata 先获取EntityMetadata
-            </summary>
-            <param name="entity">       </param>
-            <param name="attributeName"></param>
-            <param name="optionLabel">  </param>
-            <returns></returns>
-        </member>
-        <member name="M:lce.provider.OptionSetExt.OptionList(Microsoft.Xrm.Sdk.IOrganizationService,System.String)">
-            <summary>
-            获取选项集列表
-            </summary>
-            <param name="service">      </param>
-            <param name="optionSetName"></param>
-            <returns></returns>
-        </member>
-        <member name="M:lce.provider.OptionSetExt.OptionSet(Microsoft.Xrm.Sdk.IOrganizationService,System.String)">
-            <summary>
-            </summary>
-            <param name="service">      </param>
-            <param name="optionSetName"></param>
-            <returns></returns>
-        </member>
-        <member name="M:lce.provider.OptionSetExt.EntityMetadata(Microsoft.Xrm.Sdk.IOrganizationService,System.String)">
-            <summary>
-            根据entity获取EntityMetadata
-            </summary>
-            <param name="service">   </param>
-            <param name="entityName"></param>
-            <returns></returns>
-        </member>
-        <member name="M:lce.provider.OptionSetExt.OptionLabel(Microsoft.Xrm.Sdk.IOrganizationService,System.String,System.Int32)">
-            <summary>
-            通过选项值获取选项描述
-            </summary>
-            <param name="service">      </param>
-            <param name="optionSetName"></param>
-            <param name="optionValue">  </param>
-            <returns></returns>
-        </member>
-        <member name="M:lce.provider.OptionSetExt.OptionValue(Microsoft.Xrm.Sdk.IOrganizationService,System.String,System.String)">
-            <summary>
-            通过选项描述获取选项值
-            </summary>
-            <param name="service">      </param>
-            <param name="optionSetName"></param>
-            <param name="optionLabel">  </param>
             <returns></returns>
         </member>
     </members>

@@ -23,6 +23,12 @@ namespace lce.provider.Enums
         SUCCESS = 200,
 
         /// <summary>
+        /// 没有找到数据
+        /// </summary>
+        [Description("没有找到数据")]
+        NOTHING_FOUND = 2000,
+
+        /// <summary>
         /// 请求出错
         /// </summary>
         [Description("请求出错")]

@@ -383,6 +383,11 @@
             操作成功
             </summary>
         </member>
+        <member name="F:lce.provider.Enums.ResponseCode.NOTHING_FOUND">
+            <summary>
+            没有找到数据
+            </summary>
+        </member>
         <member name="F:lce.provider.Enums.ResponseCode.BAD_REQUEST">
             <summary>
             请求出错

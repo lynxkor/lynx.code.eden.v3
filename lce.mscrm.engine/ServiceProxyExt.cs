@@ -26,6 +26,110 @@ namespace lce.mscrm.engine
     public static class ServiceProxyExt
     {
         /// <summary>
+        /// 分派;把target分派给owner
+        /// </summary>
+        /// <param name="service">         </param>
+        /// <param name="ownerEntityName"> </param>
+        /// <param name="ownerId">         </param>
+        /// <param name="targetEntityName"></param>
+        /// <param name="targetId">        </param>
+        public static void Assign(this IOrganizationService service, string ownerEntityName, Guid ownerId, string targetEntityName, Guid targetId)
+        {
+            var assign = new AssignRequest
+            {
+                Assignee = new EntityReference(ownerEntityName, ownerId),
+                Target = new EntityReference(targetEntityName, targetId)
+            };
+            service.Execute(assign);
+        }
+
+        /// <summary>
+        /// 给实体指定查找字段建立关联关系
+        /// </summary>
+        /// <param name="service">         </param>
+        /// <param name="sourceEntityName">查找实体</param>
+        /// <param name="sourceId">        查找实体数据id</param>
+        /// <param name="targetEntityName">关联实体</param>
+        /// <param name="targetFieldName"> 关联字段</param>
+        /// <param name="targetId">        关联数据id</param>
+        public static void Associate(this IOrganizationService service, string sourceEntityName, Guid sourceId, string targetEntityName, string targetFieldName, Guid targetId)
+        {
+            var target = service.Retrieve(targetEntityName, targetId, new ColumnSet(new string[] { $@"{targetEntityName}id" }));
+            target[targetFieldName] = new EntityReference(sourceEntityName, sourceId);
+            service.Update(target);
+        }
+
+        /// <summary>
+        /// 统计数据行
+        /// </summary>
+        /// <param name="service">   </param>
+        /// <param name="entityName"></param>
+        /// <param name="filters">   </param>
+        /// <returns></returns>
+        public static int Count(this IOrganizationService service, string entityName, FilterExpression filters = null)
+        {
+            var query = new QueryExpression
+            {
+                Distinct = false,
+                EntityName = entityName
+            };
+            query.ColumnSet.AddColumn($@"{entityName}id");
+            query.PageInfo = new PagingInfo
+            {
+                Count = 1,
+                PageNumber = 1,
+                ReturnTotalRecordCount = true,
+                PagingCookie = null
+            };
+            if (null != filters) query.Criteria.AddFilter(filters);
+            var result = service.RetrieveMultiple(query);
+            if (null != result)
+            {
+                return result.TotalRecordCount;
+            }
+            return 0;
+        }
+
+        /// <summary>
+        /// 根据id查询实体指定字段
+        /// </summary>
+        /// <param name="service">   </param>
+        /// <param name="entityName"></param>
+        /// <param name="id">        </param>
+        /// <param name="columns">   </param>
+        /// <returns></returns>
+        public static Entity Get(this IOrganizationService service, string entityName, Guid id, IList<string> columns = null)
+        {
+            return service.Get(entityName, new[] { new ConditionItem($@"{entityName}id", id) }, columns);
+        }
+
+        /// <summary>
+        /// 根据字段名及值查询实体指定字段
+        /// </summary>
+        /// <param name="service">   </param>
+        /// <param name="entityName"></param>
+        /// <param name="fieldName"> </param>
+        /// <param name="filedValue"></param>
+        /// <param name="columns">   </param>
+        /// <returns></returns>
+        public static Entity Get(this IOrganizationService service, string entityName, string fieldName, object filedValue, IList<string> columns = null)
+        {
+            return service.Get(entityName, new[] { new ConditionItem(fieldName, filedValue) }, columns);
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="service">   </param>
+        /// <param name="entityName"></param>
+        /// <param name="conditions"></param>
+        /// <param name="columns">   </param>
+        /// <returns></returns>
+        public static Entity Get(this IOrganizationService service, string entityName, IList<ConditionItem> conditions, IList<string> columns = null)
+        {
+            return service.List(entityName, conditions, columns)?.FirstOrDefault();
+        }
+
+        /// <summary>
         /// 获取OrganizationService
         /// </summary>
         /// <param name="cacheSrv"> </param>
@@ -111,51 +215,13 @@ namespace lce.mscrm.engine
         }
 
         /// <summary>
-        /// 根据id查询实体指定字段
-        /// </summary>
-        /// <param name="service">   </param>
-        /// <param name="entityName"></param>
-        /// <param name="id">        </param>
-        /// <param name="columns">   </param>
-        /// <returns></returns>
-        public static Entity Get(this IOrganizationService service, string entityName, Guid id, IList<string> columns = null)
-        {
-            return service.Get(entityName, new[] { new ConditionItem($@"{entityName}id", id) }, columns);
-        }
-
-        /// <summary>
-        /// 根据字段名及值查询实体指定字段
-        /// </summary>
-        /// <param name="service">   </param>
-        /// <param name="entityName"></param>
-        /// <param name="fieldName"> </param>
-        /// <param name="filedValue"></param>
-        /// <param name="columns">   </param>
-        /// <returns></returns>
-        public static Entity Get(this IOrganizationService service, string entityName, string fieldName, object filedValue, IList<string> columns = null)
-        {
-            return service.Get(entityName, new[] { new ConditionItem(fieldName, filedValue) }, columns);
-        }
-
-        /// <summary>
-        /// </summary>
-        /// <param name="service">   </param>
-        /// <param name="entityName"></param>
-        /// <param name="conditions"></param>
-        /// <param name="columns">   </param>
-        /// <returns></returns>
-        public static Entity Get(this IOrganizationService service, string entityName, IList<ConditionItem> conditions, IList<string> columns = null)
-        {
-            return service.List(entityName, conditions, columns)?.FirstOrDefault();
-        }
-
-        /// <summary>
         /// 列表查询
         /// </summary>
         /// <param name="service">   </param>
         /// <param name="entityName"></param>
         /// <param name="conditions"></param>
         /// <param name="columns">   </param>
+        /// `
         /// <returns></returns>
         public static IList<Entity> List(this IOrganizationService service, string entityName, IList<ConditionItem> conditions, IList<string> columns = null)
         {
@@ -182,109 +248,25 @@ namespace lce.mscrm.engine
         }
 
         /// <summary>
-        /// 单行数据查询
+        /// 数据合并
         /// </summary>
         /// <param name="service"> </param>
-        /// <param name="fetchXml"></param>
+        /// <param name="entities"></param>
         /// <returns></returns>
-        public static Entity Retrieve(this IOrganizationService service, string fetchXml)
+        public static Entity Merge(this IOrganizationService service, IEnumerable<Entity> entities)
         {
-            var query = new FetchExpression(fetchXml);
-            var entitys = service.RetrieveMultiple(query);
-            if (entitys.Entities.Count > 0)
+            if (entities.Count() < 2)
             {
-                return entitys.Entities[0];
+                throw new ArgumentException("entities needs 2 entity at least;");
             }
-            return null;
-        }
-
-        /// <summary>
-        /// 列表查询
-        /// </summary>
-        /// <param name="service"> </param>
-        /// <param name="fetchXml"></param>
-        /// <returns></returns>
-        public static IList<Entity> RetrieveMultiple(this IOrganizationService service, string fetchXml)
-        {
-            var query = new FetchExpression(fetchXml);
-            var entitys = service.RetrieveMultiple(query);
-            if (entitys.Entities.Count > 0)
+            entities = entities.OrderByDescending(x => (DateTime)x.Attributes["modifiedon"]);
+            var arr = entities.ToArray();
+            var main = arr[0];
+            for (int i = 1; i < arr.Length; i++)
             {
-                return entitys.Entities.ToList();
+                service.Merge(main, arr[i]);
             }
-            return null;
-        }
-
-        /// <summary>
-        /// 列表查询
-        /// <para>使用此方法时必须在fetch头中加上returntotalrecordcount='true',否则totals=-1</para>
-        /// </summary>
-        /// <param name="service"> </param>
-        /// <param name="fetchXml"></param>
-        /// <param name="totals">  </param>
-        /// <returns></returns>
-        public static IList<Entity> RetrieveMultiple(this IOrganizationService service, string fetchXml, out int totals)
-        {
-            var query = new FetchExpression(fetchXml);
-            var entitys = service.RetrieveMultiple(query);
-            totals = entitys.TotalRecordCount;
-            if (entitys.Entities.Count > 0)
-            {
-                return entitys.Entities.ToList();
-            }
-            return null;
-        }
-
-        /// <summary>
-        /// 给实体指定查找字段建立关联关系
-        /// </summary>
-        /// <param name="service">         </param>
-        /// <param name="sourceEntityName">查找实体</param>
-        /// <param name="sourceId">        查找实体数据id</param>
-        /// <param name="targetEntityName">关联实体</param>
-        /// <param name="targetFieldName"> 关联字段</param>
-        /// <param name="targetId">        关联数据id</param>
-        public static void Associate(this IOrganizationService service, string sourceEntityName, Guid sourceId, string targetEntityName, string targetFieldName, Guid targetId)
-        {
-            var target = service.Retrieve(targetEntityName, targetId, new ColumnSet(new string[] { $@"{targetEntityName}id" }));
-            target[targetFieldName] = new EntityReference(sourceEntityName, sourceId);
-            service.Update(target);
-        }
-
-        /// <summary>
-        /// </summary>
-        /// <param name="service">   </param>
-        /// <param name="entityName"></param>
-        /// <param name="entityId">  </param>
-        /// <param name="stateCode"> </param>
-        /// <param name="statusCode"></param>
-        public static void ModifyStatus(this IOrganizationService service, string entityName, Guid entityId, int stateCode, int statusCode)
-        {
-            var req = new SetStateRequest
-            {
-                EntityMoniker = new EntityReference(entityName, entityId),
-                State = new OptionSetValue(stateCode),
-                Status = new OptionSetValue(statusCode)
-            };
-            service.Execute(req);
-        }
-
-        /// <summary>
-        /// 分派;把target分派给owner
-        /// </summary>
-        /// <param name="service">         </param>
-        /// <param name="ownerEntityName"> </param>
-        /// <param name="ownerId">         </param>
-        /// <param name="targetEntityName"></param>
-        /// <param name="targetId">        </param>
-        public static void Assign(this IOrganizationService service, string ownerEntityName, Guid ownerId, string targetEntityName, Guid targetId)
-        {
-            var assign = new AssignRequest
-            {
-                Assignee = new EntityReference(ownerEntityName, ownerId),
-                Target = new EntityReference(targetEntityName, targetId)
-            };
-            service.Execute(assign);
+            return main;
         }
 
         ///// <summary>
@@ -329,28 +311,6 @@ namespace lce.mscrm.engine
         /// <summary>
         /// 数据合并
         /// </summary>
-        /// <param name="service"> </param>
-        /// <param name="entities"></param>
-        /// <returns></returns>
-        public static Entity Merge(this IOrganizationService service, IEnumerable<Entity> entities)
-        {
-            if (entities.Count() < 2)
-            {
-                throw new ArgumentException("entities needs 2 entity at least;");
-            }
-            entities = entities.OrderByDescending(x => (DateTime)x.Attributes["modifiedon"]);
-            var arr = entities.ToArray();
-            var main = arr[0];
-            for (int i = 1; i < arr.Length; i++)
-            {
-                service.Merge(main, arr[i]);
-            }
-            return main;
-        }
-
-        /// <summary>
-        /// 数据合并
-        /// </summary>
         /// <param name="service">   </param>
         /// <param name="entityMain"></param>
         /// <param name="entitySub"> </param>
@@ -374,34 +334,21 @@ namespace lce.mscrm.engine
         }
 
         /// <summary>
-        /// 统计数据行
         /// </summary>
         /// <param name="service">   </param>
         /// <param name="entityName"></param>
-        /// <param name="filters">   </param>
-        /// <returns></returns>
-        public static int Count(this IOrganizationService service, string entityName, FilterExpression filters = null)
+        /// <param name="entityId">  </param>
+        /// <param name="stateCode"> </param>
+        /// <param name="statusCode"></param>
+        public static void ModifyStatus(this IOrganizationService service, string entityName, Guid entityId, int stateCode, int statusCode)
         {
-            var query = new QueryExpression
+            var req = new SetStateRequest
             {
-                Distinct = false,
-                EntityName = entityName
+                EntityMoniker = new EntityReference(entityName, entityId),
+                State = new OptionSetValue(stateCode),
+                Status = new OptionSetValue(statusCode)
             };
-            query.ColumnSet.AddColumn($@"{entityName}id");
-            query.PageInfo = new PagingInfo
-            {
-                Count = 1,
-                PageNumber = 1,
-                ReturnTotalRecordCount = true,
-                PagingCookie = null
-            };
-            if (null != filters) query.Criteria.AddFilter(filters);
-            var result = service.RetrieveMultiple(query);
-            if (null != result)
-            {
-                return result.TotalRecordCount;
-            }
-            return 0;
+            service.Execute(req);
         }
 
         /// <summary>
@@ -471,6 +418,63 @@ namespace lce.mscrm.engine
             if (null != entities)
                 return entities[0];
             return null;
+        }
+
+        /// <summary>
+        /// 查询数据集
+        /// </summary>
+        /// <param name="service"></param>
+        /// <param name="query">  </param>
+        /// <param name="page">   </param>
+        /// <param name="size">   </param>
+        /// <returns></returns>
+        public static DataCollection<Entity> Query(this IOrganizationService service, QueryExpression query, int page = 1, int size = 1)
+        {
+            var pageInfo = new PagingInfo
+            {
+                Count = size,
+                PageNumber = page,
+                PagingCookie = null
+            };
+            query.PageInfo = pageInfo;
+            var result = service.RetrieveMultiple(query);
+            if (null != result.Entities && result.Entities.Count > 0)
+                return result.Entities;
+            return null;
+        }
+
+        /// <summary>
+        /// 查询所有数据
+        /// </summary>
+        /// <param name="service"></param>
+        /// <param name="query">  </param>
+        /// <returns></returns>
+        public static DataCollection<Entity> QueryAll(this IOrganizationService service, QueryExpression query)
+        {
+            var pageInfo = new PagingInfo
+            {
+                Count = 5000,
+                PageNumber = 1,
+                PagingCookie = null
+            };
+            query.PageInfo = pageInfo;
+            var entities = new EntityCollection().Entities;
+            while (true)
+            {
+                var result = service.RetrieveMultiple(query);
+                if (null != result.Entities)
+                {
+                    entities.AddRange(result.Entities);
+                }
+                if (result.MoreRecords)
+                {
+                    query.PageInfo.PagingCookie = result.PagingCookie;
+                    query.PageInfo.PageNumber += 1;
+                }
+                else
+                { break; }
+            }
+            return entities;
         }
 
         /// <summary>
@@ -579,60 +583,57 @@ namespace lce.mscrm.engine
         }
 
         /// <summary>
-        /// 查询数据集
+        /// 单行数据查询
         /// </summary>
-        /// <param name="service"></param>
-        /// <param name="query">  </param>
-        /// <param name="page">   </param>
-        /// <param name="size">   </param>
+        /// <param name="service"> </param>
+        /// <param name="fetchXml"></param>
         /// <returns></returns>
-        public static DataCollection<Entity> Query(this IOrganizationService service, QueryExpression query, int page = 1, int size = 1)
+        public static Entity Retrieve(this IOrganizationService service, string fetchXml)
         {
-            var pageInfo = new PagingInfo
+            var query = new FetchExpression(fetchXml);
+            var entitys = service.RetrieveMultiple(query);
+            if (entitys.Entities.Count > 0)
             {
-                Count = size,
-                PageNumber = page,
-                PagingCookie = null
-            };
-            query.PageInfo = pageInfo;
-            var result = service.RetrieveMultiple(query);
-            if (null != result.Entities && result.Entities.Count > 0)
-                return result.Entities;
+                return entitys.Entities[0];
+            }
             return null;
         }
 
         /// <summary>
-        /// 查询所有数据
+        /// 列表查询
         /// </summary>
-        /// <param name="service"></param>
-        /// <param name="query">  </param>
+        /// <param name="service"> </param>
+        /// <param name="fetchXml"></param>
         /// <returns></returns>
-        public static DataCollection<Entity> QueryAll(this IOrganizationService service, QueryExpression query)
+        public static IList<Entity> RetrieveMultiple(this IOrganizationService service, string fetchXml)
         {
-            var pageInfo = new PagingInfo
+            var query = new FetchExpression(fetchXml);
+            var entitys = service.RetrieveMultiple(query);
+            if (entitys.Entities.Count > 0)
             {
-                Count = 5000,
-                PageNumber = 1,
-                PagingCookie = null
-            };
-            query.PageInfo = pageInfo;
-            var entities = new EntityCollection().Entities;
-            while (true)
-            {
-                var result = service.RetrieveMultiple(query);
-                if (null != result.Entities)
-                {
-                    entities.AddRange(result.Entities);
-                }
-                if (result.MoreRecords)
-                {
-                    query.PageInfo.PagingCookie = result.PagingCookie;
-                    query.PageInfo.PageNumber += 1;
-                }
-                else
-                { break; }
+                return entitys.Entities.ToList();
             }
-            return entities;
+            return null;
+        }
+
+        /// <summary>
+        /// 列表查询
+        /// <para>使用此方法时必须在fetch头中加上returntotalrecordcount='true',否则totals=-1</para>
+        /// </summary>
+        /// <param name="service"> </param>
+        /// <param name="fetchXml"></param>
+        /// <param name="totals">  </param>
+        /// <returns></returns>
+        public static IList<Entity> RetrieveMultiple(this IOrganizationService service, string fetchXml, out int totals)
+        {
+            var query = new FetchExpression(fetchXml);
+            var entitys = service.RetrieveMultiple(query);
+            totals = entitys.TotalRecordCount;
+            if (entitys.Entities.Count > 0)
+            {
+                return entitys.Entities.ToList();
+            }
+            return null;
         }
     }
 }

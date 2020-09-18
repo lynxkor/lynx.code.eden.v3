@@ -534,6 +534,66 @@
             action：ServiceProxyExt
             </summary>
         </member>
+        <member name="M:lce.mscrm.engine.ServiceProxyExt.Assign(Microsoft.Xrm.Sdk.IOrganizationService,System.String,System.Guid,System.String,System.Guid)">
+            <summary>
+            分派;把target分派给owner
+            </summary>
+            <param name="service">         </param>
+            <param name="ownerEntityName"> </param>
+            <param name="ownerId">         </param>
+            <param name="targetEntityName"></param>
+            <param name="targetId">        </param>
+        </member>
+        <member name="M:lce.mscrm.engine.ServiceProxyExt.Associate(Microsoft.Xrm.Sdk.IOrganizationService,System.String,System.Guid,System.String,System.String,System.Guid)">
+            <summary>
+            给实体指定查找字段建立关联关系
+            </summary>
+            <param name="service">         </param>
+            <param name="sourceEntityName">查找实体</param>
+            <param name="sourceId">        查找实体数据id</param>
+            <param name="targetEntityName">关联实体</param>
+            <param name="targetFieldName"> 关联字段</param>
+            <param name="targetId">        关联数据id</param>
+        </member>
+        <member name="M:lce.mscrm.engine.ServiceProxyExt.Count(Microsoft.Xrm.Sdk.IOrganizationService,System.String,Microsoft.Xrm.Sdk.Query.FilterExpression)">
+            <summary>
+            统计数据行
+            </summary>
+            <param name="service">   </param>
+            <param name="entityName"></param>
+            <param name="filters">   </param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.mscrm.engine.ServiceProxyExt.Get(Microsoft.Xrm.Sdk.IOrganizationService,System.String,System.Guid,System.Collections.Generic.IList{System.String})">
+            <summary>
+            根据id查询实体指定字段
+            </summary>
+            <param name="service">   </param>
+            <param name="entityName"></param>
+            <param name="id">        </param>
+            <param name="columns">   </param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.mscrm.engine.ServiceProxyExt.Get(Microsoft.Xrm.Sdk.IOrganizationService,System.String,System.String,System.Object,System.Collections.Generic.IList{System.String})">
+            <summary>
+            根据字段名及值查询实体指定字段
+            </summary>
+            <param name="service">   </param>
+            <param name="entityName"></param>
+            <param name="fieldName"> </param>
+            <param name="filedValue"></param>
+            <param name="columns">   </param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.mscrm.engine.ServiceProxyExt.Get(Microsoft.Xrm.Sdk.IOrganizationService,System.String,System.Collections.Generic.IList{lce.mscrm.engine.ConditionItem},System.Collections.Generic.IList{System.String})">
+            <summary>
+            </summary>
+            <param name="service">   </param>
+            <param name="entityName"></param>
+            <param name="conditions"></param>
+            <param name="columns">   </param>
+            <returns></returns>
+        </member>
         <member name="M:lce.mscrm.engine.ServiceProxyExt.GetProxy(System.String,System.String)">
             <summary>
             获取OrganizationService
@@ -587,36 +647,6 @@
             <param name="caller"> </param>
             <returns></returns>
         </member>
-        <member name="M:lce.mscrm.engine.ServiceProxyExt.Get(Microsoft.Xrm.Sdk.IOrganizationService,System.String,System.Guid,System.Collections.Generic.IList{System.String})">
-            <summary>
-            根据id查询实体指定字段
-            </summary>
-            <param name="service">   </param>
-            <param name="entityName"></param>
-            <param name="id">        </param>
-            <param name="columns">   </param>
-            <returns></returns>
-        </member>
-        <member name="M:lce.mscrm.engine.ServiceProxyExt.Get(Microsoft.Xrm.Sdk.IOrganizationService,System.String,System.String,System.Object,System.Collections.Generic.IList{System.String})">
-            <summary>
-            根据字段名及值查询实体指定字段
-            </summary>
-            <param name="service">   </param>
-            <param name="entityName"></param>
-            <param name="fieldName"> </param>
-            <param name="filedValue"></param>
-            <param name="columns">   </param>
-            <returns></returns>
-        </member>
-        <member name="M:lce.mscrm.engine.ServiceProxyExt.Get(Microsoft.Xrm.Sdk.IOrganizationService,System.String,System.Collections.Generic.IList{lce.mscrm.engine.ConditionItem},System.Collections.Generic.IList{System.String})">
-            <summary>
-            </summary>
-            <param name="service">   </param>
-            <param name="entityName"></param>
-            <param name="conditions"></param>
-            <param name="columns">   </param>
-            <returns></returns>
-        </member>
         <member name="M:lce.mscrm.engine.ServiceProxyExt.List(Microsoft.Xrm.Sdk.IOrganizationService,System.String,System.Collections.Generic.IList{lce.mscrm.engine.ConditionItem},System.Collections.Generic.IList{System.String})">
             <summary>
             列表查询
@@ -625,6 +655,7 @@
             <param name="entityName"></param>
             <param name="conditions"></param>
             <param name="columns">   </param>
+            `
             <returns></returns>
         </member>
         <member name="M:lce.mscrm.engine.ServiceProxyExt.List(Microsoft.Xrm.Sdk.IOrganizationService,System.String,System.Int32,System.Int32,System.Int32@,System.Collections.Generic.IList{lce.mscrm.engine.ConditionItem},System.Collections.Generic.IList{System.String},System.Collections.Generic.IList{lce.mscrm.engine.OrderItem})">
@@ -640,62 +671,6 @@
             <param name="columns">   </param>
             <param name="orders">    </param>
             <returns></returns>
-        </member>
-        <member name="M:lce.mscrm.engine.ServiceProxyExt.Retrieve(Microsoft.Xrm.Sdk.IOrganizationService,System.String)">
-            <summary>
-            单行数据查询
-            </summary>
-            <param name="service"> </param>
-            <param name="fetchXml"></param>
-            <returns></returns>
-        </member>
-        <member name="M:lce.mscrm.engine.ServiceProxyExt.RetrieveMultiple(Microsoft.Xrm.Sdk.IOrganizationService,System.String)">
-            <summary>
-            列表查询
-            </summary>
-            <param name="service"> </param>
-            <param name="fetchXml"></param>
-            <returns></returns>
-        </member>
-        <member name="M:lce.mscrm.engine.ServiceProxyExt.RetrieveMultiple(Microsoft.Xrm.Sdk.IOrganizationService,System.String,System.Int32@)">
-            <summary>
-            列表查询
-            <para>使用此方法时必须在fetch头中加上returntotalrecordcount='true',否则totals=-1</para>
-            </summary>
-            <param name="service"> </param>
-            <param name="fetchXml"></param>
-            <param name="totals">  </param>
-            <returns></returns>
-        </member>
-        <member name="M:lce.mscrm.engine.ServiceProxyExt.Associate(Microsoft.Xrm.Sdk.IOrganizationService,System.String,System.Guid,System.String,System.String,System.Guid)">
-            <summary>
-            给实体指定查找字段建立关联关系
-            </summary>
-            <param name="service">         </param>
-            <param name="sourceEntityName">查找实体</param>
-            <param name="sourceId">        查找实体数据id</param>
-            <param name="targetEntityName">关联实体</param>
-            <param name="targetFieldName"> 关联字段</param>
-            <param name="targetId">        关联数据id</param>
-        </member>
-        <member name="M:lce.mscrm.engine.ServiceProxyExt.ModifyStatus(Microsoft.Xrm.Sdk.IOrganizationService,System.String,System.Guid,System.Int32,System.Int32)">
-            <summary>
-            </summary>
-            <param name="service">   </param>
-            <param name="entityName"></param>
-            <param name="entityId">  </param>
-            <param name="stateCode"> </param>
-            <param name="statusCode"></param>
-        </member>
-        <member name="M:lce.mscrm.engine.ServiceProxyExt.Assign(Microsoft.Xrm.Sdk.IOrganizationService,System.String,System.Guid,System.String,System.Guid)">
-            <summary>
-            分派;把target分派给owner
-            </summary>
-            <param name="service">         </param>
-            <param name="ownerEntityName"> </param>
-            <param name="ownerId">         </param>
-            <param name="targetEntityName"></param>
-            <param name="targetId">        </param>
         </member>
         <member name="M:lce.mscrm.engine.ServiceProxyExt.Merge(Microsoft.Xrm.Sdk.IOrganizationService,System.Collections.Generic.IEnumerable{Microsoft.Xrm.Sdk.Entity})">
             <summary>
@@ -714,14 +689,14 @@
             <param name="entitySub"> </param>
             <returns></returns>
         </member>
-        <member name="M:lce.mscrm.engine.ServiceProxyExt.Count(Microsoft.Xrm.Sdk.IOrganizationService,System.String,Microsoft.Xrm.Sdk.Query.FilterExpression)">
+        <member name="M:lce.mscrm.engine.ServiceProxyExt.ModifyStatus(Microsoft.Xrm.Sdk.IOrganizationService,System.String,System.Guid,System.Int32,System.Int32)">
             <summary>
-            统计数据行
             </summary>
             <param name="service">   </param>
             <param name="entityName"></param>
-            <param name="filters">   </param>
-            <returns></returns>
+            <param name="entityId">  </param>
+            <param name="stateCode"> </param>
+            <param name="statusCode"></param>
         </member>
         <member name="M:lce.mscrm.engine.ServiceProxyExt.Query(Microsoft.Xrm.Sdk.IOrganizationService,System.String,Microsoft.Xrm.Sdk.Query.ColumnSet,Microsoft.Xrm.Sdk.Query.ConditionExpression)">
             <summary>
@@ -758,6 +733,24 @@
         <member name="M:lce.mscrm.engine.ServiceProxyExt.Query(Microsoft.Xrm.Sdk.IOrganizationService,Microsoft.Xrm.Sdk.Query.QueryExpression)">
             <summary>
             查询1条数据
+            </summary>
+            <param name="service"></param>
+            <param name="query">  </param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.mscrm.engine.ServiceProxyExt.Query(Microsoft.Xrm.Sdk.IOrganizationService,Microsoft.Xrm.Sdk.Query.QueryExpression,System.Int32,System.Int32)">
+            <summary>
+            查询数据集
+            </summary>
+            <param name="service"></param>
+            <param name="query">  </param>
+            <param name="page">   </param>
+            <param name="size">   </param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.mscrm.engine.ServiceProxyExt.QueryAll(Microsoft.Xrm.Sdk.IOrganizationService,Microsoft.Xrm.Sdk.Query.QueryExpression)">
+            <summary>
+            查询所有数据
             </summary>
             <param name="service"></param>
             <param name="query">  </param>
@@ -804,22 +797,30 @@
             <param name="orders">    </param>
             <returns></returns>
         </member>
-        <member name="M:lce.mscrm.engine.ServiceProxyExt.Query(Microsoft.Xrm.Sdk.IOrganizationService,Microsoft.Xrm.Sdk.Query.QueryExpression,System.Int32,System.Int32)">
+        <member name="M:lce.mscrm.engine.ServiceProxyExt.Retrieve(Microsoft.Xrm.Sdk.IOrganizationService,System.String)">
             <summary>
-            查询数据集
+            单行数据查询
             </summary>
-            <param name="service"></param>
-            <param name="query">  </param>
-            <param name="page">   </param>
-            <param name="size">   </param>
+            <param name="service"> </param>
+            <param name="fetchXml"></param>
             <returns></returns>
         </member>
-        <member name="M:lce.mscrm.engine.ServiceProxyExt.QueryAll(Microsoft.Xrm.Sdk.IOrganizationService,Microsoft.Xrm.Sdk.Query.QueryExpression)">
+        <member name="M:lce.mscrm.engine.ServiceProxyExt.RetrieveMultiple(Microsoft.Xrm.Sdk.IOrganizationService,System.String)">
             <summary>
-            查询所有数据
+            列表查询
             </summary>
-            <param name="service"></param>
-            <param name="query">  </param>
+            <param name="service"> </param>
+            <param name="fetchXml"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.mscrm.engine.ServiceProxyExt.RetrieveMultiple(Microsoft.Xrm.Sdk.IOrganizationService,System.String,System.Int32@)">
+            <summary>
+            列表查询
+            <para>使用此方法时必须在fetch头中加上returntotalrecordcount='true',否则totals=-1</para>
+            </summary>
+            <param name="service"> </param>
+            <param name="fetchXml"></param>
+            <param name="totals">  </param>
             <returns></returns>
         </member>
         <member name="T:lce.mscrm.engine.SqlQueryExt">

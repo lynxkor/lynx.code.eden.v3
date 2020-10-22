@@ -613,7 +613,7 @@ namespace lce.mscrm.engine
             {
                 return entitys.Entities.ToList();
             }
-            return null;
+            return default;
         }
 
         /// <summary>

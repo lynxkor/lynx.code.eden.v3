@@ -89,60 +89,16 @@ $@"{header}
         /// <param name="filterXml"> </param>
         /// <param name="linkType">  </param>
         /// <param name="alias">     default as alias_{linkEntity}</param>
+        /// <param name="linkXml">   </param>
         /// <returns></returns>
-        public static string LinkXml(string linkEntity, string from, string to, string columnsXml = "", string filterXml = "", string linkType = "outer", string alias = "")
+        public static string LinkXml(string linkEntity, string from, string to, string columnsXml = "", string filterXml = "", string linkType = "outer", string alias = "", string linkXml = "")
         {
             return
 $@"<link-entity name='{linkEntity}' from='{from}' to='{to}' link-type='{linkType}' alias='{(string.IsNullOrEmpty(alias) ? $"alias_{linkEntity}" : alias)}'>
 {columnsXml}
+{linkXml}
 {filterXml}
 </link-entity>";
-        }
-
-        /// <summary>
-        /// 组装Filter
-        /// </summary>
-        /// <param name="name">     </param>
-        /// <param name="value">    </param>
-        /// <param name="operators"></param>
-        /// <returns>xml with filter</returns>
-        public static string QueryFilter(string name, object value, string operators = "eq")
-        {
-            return QueryFilter(new ConditionItem(name, value, operators));
-        }
-
-        /// <summary>
-        /// 组装Filter
-        /// </summary>
-        /// <param name="conditions"></param>
-        /// <param name="type">      </param>
-        /// <returns>xml with filter</returns>
-        public static string QueryFilter(ConditionItem conditions, string type = "and")
-        {
-            return QueryFilter(new[] { conditions }, type);
-        }
-
-        /// <summary>
-        /// 组装Filter
-        /// </summary>
-        /// <param name="conditions"></param>
-        /// <param name="type">      </param>
-        /// <returns>xml with filter</returns>
-        public static string QueryFilter(IList<ConditionItem> conditions, string type = "and")
-        {
-            if (null == conditions || conditions.Count == 0) return "";
-            return QueryFilter(QueryCondition(conditions), type);
-        }
-
-        /// <summary>
-        /// 组装Filter
-        /// </summary>
-        /// <param name="conditionXml"></param>
-        /// <param name="type">        </param>
-        /// <returns>xml with filter</returns>
-        public static string QueryFilter(string conditionXml, string type = "and")
-        {
-            return $@"<filter type='{type}'>{conditionXml}</filter>";
         }
 
         /// <summary>
@@ -165,7 +121,7 @@ $@"<link-entity name='{linkEntity}' from='{from}' to='{to}' link-type='{linkType
             var result = "";
             foreach (var col in columns)
             {
-                result += $"<attribute name='{col}' />";
+                result += $"<attribute name='{col.Trim()}' />";
             }
             return result;
         }
@@ -274,6 +230,52 @@ $@"<link-entity name='{linkEntity}' from='{from}' to='{to}' link-type='{linkType
         }
 
         /// <summary>
+        /// 组装Filter
+        /// </summary>
+        /// <param name="name">     </param>
+        /// <param name="value">    </param>
+        /// <param name="operators"></param>
+        /// <returns>xml with filter</returns>
+        public static string QueryFilter(string name, object value, string operators = "eq")
+        {
+            return QueryFilter(new ConditionItem(name, value, operators));
+        }
+
+        /// <summary>
+        /// 组装Filter
+        /// </summary>
+        /// <param name="conditions"></param>
+        /// <param name="type">      </param>
+        /// <returns>xml with filter</returns>
+        public static string QueryFilter(ConditionItem conditions, string type = "and")
+        {
+            return QueryFilter(new[] { conditions }, type);
+        }
+
+        /// <summary>
+        /// 组装Filter
+        /// </summary>
+        /// <param name="conditions"></param>
+        /// <param name="type">      </param>
+        /// <returns>xml with filter</returns>
+        public static string QueryFilter(IList<ConditionItem> conditions, string type = "and")
+        {
+            if (null == conditions || conditions.Count == 0) return "";
+            return QueryFilter(QueryCondition(conditions), type);
+        }
+
+        /// <summary>
+        /// 组装Filter
+        /// </summary>
+        /// <param name="conditionXml"></param>
+        /// <param name="type">        </param>
+        /// <returns>xml with filter</returns>
+        public static string QueryFilter(string conditionXml, string type = "and")
+        {
+            return $@"<filter type='{type}'>{conditionXml}</filter>";
+        }
+
+        /// <summary>
         /// 排序条件组装
         /// </summary>
         /// <param name="orders"></param>
@@ -325,14 +327,14 @@ $@"<link-entity name='{linkEntity}' from='{from}' to='{to}' link-type='{linkType
         public string Attribute { get; set; }
 
         /// <summary>
-        /// 字段值
-        /// </summary>
-        public dynamic Value { get; set; }
-
-        /// <summary>
         /// 运算符
         /// </summary>
         public string Operator { get; set; } = "eq";
+
+        /// <summary>
+        /// 字段值
+        /// </summary>
+        public dynamic Value { get; set; }
 
         /// <summary>
         /// </summary>

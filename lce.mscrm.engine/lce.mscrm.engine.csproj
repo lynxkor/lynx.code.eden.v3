@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Attributes\EntityColumnAttribute.cs" />
     <Compile Include="Attributes\EntityNameAttribute.cs" />
+    <Compile Include="BasePlugin.cs" />
     <Compile Include="BaseRepository.cs" />
     <Compile Include="BaseService.cs" />
     <Compile Include="EntityExt.cs" />

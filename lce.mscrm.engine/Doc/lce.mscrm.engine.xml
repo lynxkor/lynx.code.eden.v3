@@ -134,6 +134,77 @@
             前缀
             </summary>
         </member>
+        <member name="T:lce.mscrm.engine.BasePlugin">
+            <summary>
+            action：BasePlugin
+            </summary>
+        </member>
+        <member name="P:lce.mscrm.engine.BasePlugin.Caller">
+            <summary>
+            用户权限服务
+            </summary>
+        </member>
+        <member name="P:lce.mscrm.engine.BasePlugin.Context">
+            <summary>
+            上下文
+            </summary>
+        </member>
+        <member name="P:lce.mscrm.engine.BasePlugin.Factory">
+            <summary>
+            服务工厂
+            </summary>
+        </member>
+        <member name="P:lce.mscrm.engine.BasePlugin.Service">
+            <summary>
+            管理员权限服务
+            </summary>
+        </member>
+        <member name="P:lce.mscrm.engine.BasePlugin.Target">
+            <summary>
+            当前实例
+            </summary>
+        </member>
+        <member name="P:lce.mscrm.engine.BasePlugin.Tracing">
+            <summary>
+            跟踪服务
+            </summary>
+        </member>
+        <member name="P:lce.mscrm.engine.BasePlugin.UserId">
+            <summary>
+            当前用户
+            </summary>
+        </member>
+        <member name="M:lce.mscrm.engine.BasePlugin.Message(System.String)">
+            <summary>
+            插件回滚，弹出消息。
+            </summary>
+            <param name="msg">消息类容</param>
+        </member>
+        <member name="M:lce.mscrm.engine.BasePlugin.WriteLog(System.String,System.String)">
+            <summary>
+            写文件日志
+            </summary>
+            <param name="message"> </param>
+            <param name="filepath"></param>
+        </member>
+        <member name="M:lce.mscrm.engine.BasePlugin.EqualActionOrMessage(System.Int32,System.String)">
+            <summary>
+            实体状态比较
+            </summary>
+            <param name="state"> pre:20;post:40</param>
+            <param name="action">create,update,delete</param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.mscrm.engine.BasePlugin.Execute(System.IServiceProvider)">
+            <summary>
+            </summary>
+            <param name="serviceProvider"></param>
+        </member>
+        <member name="M:lce.mscrm.engine.BasePlugin.HandleExecute">
+            <summary>
+            插件继承BasePlugin后实现些方法，进行业务处理
+            </summary>
+        </member>
         <member name="T:lce.mscrm.engine.BaseRepository">
             <summary>
             action：BaseRepository
@@ -167,6 +238,21 @@
             <summary>
             action：EntityExt
             </summary>
+        </member>
+        <member name="M:lce.mscrm.engine.EntityExt.IsNotNull(Microsoft.Xrm.Sdk.Entity,System.String)">
+            <summary>
+            check the attribute in entity is null.
+            </summary>
+            <param name="entity">   </param>
+            <param name="attribute"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.mscrm.engine.EntityExt.IsNotNull(System.Object)">
+            <summary>
+            check the object is not null.
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
         </member>
         <member name="M:lce.mscrm.engine.EntityExt.ToEntity``1(``0)">
             <summary>
@@ -233,7 +319,7 @@
             <param name="size">      </param>
             <returns></returns>
         </member>
-        <member name="M:lce.mscrm.engine.FetchXmlExt.LinkXml(System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+        <member name="M:lce.mscrm.engine.FetchXmlExt.LinkXml(System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
             <summary>
             拼接 Link Entity Xml
             </summary>
@@ -244,40 +330,8 @@
             <param name="filterXml"> </param>
             <param name="linkType">  </param>
             <param name="alias">     default as alias_{linkEntity}</param>
+            <param name="linkXml">   </param>
             <returns></returns>
-        </member>
-        <member name="M:lce.mscrm.engine.FetchXmlExt.QueryFilter(System.String,System.Object,System.String)">
-            <summary>
-            组装Filter
-            </summary>
-            <param name="name">     </param>
-            <param name="value">    </param>
-            <param name="operators"></param>
-            <returns>xml with filter</returns>
-        </member>
-        <member name="M:lce.mscrm.engine.FetchXmlExt.QueryFilter(lce.mscrm.engine.ConditionItem,System.String)">
-            <summary>
-            组装Filter
-            </summary>
-            <param name="conditions"></param>
-            <param name="type">      </param>
-            <returns>xml with filter</returns>
-        </member>
-        <member name="M:lce.mscrm.engine.FetchXmlExt.QueryFilter(System.Collections.Generic.IList{lce.mscrm.engine.ConditionItem},System.String)">
-            <summary>
-            组装Filter
-            </summary>
-            <param name="conditions"></param>
-            <param name="type">      </param>
-            <returns>xml with filter</returns>
-        </member>
-        <member name="M:lce.mscrm.engine.FetchXmlExt.QueryFilter(System.String,System.String)">
-            <summary>
-            组装Filter
-            </summary>
-            <param name="conditionXml"></param>
-            <param name="type">        </param>
-            <returns>xml with filter</returns>
         </member>
         <member name="M:lce.mscrm.engine.FetchXmlExt.QueryAllColums">
             <summary>
@@ -352,6 +406,39 @@
             <param name="operators"></param>
             <returns></returns>
         </member>
+        <member name="M:lce.mscrm.engine.FetchXmlExt.QueryFilter(System.String,System.Object,System.String)">
+            <summary>
+            组装Filter
+            </summary>
+            <param name="name">     </param>
+            <param name="value">    </param>
+            <param name="operators"></param>
+            <returns>xml with filter</returns>
+        </member>
+        <member name="M:lce.mscrm.engine.FetchXmlExt.QueryFilter(lce.mscrm.engine.ConditionItem,System.String)">
+            <summary>
+            组装Filter
+            </summary>
+            <param name="conditions"></param>
+            <param name="type">      </param>
+            <returns>xml with filter</returns>
+        </member>
+        <member name="M:lce.mscrm.engine.FetchXmlExt.QueryFilter(System.Collections.Generic.IList{lce.mscrm.engine.ConditionItem},System.String)">
+            <summary>
+            组装Filter
+            </summary>
+            <param name="conditions"></param>
+            <param name="type">      </param>
+            <returns>xml with filter</returns>
+        </member>
+        <member name="M:lce.mscrm.engine.FetchXmlExt.QueryFilter(System.String,System.String)">
+            <summary>
+            组装Filter
+            </summary>
+            <param name="conditionXml"></param>
+            <param name="type">        </param>
+            <returns>xml with filter</returns>
+        </member>
         <member name="M:lce.mscrm.engine.FetchXmlExt.QueryOrder(System.Collections.Generic.IList{lce.mscrm.engine.OrderItem})">
             <summary>
             排序条件组装
@@ -385,14 +472,14 @@
             字段名
             </summary>
         </member>
-        <member name="P:lce.mscrm.engine.ConditionItem.Value">
-            <summary>
-            字段值
-            </summary>
-        </member>
         <member name="P:lce.mscrm.engine.ConditionItem.Operator">
             <summary>
             运算符
+            </summary>
+        </member>
+        <member name="P:lce.mscrm.engine.ConditionItem.Value">
+            <summary>
+            字段值
             </summary>
         </member>
         <member name="M:lce.mscrm.engine.ConditionItem.ToString">

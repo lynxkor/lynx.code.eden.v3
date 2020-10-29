@@ -23,6 +23,27 @@ namespace lce.mscrm.engine
     public static class EntityExt
     {
         /// <summary>
+        /// check the attribute in entity is null.
+        /// </summary>
+        /// <param name="entity">   </param>
+        /// <param name="attribute"></param>
+        /// <returns></returns>
+        public static bool IsNotNull(this Entity entity, string attribute)
+        {
+            return null != entity && entity.Contains(attribute) && IsNotNull(entity[attribute]);
+        }
+
+        /// <summary>
+        /// check the object is not null.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static bool IsNotNull(object obj)
+        {
+            return null != obj && DBNull.Value != obj && !string.IsNullOrEmpty(obj.ToString());
+        }
+
+        /// <summary>
         /// Model To Dynamics Entity
         /// <para>Class need flag EntityNameAttribute.</para>
         /// <para>Model's property need flag EntityColumnAttribute.</para>

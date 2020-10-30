@@ -613,7 +613,7 @@ namespace lce.mscrm.engine
             {
                 return entitys.Entities.ToList();
             }
-            return default;
+            return new List<Entity>();
         }
 
         /// <summary>
@@ -633,7 +633,7 @@ namespace lce.mscrm.engine
             {
                 return entitys.Entities.ToList();
             }
-            return null;
+            return new List<Entity>();
         }
     }
 }

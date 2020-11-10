@@ -8,8 +8,8 @@
 */
 
 using System;
-using System.IO;
-using System.Threading.Tasks;
+using System.ServiceModel;
+using lce.provider;
 using Microsoft.Xrm.Sdk;
 
 namespace lce.mscrm.engine
@@ -35,6 +35,16 @@ namespace lce.mscrm.engine
         public IOrganizationServiceFactory Factory { get; set; }
 
         /// <summary>
+        /// 修改后
+        /// </summary>
+        public Entity PostImage { get; set; }
+
+        /// <summary>
+        /// 修改前
+        /// </summary>
+        public Entity PreImage { get; set; }
+
+        /// <summary>
         /// 管理员权限服务
         /// </summary>
         public IOrganizationService Service { get; set; }
@@ -55,35 +65,33 @@ namespace lce.mscrm.engine
         public Guid UserId { get; set; }
 
         /// <summary>
+        /// check the attribute in entity is null.
+        /// </summary>
+        /// <param name="entity">   </param>
+        /// <param name="attribute"></param>
+        /// <returns></returns>
+        public static bool IsNotNull(Entity entity, string attribute)
+        {
+            return null != entity && entity.Contains(attribute) && IsNotNull(entity[attribute]);
+        }
+
+        /// <summary>
+        /// check the object is not null.
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
+        public static bool IsNotNull(object obj)
+        {
+            return null != obj && DBNull.Value != obj && !string.IsNullOrEmpty(obj.ToString());
+        }
+
+        /// <summary>
         /// 插件回滚，弹出消息。
         /// </summary>
         /// <param name="msg">消息类容</param>
         public static void Message(string msg)
         {
             throw new InvalidPluginExecutionException(msg);
-        }
-
-        /// <summary>
-        /// 写文件日志
-        /// </summary>
-        /// <param name="message"> </param>
-        /// <param name="filepath"></param>
-        public static void WriteLog(string message, string filepath = "")
-        {
-            Task.Run(() =>
-            {
-                if (string.IsNullOrEmpty(filepath)) filepath = @"c:\mscrm.log\plugin";
-                if (!Directory.Exists(filepath)) Directory.CreateDirectory(filepath);
-                var logFile = Path.Combine(filepath, $"{DateTime.Now.ToString("yyyyMMdd")}.log");
-                using (StreamWriter sw = File.AppendText(logFile))
-                {
-                    sw.BaseStream.Seek(0, SeekOrigin.End);
-                    sw.WriteLine($"on:{DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss fff")}:{message}\r\n");
-                    sw.Flush();
-                    sw.Close();
-                    sw.Dispose();
-                }
-            });
         }
 
         /// <summary>
@@ -113,16 +121,28 @@ namespace lce.mscrm.engine
             try
             {
                 if (Context.InputParameters.Contains("Target") && Context.InputParameters["Target"] is Entity)
-                {
                     Target = (Entity)Context.InputParameters["Target"];
-                    HandleExecute();
-                }
+                if (Context.PreEntityImages.Contains("PreImage") && Context.PreEntityImages["PreImage"] is Entity)
+                    PreImage = (Entity)Context.PreEntityImages["PreImage"];
+                if (Context.PreEntityImages.Contains("PostImage") && Context.PreEntityImages["PostImage"] is Entity)
+                    PreImage = (Entity)Context.PreEntityImages["PostImage"];
+                // do same logic
+                HandleExecute();
+            }
+            catch (InvalidPluginExecutionException ex)
+            {
+                throw ex;
+            }
+            catch (FaultException<OrganizationServiceFault> ex)
+            {
+                throw new InvalidPluginExecutionException($"插件业务错误：{ex.Message}", ex);
             }
 #pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception ex)
             {
                 Tracing.Trace($"系统内部错误：{ex.Message}", ex.StackTrace);
-                Message($"系统内部错误：{ex.Message}");
+                LogExt.e(ex.Message, ex);
+                throw new InvalidPluginExecutionException($"系统内部错误：{ex.Message}", ex);
             }
 #pragma warning restore CA1031 // Do not catch general exception types
         }

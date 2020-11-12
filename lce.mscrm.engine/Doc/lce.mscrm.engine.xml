@@ -154,6 +154,16 @@
             服务工厂
             </summary>
         </member>
+        <member name="P:lce.mscrm.engine.BasePlugin.PostImage">
+            <summary>
+            修改后
+            </summary>
+        </member>
+        <member name="P:lce.mscrm.engine.BasePlugin.PreImage">
+            <summary>
+            修改前
+            </summary>
+        </member>
         <member name="P:lce.mscrm.engine.BasePlugin.Service">
             <summary>
             管理员权限服务
@@ -174,18 +184,26 @@
             当前用户
             </summary>
         </member>
+        <member name="M:lce.mscrm.engine.BasePlugin.IsNotNull(Microsoft.Xrm.Sdk.Entity,System.String)">
+            <summary>
+            check the attribute in entity is null.
+            </summary>
+            <param name="entity">   </param>
+            <param name="attribute"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.mscrm.engine.BasePlugin.IsNotNull(System.Object)">
+            <summary>
+            check the object is not null.
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
         <member name="M:lce.mscrm.engine.BasePlugin.Message(System.String)">
             <summary>
             插件回滚，弹出消息。
             </summary>
             <param name="msg">消息类容</param>
-        </member>
-        <member name="M:lce.mscrm.engine.BasePlugin.WriteLog(System.String,System.String)">
-            <summary>
-            写文件日志
-            </summary>
-            <param name="message"> </param>
-            <param name="filepath"></param>
         </member>
         <member name="M:lce.mscrm.engine.BasePlugin.EqualActionOrMessage(System.Int32,System.String)">
             <summary>

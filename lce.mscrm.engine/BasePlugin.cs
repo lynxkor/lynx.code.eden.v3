@@ -19,20 +19,57 @@ namespace lce.mscrm.engine
     /// </summary>
     public abstract class BasePlugin : IPlugin
     {
+        private IOrganizationService _caller;
+        private IPluginExecutionContext _context;
+        private IOrganizationServiceFactory _factory;
+        private IOrganizationService _service;
+        private IServiceProvider _serviceProvider;
+        private ITracingService _tracing;
+
         /// <summary>
         /// 用户权限服务
         /// </summary>
-        public IOrganizationService Caller { get; set; }
+        public IOrganizationService Caller
+        {
+            get
+            {
+                if (null == _caller)
+                {
+                    _caller = Factory.CreateOrganizationService(this.UserId);
+                }
+                return _caller;
+            }
+        }
 
         /// <summary>
         /// 上下文
         /// </summary>
-        public IPluginExecutionContext Context { get; set; }
+        public IPluginExecutionContext Context
+        {
+            get
+            {
+                if (null == _context)
+                {
+                    _context = GetService<IPluginExecutionContext>(ServiceProvider);
+                }
+                return _context;
+            }
+        }
 
         /// <summary>
         /// 服务工厂
         /// </summary>
-        public IOrganizationServiceFactory Factory { get; set; }
+        public IOrganizationServiceFactory Factory
+        {
+            get
+            {
+                if (null == _factory)
+                {
+                    _factory = GetService<IOrganizationServiceFactory>(ServiceProvider);
+                }
+                return _factory;
+            }
+        }
 
         /// <summary>
         /// 修改后
@@ -47,7 +84,21 @@ namespace lce.mscrm.engine
         /// <summary>
         /// 管理员权限服务
         /// </summary>
-        public IOrganizationService Service { get; set; }
+        public IOrganizationService Service
+        {
+            get
+            {
+                if (null == _service)
+                {
+                    _service = Factory.CreateOrganizationService(null);
+                }
+                return _service;
+            }
+        }
+
+        /// <summary>
+        /// </summary>
+        public IServiceProvider ServiceProvider { get { return _serviceProvider; } }
 
         /// <summary>
         /// 当前实例
@@ -57,12 +108,22 @@ namespace lce.mscrm.engine
         /// <summary>
         /// 跟踪服务
         /// </summary>
-        public ITracingService Tracing { get; set; }
+        public ITracingService Tracing
+        {
+            get
+            {
+                if (null == _tracing)
+                {
+                    _tracing = GetService<ITracingService>(ServiceProvider);
+                }
+                return _tracing;
+            }
+        }
 
         /// <summary>
         /// 当前用户
         /// </summary>
-        public Guid UserId { get; set; }
+        public Guid UserId { get { return this.Context.UserId; } }
 
         /// <summary>
         /// check the attribute in entity is null.
@@ -111,12 +172,7 @@ namespace lce.mscrm.engine
         /// <param name="serviceProvider"></param>
         public void Execute(IServiceProvider serviceProvider)
         {
-            this.Tracing = GetService<ITracingService>(serviceProvider);
-            this.Context = GetService<IPluginExecutionContext>(serviceProvider);
-            this.UserId = this.Context.UserId;
-            this.Factory = GetService<IOrganizationServiceFactory>(serviceProvider);
-            this.Service = Factory.CreateOrganizationService(null);
-            this.Caller = Factory.CreateOrganizationService(this.UserId);
+            _serviceProvider = serviceProvider;
 
             try
             {
@@ -135,14 +191,14 @@ namespace lce.mscrm.engine
             }
             catch (FaultException<OrganizationServiceFault> ex)
             {
-                throw new InvalidPluginExecutionException($"插件业务错误：{ex.Message}", ex);
+                throw new InvalidPluginExecutionException($"插件业务错误：{ex.Message}");
             }
 #pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception ex)
             {
                 Tracing.Trace($"系统内部错误：{ex.Message}", ex.StackTrace);
                 LogExt.e(ex.Message, ex);
-                throw new InvalidPluginExecutionException($"系统内部错误：{ex.Message}", ex);
+                Message($"系统内部错误：{ex.Message}");
             }
 #pragma warning restore CA1031 // Do not catch general exception types
         }

@@ -49,7 +49,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>.\Microsoft.Xrm.Sdk.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Xrm.Sdk.Workflow, Version=8.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>.\Microsoft.Xrm.Sdk.Workflow.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Activities" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
@@ -66,6 +71,7 @@
   <ItemGroup>
     <Compile Include="Attributes\EntityColumnAttribute.cs" />
     <Compile Include="Attributes\EntityNameAttribute.cs" />
+    <Compile Include="BaseActivity.cs" />
     <Compile Include="BasePlugin.cs" />
     <Compile Include="BaseRepository.cs" />
     <Compile Include="BaseService.cs" />

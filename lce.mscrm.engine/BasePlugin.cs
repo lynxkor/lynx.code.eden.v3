@@ -1,4 +1,4 @@
-﻿/* file name：MSCRM.CRM.Plugins.VS.Engine.BasePlugin.cs
+﻿/* file name：lce.mscrm.engine.BasePlugin.cs
 * author：lynx lynx.kor@163.com @ 2018/10/28 13:13:00
 * copyright (c) 2020 Copyright@lynxce.com
 * desc：
@@ -19,12 +19,28 @@ namespace lce.mscrm.engine
     /// </summary>
     public abstract class BasePlugin : IPlugin
     {
+        #region === 私有变量/方法 ===
+
         private IOrganizationService _caller;
         private IPluginExecutionContext _context;
         private IOrganizationServiceFactory _factory;
         private IOrganizationService _service;
         private IServiceProvider _serviceProvider;
         private ITracingService _tracing;
+
+        /// <summary>
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="serviceProvider"></param>
+        /// <returns></returns>
+        private T GetService<T>(IServiceProvider serviceProvider)
+        {
+            return (T)serviceProvider.GetService(typeof(T));
+        }
+
+        #endregion === 私有变量/方法 ===
+
+        #region === 插件 属性访问器 ===
 
         /// <summary>
         /// 用户权限服务
@@ -72,16 +88,6 @@ namespace lce.mscrm.engine
         }
 
         /// <summary>
-        /// 修改后
-        /// </summary>
-        public Entity PostImage { get; set; }
-
-        /// <summary>
-        /// 修改前
-        /// </summary>
-        public Entity PreImage { get; set; }
-
-        /// <summary>
         /// 管理员权限服务
         /// </summary>
         public IOrganizationService Service
@@ -99,11 +105,6 @@ namespace lce.mscrm.engine
         /// <summary>
         /// </summary>
         public IServiceProvider ServiceProvider { get { return _serviceProvider; } }
-
-        /// <summary>
-        /// 当前实例
-        /// </summary>
-        public Entity Target { get; set; }
 
         /// <summary>
         /// 跟踪服务
@@ -124,6 +125,23 @@ namespace lce.mscrm.engine
         /// 当前用户
         /// </summary>
         public Guid UserId { get { return this.Context.UserId; } }
+
+        #endregion === 插件 属性访问器 ===
+
+        /// <summary>
+        /// 修改后
+        /// </summary>
+        public Entity PostImage { get; set; }
+
+        /// <summary>
+        /// 修改前
+        /// </summary>
+        public Entity PreImage { get; set; }
+
+        /// <summary>
+        /// 当前实例
+        /// </summary>
+        public Entity Target { get; set; }
 
         /// <summary>
         /// check the attribute in entity is null.
@@ -150,7 +168,7 @@ namespace lce.mscrm.engine
         /// 插件回滚，弹出消息。
         /// </summary>
         /// <param name="msg">消息类容</param>
-        public static void Message(string msg)
+        public static void ShowMessage(string msg)
         {
             throw new InvalidPluginExecutionException(msg);
         }
@@ -163,7 +181,7 @@ namespace lce.mscrm.engine
         /// <returns></returns>
         public bool EqualActionOrMessage(int state, string action)
         {
-            Tracing.Trace("Equal Action Message");
+            Tracing.Trace("Equal Action ShowMessage");
             return Context.Stage == state && !string.IsNullOrEmpty(action) && Context.MessageName.ToLower().Equals(action.ToLower());
         }
 
@@ -198,7 +216,7 @@ namespace lce.mscrm.engine
             {
                 Tracing.Trace($"系统内部错误：{ex.Message}", ex.StackTrace);
                 LogExt.e(ex.Message, ex);
-                Message($"系统内部错误：{ex.Message}");
+                ShowMessage($"系统内部错误：{ex.Message}");
             }
 #pragma warning restore CA1031 // Do not catch general exception types
         }
@@ -207,10 +225,5 @@ namespace lce.mscrm.engine
         /// 插件继承BasePlugin后实现些方法，进行业务处理
         /// </summary>
         public abstract void HandleExecute();
-
-        private T GetService<T>(IServiceProvider serviceProvider)
-        {
-            return (T)serviceProvider.GetService(typeof(T));
-        }
     }
 }

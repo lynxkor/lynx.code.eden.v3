@@ -168,7 +168,7 @@ namespace lce.mscrm.engine
         /// 插件回滚，弹出消息。
         /// </summary>
         /// <param name="msg">消息类容</param>
-        public static void ShowMessage(string msg)
+        public static void ShowErrorMessage(string msg)
         {
             throw new InvalidPluginExecutionException(msg);
         }
@@ -216,7 +216,7 @@ namespace lce.mscrm.engine
             {
                 Tracing.Trace($"系统内部错误：{ex.Message}", ex.StackTrace);
                 LogExt.e(ex.Message, ex);
-                ShowMessage($"系统内部错误：{ex.Message}");
+                ShowErrorMessage($"系统内部错误：{ex.Message}");
             }
 #pragma warning restore CA1031 // Do not catch general exception types
         }

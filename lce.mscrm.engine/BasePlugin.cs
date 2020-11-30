@@ -177,7 +177,7 @@ namespace lce.mscrm.engine
         /// 实体状态比较
         /// </summary>
         /// <param name="state"> pre:20;post:40</param>
-        /// <param name="action">create,update,delete</param>
+        /// <param name="action">create,update,delete,Retrieve，RetrieveMultiple,Assign,share</param>
         /// <returns></returns>
         public bool EqualActionOrMessage(int state, string action)
         {

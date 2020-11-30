@@ -247,9 +247,9 @@ $@"<link-entity name='{linkEntity}' from='{from}' to='{to}' link-type='{linkType
         /// <param name="conditions"></param>
         /// <param name="type">      </param>
         /// <returns>xml with filter</returns>
-        public static string QueryFilter(ConditionItem conditions, string type = "and")
+        public static string QueryFilter(ConditionItem conditions, string type = "and", string childFilter = "")
         {
-            return QueryFilter(new[] { conditions }, type);
+            return QueryFilter(new[] { conditions }, type, childFilter);
         }
 
         /// <summary>
@@ -258,10 +258,10 @@ $@"<link-entity name='{linkEntity}' from='{from}' to='{to}' link-type='{linkType
         /// <param name="conditions"></param>
         /// <param name="type">      </param>
         /// <returns>xml with filter</returns>
-        public static string QueryFilter(IList<ConditionItem> conditions, string type = "and")
+        public static string QueryFilter(IList<ConditionItem> conditions, string type = "and", string childFilter = "")
         {
             if (null == conditions || conditions.Count == 0) return "";
-            return QueryFilter(QueryCondition(conditions), type);
+            return QueryFilter(QueryCondition(conditions), type, childFilter);
         }
 
         /// <summary>
@@ -270,9 +270,9 @@ $@"<link-entity name='{linkEntity}' from='{from}' to='{to}' link-type='{linkType
         /// <param name="conditionXml"></param>
         /// <param name="type">        </param>
         /// <returns>xml with filter</returns>
-        public static string QueryFilter(string conditionXml, string type = "and")
+        public static string QueryFilter(string conditionXml, string type = "and", string childFilter = "")
         {
-            return $@"<filter type='{type}'>{conditionXml}</filter>";
+            return $@"<filter type='{type}'>{conditionXml}{childFilter}</filter>";
         }
 
         /// <summary>

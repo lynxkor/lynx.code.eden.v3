@@ -277,7 +277,7 @@
             实体状态比较
             </summary>
             <param name="state"> pre:20;post:40</param>
-            <param name="action">create,update,delete</param>
+            <param name="action">create,update,delete,Retrieve，RetrieveMultiple,Assign,share</param>
             <returns></returns>
         </member>
         <member name="M:lce.mscrm.engine.BasePlugin.Execute(System.IServiceProvider)">
@@ -500,28 +500,31 @@
             <param name="operators"></param>
             <returns>xml with filter</returns>
         </member>
-        <member name="M:lce.mscrm.engine.FetchXmlExt.QueryFilter(lce.mscrm.engine.ConditionItem,System.String)">
+        <member name="M:lce.mscrm.engine.FetchXmlExt.QueryFilter(lce.mscrm.engine.ConditionItem,System.String,System.String)">
             <summary>
             组装Filter
             </summary>
-            <param name="conditions"></param>
-            <param name="type">      </param>
+            <param name="conditions"> </param>
+            <param name="type">       </param>
+            <param name="childFilter"></param>
             <returns>xml with filter</returns>
         </member>
-        <member name="M:lce.mscrm.engine.FetchXmlExt.QueryFilter(System.Collections.Generic.IList{lce.mscrm.engine.ConditionItem},System.String)">
+        <member name="M:lce.mscrm.engine.FetchXmlExt.QueryFilter(System.Collections.Generic.IList{lce.mscrm.engine.ConditionItem},System.String,System.String)">
             <summary>
             组装Filter
             </summary>
-            <param name="conditions"></param>
-            <param name="type">      </param>
+            <param name="conditions"> </param>
+            <param name="type">       </param>
+            <param name="childFilter"></param>
             <returns>xml with filter</returns>
         </member>
-        <member name="M:lce.mscrm.engine.FetchXmlExt.QueryFilter(System.String,System.String)">
+        <member name="M:lce.mscrm.engine.FetchXmlExt.QueryFilter(System.String,System.String,System.String)">
             <summary>
             组装Filter
             </summary>
             <param name="conditionXml"></param>
             <param name="type">        </param>
+            <param name="childFilter"> </param>
             <returns>xml with filter</returns>
         </member>
         <member name="M:lce.mscrm.engine.FetchXmlExt.QueryOrder(System.Collections.Generic.IList{lce.mscrm.engine.OrderItem})">

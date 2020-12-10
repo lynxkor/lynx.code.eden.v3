@@ -1003,23 +1003,34 @@
             action：SqlQueryExt
             </summary>
         </member>
-        <member name="M:lce.mscrm.engine.SqlQueryExt.Condition(System.String,System.Nullable{System.Int32})">
+        <member name="M:lce.mscrm.engine.SqlQueryExt.And(System.String,System.Nullable{System.Int32},System.String)">
             <summary>
             拼接查询条件
             </summary>
-            <param name="name"> </param>
-            <param name="value"></param>
+            <param name="name">     </param>
+            <param name="value">    </param>
+            <param name="operators"></param>
             <returns>AND {name} = {value}</returns>
         </member>
-        <member name="M:lce.mscrm.engine.SqlQueryExt.Condition(System.String,System.String)">
+        <member name="M:lce.mscrm.engine.SqlQueryExt.And(System.String,System.String,System.String)">
             <summary>
             拼接查询条件
             </summary>
-            <param name="name"> </param>
-            <param name="value"></param>
+            <param name="name">     </param>
+            <param name="value">    </param>
+            <param name="operators"></param>
             <returns>AND {name} = '{value}'</returns>
         </member>
-        <member name="M:lce.mscrm.engine.SqlQueryExt.Condition(System.String,System.Collections.Generic.IList{System.Int32})">
+        <member name="M:lce.mscrm.engine.SqlQueryExt.And(System.Collections.Generic.IList{System.String},System.String,System.String)">
+            <summary>
+            拼接查询条件
+            </summary>
+            <param name="names">    </param>
+            <param name="value">    </param>
+            <param name="operators"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.mscrm.engine.SqlQueryExt.And(System.String,System.Collections.Generic.IList{System.Int32})">
             <summary>
             拼接查询条件
             </summary>
@@ -1027,24 +1038,13 @@
             <param name="values"></param>
             <returns>AND {name} = {values}/IN({values})</returns>
         </member>
-        <member name="M:lce.mscrm.engine.SqlQueryExt.Condition(System.String,System.Collections.Generic.IList{System.String})">
+        <member name="M:lce.mscrm.engine.SqlQueryExt.And(System.String,System.Collections.Generic.IList{System.String})">
             <summary>
             拼接查询条件
             </summary>
             <param name="name">  </param>
             <param name="values"></param>
             <returns>AND {name} = '{values}'/IN('{values}')</returns>
-        </member>
-        <member name="M:lce.mscrm.engine.SqlQueryExt.Query``1(System.Data.Entity.DbContext,System.String,System.Data.SqlClient.SqlParameter[],System.Nullable{System.Guid})">
-            <summary>
-            执行SQL查询
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="context">   </param>
-            <param name="caller">    </param>
-            <param name="querySql">  </param>
-            <param name="parameters"></param>
-            <returns></returns>
         </member>
         <member name="M:lce.mscrm.engine.SqlQueryExt.Execute(System.Data.Entity.DbContext,System.String,System.Data.SqlClient.SqlParameter[])">
             <summary>
@@ -1053,6 +1053,19 @@
             <param name="context">   </param>
             <param name="commandSql"></param>
             <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.mscrm.engine.SqlQueryExt.Query``1(System.Data.Entity.DbContext,System.String,System.Data.SqlClient.SqlParameter[],System.Nullable{System.Guid},System.Int32,System.Int32)">
+            <summary>
+            执行SQL查询
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="context">   </param>
+            <param name="querySql">  </param>
+            <param name="parameters"></param>
+            <param name="caller">    </param>
+            <param name="page">      页码</param>
+            <param name="size">      页阀</param>
             <returns></returns>
         </member>
     </members>

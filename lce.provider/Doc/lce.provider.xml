@@ -712,15 +712,15 @@
             <para>时间维度为1060时根据Date中两个日期时间值指定区间用作运算</para>
             </summary>
         </member>
+        <member name="P:lce.provider.Requests.ReportQuery.Date">
+            <summary>
+            日期时间
+            </summary>
+        </member>
         <member name="P:lce.provider.Requests.ReportQuery.DateType">
             <summary>
             时间维度 1010:年，1020:月，1030:日，1040:周，1050:季，1060:自定义区间
             <code>DateTimeExt.DateType</code>
-            </summary>
-        </member>
-        <member name="P:lce.provider.Requests.ReportQuery.Date">
-            <summary>
-            日期时间
             </summary>
         </member>
         <member name="T:lce.provider.Responses.BaseResponse`1">

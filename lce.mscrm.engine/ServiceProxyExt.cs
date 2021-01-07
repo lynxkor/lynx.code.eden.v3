@@ -600,6 +600,36 @@ namespace lce.mscrm.engine
         }
 
         /// <summary>
+        /// 获取所有记录
+        /// </summary>
+        /// <param name="strFetch">Fetch查询字符串</param>
+        /// <param name="callBack"></param>
+        public static IList<Entity> RetrieveAll(this IOrganizationService service, string fetchXml)
+        {
+            int page = 1, count = 4000;
+            var doc = XDocument.Parse(fetchXml);
+            var list = new List<Entity>();
+            while (true)
+            {
+                doc.Root.SetAttributeValue("page", page.ToString());
+                doc.Root.SetAttributeValue("count", count.ToString());
+
+                var query = new FetchExpression(doc.ToString());
+                var entitys = service.RetrieveMultiple(query);
+                if (entitys.Entities.Count > 0)
+                {
+                    list.AddRange(entitys.Entities);
+                }
+
+                if (!entitys.MoreRecords) break;
+
+                page++;
+            }
+            return list;
+        }
+
+
+        /// <summary>
         /// 列表查询
         /// </summary>
         /// <param name="service"> </param>
@@ -618,7 +648,6 @@ namespace lce.mscrm.engine
 
         /// <summary>
         /// 列表查询
-        /// <para>使用此方法时必须在fetch头中加上returntotalrecordcount='true',否则totals=-1</para>
         /// </summary>
         /// <param name="service"> </param>
         /// <param name="fetchXml"></param>
@@ -626,7 +655,9 @@ namespace lce.mscrm.engine
         /// <returns></returns>
         public static IList<Entity> RetrieveMultiple(this IOrganizationService service, string fetchXml, out int totals)
         {
-            var query = new FetchExpression(fetchXml);
+            var doc = XDocument.Parse(fetchXml);
+            doc.Root.SetAttributeValue("returntotalrecordcount", "true");
+            var query = new FetchExpression(doc.ToString());
             var entitys = service.RetrieveMultiple(query);
             totals = entitys.TotalRecordCount;
             if (entitys.Entities.Count > 0)

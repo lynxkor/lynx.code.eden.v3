@@ -35,7 +35,7 @@ namespace lce.engine
         {
             _context = context;
             _dbSet = context.Set<T>();
-            _caller = caller;
+            _caller = caller ?? new CurrentUser();
         }
 
         /// <summary>

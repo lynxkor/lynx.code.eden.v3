@@ -14,16 +14,12 @@
         <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.2" />
         <PackageReference Include="aliyun-net-sdk-core" Version="1.5.3" />
+        <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
     </ItemGroup>
     <ItemGroup>
         <Folder Include="Doc\" />
         <Folder Include="Enums\" />
         <Folder Include="Requests\" />
-    </ItemGroup>
-    <ItemGroup>
-      <Reference Include="System.ComponentModel.DataAnnotations">
-        <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.7.2\System.ComponentModel.DataAnnotations.dll</HintPath>
-      </Reference>
     </ItemGroup>
     <ItemGroup>
       <None Update="Doc\lce.provider.xml">

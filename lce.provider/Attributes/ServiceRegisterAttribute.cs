@@ -19,16 +19,6 @@ namespace lce.provider.Attributes
     public class ServiceProviderAttribute : Attribute
     {
         /// <summary>
-        /// 生命周期，默认为Transient
-        /// </summary>
-        public ServiceLifetime Lifetime { get; set; }
-
-        /// <summary>
-        /// 服务类型，用于映射
-        /// </summary>
-        public Type Type { get; set; }
-
-        /// <summary>
         /// 构造函数
         /// </summary>
         /// <param name="type">    服务类型</param>
@@ -38,5 +28,15 @@ namespace lce.provider.Attributes
             Type = type;
             Lifetime = lifetime;
         }
+
+        /// <summary>
+        /// 生命周期，默认为Transient
+        /// </summary>
+        public ServiceLifetime Lifetime { get; set; }
+
+        /// <summary>
+        /// 服务类型，用于映射
+        /// </summary>
+        public Type Type { get; set; }
     }
 }

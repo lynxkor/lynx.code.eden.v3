@@ -4,10 +4,34 @@
         <name>lce.provider</name>
     </assembly>
     <members>
+        <member name="T:lce.provider.Attributes.ServiceAutowiredAttribute">
+            <summary>
+            服务自动装载
+            </summary>
+        </member>
+        <member name="T:lce.provider.Attributes.ServiceAutowiredProvider">
+            <summary>
+            服务自动装载
+            </summary>
+        </member>
+        <member name="M:lce.provider.Attributes.ServiceAutowiredProvider.PropertyActivate(System.Object,System.IServiceProvider)">
+            <summary>
+            服务自动装载
+            </summary>
+            <param name="service"> </param>
+            <param name="provider"></param>
+        </member>
         <member name="T:lce.provider.Attributes.ServiceProviderAttribute">
             <summary>
             用于标记服务，便于注入注册
             </summary>
+        </member>
+        <member name="M:lce.provider.Attributes.ServiceProviderAttribute.#ctor(System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="type">    服务类型</param>
+            <param name="lifetime">生命周期</param>
         </member>
         <member name="P:lce.provider.Attributes.ServiceProviderAttribute.Lifetime">
             <summary>
@@ -18,13 +42,6 @@
             <summary>
             服务类型，用于映射
             </summary>
-        </member>
-        <member name="M:lce.provider.Attributes.ServiceProviderAttribute.#ctor(System.Type,Microsoft.Extensions.DependencyInjection.ServiceLifetime)">
-            <summary>
-            构造函数
-            </summary>
-            <param name="type">    服务类型</param>
-            <param name="lifetime">生命周期</param>
         </member>
         <member name="T:lce.provider.Validation.ValidElementsAttribute">
             <summary>
@@ -110,27 +127,6 @@
             Date time ext.
             </summary>
         </member>
-        <member name="M:lce.provider.DateTimeExt.ToDateTime(System.Object)">
-            <summary>
-            string 2 datetime
-            </summary>
-            <param name="input"></param>
-            <returns></returns>
-        </member>
-        <member name="M:lce.provider.DateTimeExt.ToUTC(System.Object)">
-            <summary>
-            string 2 utc
-            </summary>
-            <param name="input"></param>
-            <returns></returns>
-        </member>
-        <member name="M:lce.provider.DateTimeExt.FormatShort(System.DateTime)">
-            <summary>
-            Format yyyy-MM-dd
-            </summary>
-            <param name="input"></param>
-            <returns></returns>
-        </member>
         <member name="M:lce.provider.DateTimeExt.Format(System.DateTime,System.String)">
             <summary>
             Format datetime,default yyyy-MM-dd HH:mm:ss
@@ -139,12 +135,11 @@
             <param name="format"></param>
             <returns></returns>
         </member>
-        <member name="M:lce.provider.DateTimeExt.ToCode(System.DateTime,System.String)">
+        <member name="M:lce.provider.DateTimeExt.FormatShort(System.DateTime)">
             <summary>
-            Format datetime 4 code
+            Format yyyy-MM-dd
             </summary>
-            <param name="input"> </param>
-            <param name="format"></param>
+            <param name="input"></param>
             <returns></returns>
         </member>
         <member name="M:lce.provider.DateTimeExt.MonthFirstDay(System.DateTime)">
@@ -161,30 +156,9 @@
             <param name="dateTime"></param>
             <returns></returns>
         </member>
-        <member name="M:lce.provider.DateTimeExt.YearFirstDay(System.DateTime)">
+        <member name="M:lce.provider.DateTimeExt.Quarter(System.DateTime)">
             <summary>
-            取得某年的第一天
-            </summary>
-            <param name="dateTime"></param>
-            <returns></returns>
-        </member>
-        <member name="M:lce.provider.DateTimeExt.YearLastDay(System.DateTime)">
-            <summary>
-            取得某年的最后一天
-            </summary>
-            <param name="dateTime"></param>
-            <returns></returns>
-        </member>
-        <member name="M:lce.provider.DateTimeExt.WeekFirstDay(System.DateTime)">
-            <summary>
-            取得本周第一天（周日为第一天）
-            </summary>
-            <param name="dateTime"></param>
-            <returns></returns>
-        </member>
-        <member name="M:lce.provider.DateTimeExt.WeekLastDay(System.DateTime)">
-            <summary>
-            得到本周最后一天（周六为最后一天）
+            季度
             </summary>
             <param name="dateTime"></param>
             <returns></returns>
@@ -203,13 +177,6 @@
             <param name="dateTime"></param>
             <returns></returns>
         </member>
-        <member name="M:lce.provider.DateTimeExt.Quarter(System.DateTime)">
-            <summary>
-            季度
-            </summary>
-            <param name="dateTime"></param>
-            <returns></returns>
-        </member>
         <member name="M:lce.provider.DateTimeExt.SwitchType4Date(System.DateTime,lce.provider.Enums.DateType,System.DateTime@,System.DateTime@)">
             <summary>
             根据日期和类型返回对应的开始时间和结束时间
@@ -218,6 +185,78 @@
             <param name="date">     日期</param>
             <param name="startDate">开始时间 yyyy-MM-dd 00:00:00</param>
             <param name="endDate">  结束时间 yyyy-MM-dd 23:59:59</param>
+        </member>
+        <member name="M:lce.provider.DateTimeExt.ToCode(System.DateTime,System.String)">
+            <summary>
+            Format datetime 4 code
+            </summary>
+            <param name="input"> </param>
+            <param name="format"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.DateTimeExt.ToDateTime(System.Object)">
+            <summary>
+            string 2 datetime
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.DateTimeExt.ToUTC(System.Object)">
+            <summary>
+            string 2 utc
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.DateTimeExt.WeekFirstDay(System.DateTime)">
+            <summary>
+            取得本周第一天（周日为第一天）
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.DateTimeExt.WeekLastDay(System.DateTime)">
+            <summary>
+            得到本周最后一天（周六为最后一天）
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.DateTimeExt.WeekLastDay(System.Int32,System.Int32)">
+            <summary>
+            根据年度周及年到周最后一天
+            </summary>
+            <param name="week"></param>
+            <param name="year"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.DateTimeExt.WeekOfMonth(System.DateTime)">
+            <summary>
+            取日期在某月的第几周
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.DateTimeExt.WeekOfYear(System.DateTime)">
+            <summary>
+            取日期在年中的第几周
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.DateTimeExt.YearFirstDay(System.DateTime)">
+            <summary>
+            取得某年的第一天
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.DateTimeExt.YearLastDay(System.DateTime)">
+            <summary>
+            取得某年的最后一天
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
         </member>
         <member name="T:lce.provider.DistinctExt">
             <summary>

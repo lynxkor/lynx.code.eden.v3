@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Caching;
 using System.ServiceModel.Description;
+using System.Xml.Linq;
 using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
@@ -627,7 +628,6 @@ namespace lce.mscrm.engine
             }
             return list;
         }
-
 
         /// <summary>
         /// 列表查询

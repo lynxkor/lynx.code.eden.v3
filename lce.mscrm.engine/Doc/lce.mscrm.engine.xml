@@ -980,6 +980,13 @@
             <param name="fetchXml"></param>
             <returns></returns>
         </member>
+        <member name="M:lce.mscrm.engine.ServiceProxyExt.RetrieveAll(Microsoft.Xrm.Sdk.IOrganizationService,System.String)">
+            <summary>
+            获取所有记录
+            </summary>
+            <param name="strFetch">Fetch查询字符串</param>
+            <param name="callBack"></param>
+        </member>
         <member name="M:lce.mscrm.engine.ServiceProxyExt.RetrieveMultiple(Microsoft.Xrm.Sdk.IOrganizationService,System.String)">
             <summary>
             列表查询
@@ -991,7 +998,6 @@
         <member name="M:lce.mscrm.engine.ServiceProxyExt.RetrieveMultiple(Microsoft.Xrm.Sdk.IOrganizationService,System.String,System.Int32@)">
             <summary>
             列表查询
-            <para>使用此方法时必须在fetch头中加上returntotalrecordcount='true',否则totals=-1</para>
             </summary>
             <param name="service"> </param>
             <param name="fetchXml"></param>

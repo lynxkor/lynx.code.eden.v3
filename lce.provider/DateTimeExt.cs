@@ -207,13 +207,57 @@ namespace lce.provider
         }
 
         /// <summary>
+        /// 根据年度周及年到周最后一天
+        /// </summary>
+        /// <param name="week"></param>
+        /// <param name="year"></param>
+        /// <returns></returns>
+        public static DateTime WeekLastDay(int week, int year)
+        {
+            var firstday = new DateTime(year, 1, 1);
+            int weekday = (int)firstday.DayOfWeek;
+            return firstday.AddDays(-weekday).AddDays(week * 7);
+        }
+
+        /// <summary>
+        /// 取日期在某月的第几周
+        /// </summary>
+        /// <param name="dateTime"></param>
+        /// <returns></returns>
+        public static int WeekOfMonth(this DateTime dateTime)
+        {
+            var mth1thDay = dateTime.MonthFirstDay();   //当月第一天
+            var weekday = (int)mth1thDay.DayOfWeek;     //当月第一天为周几
+            var lstDay1thWeek = 7 - ((weekday == 0 ? 7 : weekday) - 1); //第一周最后一天
+            var diffDay = dateTime.Day - lstDay1thWeek; //当前日期与第一周最后一天差值
+            diffDay = diffDay > 0 ? diffDay : 1;        //差值为负则置为1
+            //当前是第几周,如果整除7就减一天
+            return (diffDay % 7 == 0
+                ? (diffDay / 7 - 1)
+                : diffDay / 7) + 1 + (dateTime.Day > lstDay1thWeek ? 1 : 0);
+        }
+
+        /// <summary>
+        /// 取日期在年中的第几周
+        /// </summary>
+        /// <param name="dateTime"></param>
+        /// <returns></returns>
+        public static int WeekOfYear(this DateTime dateTime)
+        {
+            var firstday = dateTime.YearFirstDay();
+            int weekday = (int)firstday.DayOfWeek;
+            int weeknum = (dateTime.DayOfYear + weekday - 2) / 7 + 1;
+            return weeknum;
+        }
+
+        /// <summary>
         /// 取得某年的第一天
         /// </summary>
         /// <param name="dateTime"></param>
         /// <returns></returns>
         public static DateTime YearFirstDay(this DateTime dateTime)
         {
-            return new DateTime(dateTime.Year, 1, 1, 0, 0, 0);
+            return dateTime.AddMonths(1 - dateTime.Month).AddDays(1 - dateTime.Day).Date;
         }
 
         /// <summary>
@@ -223,11 +267,10 @@ namespace lce.provider
         /// <returns></returns>
         public static DateTime YearLastDay(this DateTime dateTime)
         {
-            return new DateTime(dateTime.Year + 1, 1, 1, 0, 0, 0).AddSeconds(-1);
-            ////次年第一个月
-            //dateTime = dateTime.AddMonths(1 - dateTime.Month).Date.AddYears(1);
-            ////月度第一天 00:00 减一分钟=当年最后一分钟最后一秒
-            //return dateTime.AddDays(1 - dateTime.Day).Date.AddSeconds(-1);
+            //次年第一个月
+            dateTime = dateTime.AddMonths(1 - dateTime.Month).Date.AddYears(1);
+            //月度第一天 00:00 减一分钟=当年最后一分钟最后一秒
+            return dateTime.AddDays(1 - dateTime.Day).Date.AddSeconds(-1);
         }
     }
 }

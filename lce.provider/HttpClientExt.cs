@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using lce.provider.Enums;
+using lce.provider.Responses;
 
 namespace lce.provider
 {
@@ -21,6 +22,77 @@ namespace lce.provider
     public static class HttpClientExt
     {
         /// <summary>
+        /// GET
+        /// </summary>
+        /// <param name="url">        </param>
+        /// <param name="headers">    </param>
+        /// <param name="token">      </param>
+        /// <param name="scheme">     </param>
+        /// <param name="contentType"></param>
+        /// <returns></returns>
+        public static BaseResponse<T> Get<T>(string url, Dictionary<string, string> headers
+            , string token = "", string scheme = "Bearer", string contentType = "application/json")
+        {
+            try
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(contentType));
+                    if (!string.IsNullOrEmpty(token))
+                    {
+                        httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(scheme, token);
+                    }
+                    if (null != headers)
+                    {
+                        foreach (var item in headers)
+                        {
+                            httpClient.DefaultRequestHeaders.Add(item.Key, item.Value);
+                        }
+                    }
+                    var response = httpClient.GetAsync(url).Result;
+                    if (response != null && response.IsSuccessStatusCode)
+                    {
+                        using (response)
+                        {
+                            return new BaseResponse<T>
+                            {
+                                Code = (ResponseCode)response.StatusCode,
+                                Data = response.Content.ReadAsStringAsync().Result.ToModel<T>()
+                            };
+                            //return new Dictionary<ResponseCode, string>
+                            //{
+                            //    { (ResponseCode)response.StatusCode, response.Content.ReadAsStringAsync().Result }
+                            //};
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                var msg = new
+                {
+                    url,
+                    headers,
+                    auth = $"{scheme} {token}",
+                    err = ex.Message
+                }.ToJson();
+                LogExt.e(msg, ex);
+                return new BaseResponse<T>()
+                {
+                    Code = ResponseCode.SERVER_ERROR,
+                    Msg = msg
+                };
+                //return new Dictionary<ResponseCode, string> { { ResponseCode.SERVER_ERROR, msg } };
+            }
+            return new BaseResponse<T>()
+            {
+                Code = ResponseCode.BAD_REQUEST,
+                Msg = $"{url}"
+            };
+            //return new Dictionary<ResponseCode, string> { { ResponseCode.BAD_REQUEST, $"{url}" } };
+        }
+
+        /// <summary>
         /// POST
         /// </summary>
         /// <param name="url">        </param>
@@ -29,7 +101,7 @@ namespace lce.provider
         /// <param name="contentType"></param>
         /// <param name="charSet">    </param>
         /// <returns></returns>
-        public static Dictionary<ResponseCode, string> Post(string url
+        public static BaseResponse<T> Post<T>(string url
             , Dictionary<string, string> param = null
             , Dictionary<string, string> headers = null
             , string contentType = "application/json", string charSet = "utf-8")
@@ -39,7 +111,7 @@ namespace lce.provider
             {
                 body = param.ToJson();
             }
-            return Post(url, body, headers, "", "", contentType, charSet);
+            return Post<T>(url, body, headers, "", "", contentType, charSet);
         }
 
         /// <summary>
@@ -53,7 +125,7 @@ namespace lce.provider
         /// <param name="contentType"></param>
         /// <param name="charSet">    </param>
         /// <returns></returns>
-        public static Dictionary<ResponseCode, string> Post(string url, string body
+        public static BaseResponse<T> Post<T>(string url, string body
             , Dictionary<string, string> headers
             , string token = "", string scheme = "Bearer"
             , string contentType = "application/json", string charSet = "utf-8")
@@ -86,10 +158,15 @@ namespace lce.provider
                     {
                         using (response)
                         {
-                            return new Dictionary<ResponseCode, string>
+                            return new BaseResponse<T>
                             {
-                                { (ResponseCode)response.StatusCode, response.Content.ReadAsStringAsync().Result }
+                                Code = (ResponseCode)response.StatusCode,
+                                Data = response.Content.ReadAsStringAsync().Result.ToModel<T>()
                             };
+                            //return new Dictionary<ResponseCode, string>
+                            //{
+                            //    { (ResponseCode)response.StatusCode, response.Content.ReadAsStringAsync().Result }
+                            //};
                         }
                     }
                 }
@@ -105,65 +182,19 @@ namespace lce.provider
                     err = ex.Message
                 }.ToJson();
                 LogExt.e(msg, ex);
-                return new Dictionary<ResponseCode, string> { { ResponseCode.SERVER_ERROR, msg } };
-            }
-            return new Dictionary<ResponseCode, string> { { ResponseCode.BAD_REQUEST, $"{url};{body}" } };
-        }
-
-        /// <summary>
-        /// GET
-        /// </summary>
-        /// <param name="url">        </param>
-        /// <param name="headers">    </param>
-        /// <param name="token">      </param>
-        /// <param name="scheme">     </param>
-        /// <param name="contentType"></param>
-        /// <returns></returns>
-        public static Dictionary<ResponseCode, string> Get(string url, Dictionary<string, string> headers
-            , string token = "", string scheme = "Bearer", string contentType = "application/json")
-        {
-            try
-            {
-                using (var httpClient = new HttpClient())
+                return new BaseResponse<T>()
                 {
-                    httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(contentType));
-                    if (!string.IsNullOrEmpty(token))
-                    {
-                        httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue(scheme, token);
-                    }
-                    if (null != headers)
-                    {
-                        foreach (var item in headers)
-                        {
-                            httpClient.DefaultRequestHeaders.Add(item.Key, item.Value);
-                        }
-                    }
-                    var response = httpClient.GetAsync(url).Result;
-                    if (response != null && response.IsSuccessStatusCode)
-                    {
-                        using (response)
-                        {
-                            return new Dictionary<ResponseCode, string>
-                            {
-                                { (ResponseCode)response.StatusCode, response.Content.ReadAsStringAsync().Result }
-                            };
-                        }
-                    }
-                }
+                    Code = ResponseCode.SERVER_ERROR,
+                    Msg = msg
+                };
+                //return new Dictionary<ResponseCode, string> { { ResponseCode.SERVER_ERROR, msg } };
             }
-            catch (Exception ex)
+            return new BaseResponse<T>()
             {
-                var msg = new
-                {
-                    url,
-                    headers,
-                    auth = $"{scheme} {token}",
-                    err = ex.Message
-                }.ToJson();
-                LogExt.e(msg, ex);
-                return new Dictionary<ResponseCode, string> { { ResponseCode.SERVER_ERROR, msg } };
-            }
-            return new Dictionary<ResponseCode, string> { { ResponseCode.BAD_REQUEST, $"{url}" } };
+                Code = ResponseCode.BAD_REQUEST,
+                Msg = $"{url}"
+            };
+            //return new Dictionary<ResponseCode, string> { { ResponseCode.BAD_REQUEST, $"{url};{body}" } };
         }
     }
 }

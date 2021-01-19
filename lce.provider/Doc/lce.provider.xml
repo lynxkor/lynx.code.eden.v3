@@ -471,7 +471,18 @@
             HttpClientExt
             </summary>
         </member>
-        <member name="M:lce.provider.HttpClientExt.Post(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.String)">
+        <member name="M:lce.provider.HttpClientExt.Get``1(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.String,System.String)">
+            <summary>
+            GET
+            </summary>
+            <param name="url">        </param>
+            <param name="headers">    </param>
+            <param name="token">      </param>
+            <param name="scheme">     </param>
+            <param name="contentType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.HttpClientExt.Post``1(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.String)">
             <summary>
             POST
             </summary>
@@ -482,7 +493,7 @@
             <param name="charSet">    </param>
             <returns></returns>
         </member>
-        <member name="M:lce.provider.HttpClientExt.Post(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.String,System.String,System.String)">
+        <member name="M:lce.provider.HttpClientExt.Post``1(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.String,System.String,System.String)">
             <summary>
             POST
             </summary>
@@ -493,17 +504,6 @@
             <param name="scheme">     </param>
             <param name="contentType"></param>
             <param name="charSet">    </param>
-            <returns></returns>
-        </member>
-        <member name="M:lce.provider.HttpClientExt.Get(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.String,System.String)">
-            <summary>
-            GET
-            </summary>
-            <param name="url">        </param>
-            <param name="headers">    </param>
-            <param name="token">      </param>
-            <param name="scheme">     </param>
-            <param name="contentType"></param>
             <returns></returns>
         </member>
         <member name="T:lce.provider.ImageExt">

@@ -79,6 +79,23 @@
             <param name="key">  配置项</param>
             <param name="value">值</param>
         </member>
+        <member name="T:lce.provider.CoordinateExt">
+            <summary>
+            经纬度计算器
+            </summary>
+        </member>
+        <member name="M:lce.provider.CoordinateExt.MilesAround(System.Double,System.Double,System.Double@,System.Double@,System.Double@,System.Double@,System.Double)">
+            <summary>
+            方圆几里计算
+            </summary>
+            <param name="lng">经度</param>
+            <param name="lat">纬度</param>
+            <param name="minLng"></param>
+            <param name="maxLng"></param>
+            <param name="maxLat"></param>
+            <param name="minLat"></param>
+            <param name="dis">距离，默认0.5km</param>
+        </member>
         <member name="T:lce.provider.Cryptology">
             <summary>
             密码/编码/验证码 生成器
@@ -884,15 +901,9 @@
             action：StringExt
             </summary>
         </member>
-        <member name="M:lce.provider.StringExt.ToInt32(System.String)">
+        <member name="M:lce.provider.StringExt.IsNullOrEmpty(System.String)">
             <summary>
-            string to int32.
-            </summary>
-            <param name="input"></param>
-            <returns></returns>
-        </member>
-        <member name="M:lce.provider.StringExt.ToInt32(System.Object)">
-            <summary>
+            string IsNullOrEmpty
             </summary>
             <param name="input"></param>
             <returns></returns>
@@ -948,6 +959,20 @@
             <param name="supplement">长度不度时(前)补位字符</param>
             <returns></returns>
         </member>
+        <member name="M:lce.provider.StringExt.ToDecimal(System.Object)">
+            <summary>
+            to decimal
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.StringExt.ToDouble(System.Object)">
+            <summary>
+            to double
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="M:lce.provider.StringExt.ToHex(System.String)">
             <summary>
             字符串转换成十六进制
@@ -958,6 +983,19 @@
         <member name="M:lce.provider.StringExt.ToHex(System.Int32)">
             <summary>
             十进制2十六进制
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.StringExt.ToInt32(System.String)">
+            <summary>
+            string to int32.
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.StringExt.ToInt32(System.Object)">
+            <summary>
             </summary>
             <param name="input"></param>
             <returns></returns>

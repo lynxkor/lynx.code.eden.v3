@@ -87,7 +87,7 @@ $@"{header}
         /// <param name="to">        </param>
         /// <param name="columnsXml"></param>
         /// <param name="filterXml"> </param>
-        /// <param name="linkType">  </param>
+        /// <param name="linkType">outer or inner</param>
         /// <param name="alias">     default as alias_{linkEntity}</param>
         /// <param name="linkXml">   </param>
         /// <returns></returns>

@@ -18,24 +18,13 @@ namespace lce.provider
     public static class StringExt
     {
         /// <summary>
-        /// string to int32.
+        /// string IsNullOrEmpty
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public static int ToInt32(this string input)
+        public static bool IsNullOrEmpty(this string input)
         {
-            try { return Convert.ToInt32(input); }
-            catch { return -1; }
-        }
-
-        /// <summary>
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        public static int ToInt32(this object input)
-        {
-            try { return Convert.ToInt32(input); }
-            catch { return -1; }
+            return string.IsNullOrEmpty(input);
         }
 
         /// <summary>
@@ -112,6 +101,28 @@ namespace lce.provider
         }
 
         /// <summary>
+        /// to decimal
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public static decimal ToDecimal(this object input)
+        {
+            try { return Convert.ToDecimal(input); }
+            catch { return 0; }
+        }
+
+        /// <summary>
+        /// to double
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public static double ToDouble(this object input)
+        {
+            try { return Convert.ToDouble(input); }
+            catch { return 0; }
+        }
+
+        /// <summary>
         /// 字符串转换成十六进制
         /// </summary>
         /// <param name="input"></param>
@@ -135,6 +146,27 @@ namespace lce.provider
         public static string ToHex(this int input)
         {
             return Convert.ToString(input, 16).ToUpper();
+        }
+
+        /// <summary>
+        /// string to int32.
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public static int ToInt32(this string input)
+        {
+            try { return Convert.ToInt32(input); }
+            catch { return -1; }
+        }
+
+        /// <summary>
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public static int ToInt32(this object input)
+        {
+            try { return Convert.ToInt32(input); }
+            catch { return -1; }
         }
     }
 }

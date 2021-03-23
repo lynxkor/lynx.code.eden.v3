@@ -170,6 +170,23 @@ namespace lce.provider
         }
 
         /// <summary>
+        /// string 2 local time
+        /// </summary>
+        /// <param name="input"></param>
+        /// <returns></returns>
+        public static DateTime ToLocal(this object input)
+        {
+            try
+            {
+                return Convert.ToDateTime(input).ToLocalTime();
+            }
+            catch
+            {
+                return DateTime.MinValue;
+            }
+        }
+
+        /// <summary>
         /// string 2 utc
         /// </summary>
         /// <param name="input"></param>

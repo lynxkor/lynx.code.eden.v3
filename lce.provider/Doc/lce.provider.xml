@@ -218,6 +218,13 @@
             <param name="input"></param>
             <returns></returns>
         </member>
+        <member name="M:lce.provider.DateTimeExt.ToLocal(System.Object)">
+            <summary>
+            string 2 local time
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="M:lce.provider.DateTimeExt.ToUTC(System.Object)">
             <summary>
             string 2 utc

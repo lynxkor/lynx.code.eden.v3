@@ -20,11 +20,11 @@ using System.Threading.Tasks;
 namespace lce.provider
 {
     /// <summary>
-    /// 写入日志(委托)
+    /// 把错误写入日志(委托)
     /// </summary>
-    /// <param name="logType">日志级别</param>
-    /// <param name="message">日志描述</param>
-    public delegate void WriteLog(LogType logType, string message);
+    /// <param name="message">日志描述 ex.Message会自动加上</param>
+    /// <param name="ex">     异常信息</param>
+    public delegate void WriteErr(string message, Exception ex);
 
     /// <summary>
     /// 把信息写入日志(委托)
@@ -33,11 +33,33 @@ namespace lce.provider
     public delegate void WriteInfo(string message);
 
     /// <summary>
-    /// 把错误写入日志(委托)
+    /// 写入日志(委托)
     /// </summary>
-    /// <param name="message">日志描述 ex.Message会自动加上</param>
-    /// <param name="ex">     异常信息</param>
-    public delegate void WriteErr(string message, Exception ex);
+    /// <param name="logType">日志级别</param>
+    /// <param name="message">日志描述</param>
+    public delegate void WriteLog(LogType logType, string message);
+
+    /// <summary>
+    /// 日志级别
+    /// </summary>
+    [Flags]
+    public enum LogType
+    {
+        /// <summary>
+        /// 信息
+        /// </summary>
+        INFO,
+
+        /// <summary>
+        /// 调试
+        /// </summary>
+        DEBUG,
+
+        /// <summary>
+        /// 异常
+        /// </summary>
+        ERROR
+    }
 
     /// <summary>
     /// 概述：日志文件处理器
@@ -52,9 +74,9 @@ namespace lce.provider
     public static class LogExt
     {
         /// <summary>
-        /// 写入日志(委托)
+        /// 把错误写入日志(委托)
         /// </summary>
-        public static WriteLog write;
+        public static WriteErr e;
 
         /// <summary>
         /// 把信息写入日志(委托)
@@ -62,24 +84,9 @@ namespace lce.provider
         public static WriteInfo i;
 
         /// <summary>
-        /// 把错误写入日志(委托)
+        /// 写入日志(委托)
         /// </summary>
-        public static WriteErr e;
-
-        /// <summary>
-        /// 日志目录
-        /// </summary>
-        private static string LogDir { get; set; }
-
-        /// <summary>
-        /// 应用程序名
-        /// </summary>
-        private static string SoftName { get; set; }
-
-        /// <summary>
-        /// 每个日志文件大小(M)
-        /// </summary>
-        public static string LogSize { get; set; } = "2";
+        public static WriteLog write;
 
         /// <summary>
         /// 日志器构造
@@ -123,7 +130,36 @@ namespace lce.provider
             AppDomain.CurrentDomain.ProcessExit += (object sender, EventArgs args) => { Dispose(); };
         }
 
+        /// <summary>
+        /// 每个日志文件大小(M)
+        /// </summary>
+        public static string LogSize { get; set; } = "2";
+
+        /// <summary>
+        /// 日志目录
+        /// </summary>
+        private static string LogDir { get; set; }
+
+        /// <summary>
+        /// 应用程序名
+        /// </summary>
+        private static string SoftName { get; set; }
+
         #region Log 成员
+
+        private static void Dispose()
+        {
+        }
+
+        /// <summary>
+        /// 时间戳/年轮
+        /// </summary>
+        /// <returns>e.g.13C10T15:55:55:444</returns>
+        private static string GetRing()
+        {
+            var date = DateTime.Now;
+            return $"{date.ToString("yy").ToInt32().ToHex()}{date.Month.ToHex()}{date.ToString("ddTHH:mm:ss:fff")}";
+        }
 
         /// <summary>
         /// 写入日志
@@ -148,8 +184,8 @@ namespace lce.provider
                     var method = frame.GetMethod();
                     if (method == null) continue;
                     if (method.ReflectedType == typeof(LogExt)) continue;
-                    //string name = method.DeclaringType != null ? method.DeclaringType.FullName : string.Empty;
-                    //if (!name.StartsWith("LCE.MIS")) continue;
+                    string name = method.DeclaringType != null ? method.DeclaringType.FullName : string.Empty;
+                    if (name.StartsWith("System.")) continue;
 
                     string fileName = null;
                     try
@@ -220,6 +256,7 @@ namespace lce.provider
                         var from = new MailAddress("lynxce@163.com", "lynxce.com", Encoding.UTF8);
                         //构造一个收件人地址对象
                         var to = new MailAddress("lynx.kor@163.com", "lynx.kor", Encoding.UTF8);
+                        var leap = new MailAddress("ke_linjun@leapmotor.com", "山猫", Encoding.UTF8);
                         //构造一个Email的Message对象
                         var mailMessage = new MailMessage(from, to)
                         {
@@ -230,6 +267,7 @@ namespace lce.provider
                             IsBodyHtml = false,
                             Body = logStr,
                         };
+                        mailMessage.To.Add(leap);
                         //设置用户名和密码，用户登陆信息
                         client.Credentials = new NetworkCredential("lynxce", "134567890");
                         //设置邮件的信息
@@ -249,42 +287,6 @@ namespace lce.provider
 #endif
         }
 
-        /// <summary>
-        /// 时间戳/年轮
-        /// </summary>
-        /// <returns>e.g.13C10T15:55:55:444</returns>
-        private static string GetRing()
-        {
-            var date = DateTime.Now;
-            return $"{date.ToString("yy").ToInt32().ToHex()}{date.Month.ToHex()}{date.ToString("ddTHH:mm:ss:fff")}";
-        }
-
-        private static void Dispose()
-        {
-        }
-
         #endregion Log 成员
-    }
-
-    /// <summary>
-    /// 日志级别
-    /// </summary>
-    [Flags]
-    public enum LogType
-    {
-        /// <summary>
-        /// 信息
-        /// </summary>
-        INFO,
-
-        /// <summary>
-        /// 调试
-        /// </summary>
-        DEBUG,
-
-        /// <summary>
-        /// 异常
-        /// </summary>
-        ERROR
     }
 }

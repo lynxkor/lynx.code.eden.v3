@@ -598,19 +598,6 @@
             <param name="input">Input.</param>
             <typeparam name="T">The 1st type parameter.</typeparam>
         </member>
-        <member name="T:lce.provider.WriteLog">
-            <summary>
-            写入日志(委托)
-            </summary>
-            <param name="logType">日志级别</param>
-            <param name="message">日志描述</param>
-        </member>
-        <member name="T:lce.provider.WriteInfo">
-            <summary>
-            把信息写入日志(委托)
-            </summary>
-            <param name="message">日志描述</param>
-        </member>
         <member name="T:lce.provider.WriteErr">
             <summary>
             把错误写入日志(委托)
@@ -618,67 +605,18 @@
             <param name="message">日志描述 ex.Message会自动加上</param>
             <param name="ex">     异常信息</param>
         </member>
-        <member name="T:lce.provider.LogExt">
-             <summary>
-             概述：日志文件处理器
-            <para>文件：Toolkit.Log.Log</para>
-            <para>作者：Lynx.kor</para>
-            <para>创建时间：2016/5/25 10:10:58</para>
-            <para>描述：appSettings add namevalue</para>
-            <code><add key = "LogPath" value="C:\Log\" /></code>
-            <code><add key = "SoftName" value="Toolkit"/></code>
-            <para>> add description for Log 修改历史：</para>
-             </summary>
-        </member>
-        <member name="F:lce.provider.LogExt.write">
-            <summary>
-            写入日志(委托)
-            </summary>
-        </member>
-        <member name="F:lce.provider.LogExt.i">
+        <member name="T:lce.provider.WriteInfo">
             <summary>
             把信息写入日志(委托)
             </summary>
+            <param name="message">日志描述</param>
         </member>
-        <member name="F:lce.provider.LogExt.e">
+        <member name="T:lce.provider.WriteLog">
             <summary>
-            把错误写入日志(委托)
-            </summary>
-        </member>
-        <member name="P:lce.provider.LogExt.LogDir">
-            <summary>
-            日志目录
-            </summary>
-        </member>
-        <member name="P:lce.provider.LogExt.SoftName">
-            <summary>
-            应用程序名
-            </summary>
-        </member>
-        <member name="P:lce.provider.LogExt.LogSize">
-            <summary>
-            每个日志文件大小(M)
-            </summary>
-        </member>
-        <member name="M:lce.provider.LogExt.#cctor">
-            <summary>
-            日志器构造
-            </summary>
-        </member>
-        <member name="M:lce.provider.LogExt.writeLine(lce.provider.LogType,System.String,System.Exception,System.String)">
-            <summary>
-            写入日志
+            写入日志(委托)
             </summary>
             <param name="logType">日志级别</param>
             <param name="message">日志描述</param>
-            <param name="ex">     异常信息</param>
-            <param name="logPath"></param>
-        </member>
-        <member name="M:lce.provider.LogExt.GetRing">
-            <summary>
-            时间戳/年轮
-            </summary>
-            <returns>e.g.13C10T15:55:55:444</returns>
         </member>
         <member name="T:lce.provider.LogType">
             <summary>
@@ -699,6 +637,68 @@
             <summary>
             异常
             </summary>
+        </member>
+        <member name="T:lce.provider.LogExt">
+             <summary>
+             概述：日志文件处理器
+            <para>文件：Toolkit.Log.Log</para>
+            <para>作者：Lynx.kor</para>
+            <para>创建时间：2016/5/25 10:10:58</para>
+            <para>描述：appSettings add namevalue</para>
+            <code><add key = "LogPath" value="C:\Log\" /></code>
+            <code><add key = "SoftName" value="Toolkit"/></code>
+            <para>> add description for Log 修改历史：</para>
+             </summary>
+        </member>
+        <member name="F:lce.provider.LogExt.e">
+            <summary>
+            把错误写入日志(委托)
+            </summary>
+        </member>
+        <member name="F:lce.provider.LogExt.i">
+            <summary>
+            把信息写入日志(委托)
+            </summary>
+        </member>
+        <member name="F:lce.provider.LogExt.write">
+            <summary>
+            写入日志(委托)
+            </summary>
+        </member>
+        <member name="M:lce.provider.LogExt.#cctor">
+            <summary>
+            日志器构造
+            </summary>
+        </member>
+        <member name="P:lce.provider.LogExt.LogSize">
+            <summary>
+            每个日志文件大小(M)
+            </summary>
+        </member>
+        <member name="P:lce.provider.LogExt.LogDir">
+            <summary>
+            日志目录
+            </summary>
+        </member>
+        <member name="P:lce.provider.LogExt.SoftName">
+            <summary>
+            应用程序名
+            </summary>
+        </member>
+        <member name="M:lce.provider.LogExt.GetRing">
+            <summary>
+            时间戳/年轮
+            </summary>
+            <returns>e.g.13C10T15:55:55:444</returns>
+        </member>
+        <member name="M:lce.provider.LogExt.writeLine(lce.provider.LogType,System.String,System.Exception,System.String)">
+            <summary>
+            写入日志
+            </summary>
+            <param name="logType">日志级别</param>
+            <param name="message">日志描述</param>
+            <param name="ex">     异常信息</param>
+            <param name="logPath"></param>
         </member>
         <member name="T:lce.provider.PredicateExt">
             <summary>

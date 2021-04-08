@@ -44,9 +44,10 @@ namespace lce.mscrm.engine
         /// <param name="attributeName"></param>
         /// <param name="optionValue">  </param>
         /// <returns></returns>
-        public static string OptionLabel(this EntityMetadata entity, string attributeName, int optionValue)
+        public static string OptionLabel(this EntityMetadata entity, string attributeName, int? optionValue)
         {
             if (null == entity) return string.Empty;
+            if (!optionValue.HasValue) return string.Empty;
             if (optionValue == -1) return string.Empty;
             var metadata = (PicklistAttributeMetadata)entity.Attributes.Where(x => x.LogicalName.Equals(attributeName)
                                                 && x.AttributeType.Value == AttributeTypeCode.Picklist).FirstOrDefault();

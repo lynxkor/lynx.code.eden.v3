@@ -332,6 +332,14 @@
             <param name="attribute"></param>
             <returns></returns>
         </member>
+        <member name="M:lce.mscrm.engine.EntityExt.IsNullOrEmpty(Microsoft.Xrm.Sdk.Entity,System.String)">
+            <summary>
+            判断实体的某个字段是否为空
+            </summary>
+            <param name="entity"></param>
+            <param name="name">  </param>
+            <returns></returns>
+        </member>
         <member name="M:lce.mscrm.engine.EntityExt.IsNotNull(System.Object)">
             <summary>
             check the object is not null.
@@ -644,7 +652,7 @@
             <param name="entityName"></param>
             <returns></returns>
         </member>
-        <member name="M:lce.mscrm.engine.OptionSetExt.OptionLabel(Microsoft.Xrm.Sdk.Metadata.EntityMetadata,System.String,System.Int32)">
+        <member name="M:lce.mscrm.engine.OptionSetExt.OptionLabel(Microsoft.Xrm.Sdk.Metadata.EntityMetadata,System.String,System.Nullable{System.Int32})">
             <summary>
             通过选项值获取选项描述 这个效率更高，建议用这个 通过OptionsSetExt.EntityMetadata 先获取EntityMetadata
             </summary>

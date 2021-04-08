@@ -31,6 +31,17 @@ namespace lce.mscrm.engine
         public static bool IsNotNull(this Entity entity, string attribute)
         {
             return null != entity && entity.Contains(attribute) && IsNotNull(entity[attribute]);
+        }   
+        
+        /// <summary>
+        /// 判断实体的某个字段是否为空
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="name">  </param>
+        /// <returns></returns>
+        public static bool IsNullOrEmpty(this Entity entity, string name)
+        {
+            return !entity.IsNotNull(name) || string.IsNullOrEmpty(entity.Attributes[name].ToString());
         }
 
         /// <summary>

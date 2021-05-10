@@ -172,11 +172,11 @@ namespace lce.provider
         {
             var logStr = string.Empty;
             var sb = new StringBuilder();
+            // 补充ex.Message
+            if (ex != null) message += " =>" + ex.Message;
             sb.Append($"on:{GetRing()}:[{logType}]desc:{message}\r\n");
             if (LogType.ERROR == logType)
             {
-                // 补充ex.Message
-                if (ex != null) message += " =>" + ex.Message;
                 var format = "line:{0};cols:{1};in:{2}\r\n";
                 var st = ex != null ? new StackTrace(ex, true) : new StackTrace(true);
                 foreach (var frame in st.GetFrames())

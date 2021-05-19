@@ -63,6 +63,18 @@ namespace lce.mscrm.engine
         /// <summary>
         /// 统计数据行
         /// </summary>
+        /// <param name="service"> </param>
+        /// <param name="fetchXml"></param>
+        /// <returns></returns>
+        public static int Count(this IOrganizationService service, string fetchXml)
+        {
+            service.RetrieveMultiple(fetchXml, out int totals);
+            return totals;
+        }
+
+        /// <summary>
+        /// 统计数据行
+        /// </summary>
         /// <param name="service">   </param>
         /// <param name="entityName"></param>
         /// <param name="filters">   </param>
@@ -353,237 +365,6 @@ namespace lce.mscrm.engine
         }
 
         /// <summary>
-        /// 查询一条实体记录
-        /// </summary>
-        /// <param name="service">   </param>
-        /// <param name="entityName"></param>
-        /// <param name="cols">      </param>
-        /// <param name="cond">      </param>
-        /// <returns></returns>
-        public static Entity Query(this IOrganizationService service, string entityName, ColumnSet cols, ConditionExpression cond)
-        {
-            return service.Query(entityName, cols, new ConditionExpression[] { cond });
-        }
-
-        /// <summary>
-        /// 根据指定字段及值查询一条数据，如果有多条满足那就要看命了
-        /// </summary>
-        /// <param name="service">   </param>
-        /// <param name="entityName"></param>
-        /// <param name="fieldName"> </param>
-        /// <param name="fieldValue"></param>
-        /// <param name="cols">      </param>
-        /// <returns></returns>
-        public static Entity Query(this IOrganizationService service, string entityName, string fieldName, object fieldValue, ColumnSet cols = null)
-        {
-            var conds = new ConditionExpression[] { new ConditionExpression(fieldName, ConditionOperator.Equal, fieldValue) };
-            return service.Query(entityName, cols, conds);
-        }
-
-        /// <summary>
-        /// 查询一条实体记录
-        /// </summary>
-        /// <param name="service">   </param>
-        /// <param name="entityName"></param>
-        /// <param name="cols">      </param>
-        /// <param name="conds">     </param>
-        /// <param name="logical">   </param>
-        /// <returns></returns>
-        public static Entity Query(this IOrganizationService service, string entityName, ColumnSet cols, IEnumerable<ConditionExpression> conds, LogicalOperator logical = LogicalOperator.And)
-        {
-            var filter = new FilterExpression(logical);
-            foreach (var cond in conds)
-            {
-                filter.Conditions.Add(cond);
-            }
-            var query = new QueryExpression
-            {
-                Distinct = false,
-                EntityName = entityName
-            };
-            if (null != cols) query.ColumnSet = cols;
-            query.Criteria.AddFilter(filter);
-
-            return service.Query(query);
-        }
-
-        /// <summary>
-        /// 查询1条数据
-        /// </summary>
-        /// <param name="service"></param>
-        /// <param name="query">  </param>
-        /// <returns></returns>
-        public static Entity Query(this IOrganizationService service, QueryExpression query)
-        {
-            var entities = service.Query(query, 1, 1);
-            if (null != entities)
-                return entities[0];
-            return null;
-        }
-
-        /// <summary>
-        /// 查询数据集
-        /// </summary>
-        /// <param name="service"></param>
-        /// <param name="query">  </param>
-        /// <param name="page">   </param>
-        /// <param name="size">   </param>
-        /// <returns></returns>
-        public static DataCollection<Entity> Query(this IOrganizationService service, QueryExpression query, int page = 1, int size = 1)
-        {
-            var pageInfo = new PagingInfo
-            {
-                Count = size,
-                PageNumber = page,
-                PagingCookie = null
-            };
-            query.PageInfo = pageInfo;
-            var result = service.RetrieveMultiple(query);
-            if (null != result.Entities && result.Entities.Count > 0)
-                return result.Entities;
-            return null;
-        }
-
-        /// <summary>
-        /// 查询所有数据
-        /// </summary>
-        /// <param name="service"></param>
-        /// <param name="query">  </param>
-        /// <returns></returns>
-        public static DataCollection<Entity> QueryAll(this IOrganizationService service, QueryExpression query)
-        {
-            var pageInfo = new PagingInfo
-            {
-                Count = 5000,
-                PageNumber = 1,
-                PagingCookie = null
-            };
-            query.PageInfo = pageInfo;
-            var entities = new EntityCollection().Entities;
-            while (true)
-            {
-                var result = service.RetrieveMultiple(query);
-                if (null != result.Entities)
-                {
-                    entities.AddRange(result.Entities);
-                }
-                if (result.MoreRecords)
-                {
-                    query.PageInfo.PagingCookie = result.PagingCookie;
-                    query.PageInfo.PageNumber += 1;
-                }
-                else
-                { break; }
-            }
-            return entities;
-        }
-
-        /// <summary>
-        /// 查询多条记录
-        /// </summary>
-        /// <param name="service">   </param>
-        /// <param name="entityName"></param>
-        /// <param name="cols">      </param>
-        /// <param name="conds">     </param>
-        /// <param name="logical">   </param>
-        /// <param name="orders">    </param>
-        /// <returns></returns>
-        public static IList<Entity> QueryList(this IOrganizationService service, string entityName, ColumnSet cols,
-            IEnumerable<ConditionExpression> conds = null, LogicalOperator logical = LogicalOperator.And, IEnumerable<OrderExpression> orders = null)
-        {
-            var filter = new FilterExpression(logical);
-            foreach (var cond in conds)
-            {
-                filter.Conditions.Add(cond);
-            }
-            var query = new QueryExpression
-            {
-                Distinct = false,
-                EntityName = entityName
-            };
-            if (null != cols) query.ColumnSet = cols;
-            foreach (var order in orders)
-            {
-                query.Orders.Add(order);
-            }
-            query.Criteria.AddFilter(filter);
-            var result = service.RetrieveMultiple(query);
-            if (null != result)
-            {
-                return result.Entities.ToList();
-            }
-            return null;
-        }
-
-        /// <summary>
-        /// 分页查询实体记录
-        /// </summary>
-        /// <param name="service">   </param>
-        /// <param name="page">      </param>
-        /// <param name="size">      </param>
-        /// <param name="totals">    </param>
-        /// <param name="entityName"></param>
-        /// <param name="cols">      </param>
-        /// <param name="conds">     </param>
-        /// <param name="logical">   </param>
-        /// <param name="orders">    </param>
-        /// <returns></returns>
-        public static IList<Entity> QueryList(this IOrganizationService service, int page, int size, out int totals, string entityName, ColumnSet cols,
-            IEnumerable<ConditionExpression> conds = null, LogicalOperator logical = LogicalOperator.And, IEnumerable<OrderExpression> orders = null)
-        {
-            totals = 0;
-            var filter = new FilterExpression(logical);
-            foreach (var cond in conds)
-            {
-                filter.Conditions.Add(cond);
-            }
-            return service.QueryList(page, size, out totals, entityName, cols, filter, orders);
-        }
-
-        /// <summary>
-        /// 分页查询实体记录
-        /// </summary>
-        /// <param name="service">   </param>
-        /// <param name="page">      </param>
-        /// <param name="size">      </param>
-        /// <param name="totals">    </param>
-        /// <param name="entityName"></param>
-        /// <param name="cols">      </param>
-        /// <param name="filters">   </param>
-        /// <param name="orders">    </param>
-        /// <returns></returns>
-        public static IList<Entity> QueryList(this IOrganizationService service, int page, int size, out int totals, string entityName, ColumnSet cols,
-            FilterExpression filters, IEnumerable<OrderExpression> orders)
-        {
-            totals = 0;
-            var query = new QueryExpression
-            {
-                Distinct = false,
-                EntityName = entityName
-            };
-            if (null != cols) query.ColumnSet = cols;
-            foreach (var order in orders)
-            {
-                query.Orders.Add(order);
-            }
-            query.PageInfo = new PagingInfo
-            {
-                Count = size,
-                PageNumber = page,
-                ReturnTotalRecordCount = true,
-                PagingCookie = null
-            };
-            query.Criteria.AddFilter(filters);
-            var result = service.RetrieveMultiple(query);
-            if (null != result)
-            {
-                totals = result.TotalRecordCount;
-                return result.Entities.ToList();
-            }
-            return null;
-        }
-
-        /// <summary>
         /// 单行数据查询
         /// </summary>
         /// <param name="service"> </param>
@@ -603,8 +384,9 @@ namespace lce.mscrm.engine
         /// <summary>
         /// 获取所有记录
         /// </summary>
-        /// <param name="strFetch">Fetch查询字符串</param>
-        /// <param name="callBack"></param>
+        /// <param name="service"> </param>
+        /// <param name="fetchXml"></param>
+        /// <returns></returns>
         public static IList<Entity> RetrieveAll(this IOrganizationService service, string fetchXml)
         {
             int page = 1, count = 4000;

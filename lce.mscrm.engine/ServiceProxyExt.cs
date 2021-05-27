@@ -97,30 +97,13 @@ namespace lce.mscrm.engine
         /// </summary>
         /// <param name="service">   </param>
         /// <param name="entityName"></param>
-        /// <param name="filters">   </param>
+        /// <param name="filterXml"> </param>
         /// <returns></returns>
-        public static int Count(this IOrganizationService service, string entityName, FilterExpression filters = null)
+        public static int Count(this IOrganizationService service, string entityName, string filterXml = "")
         {
-            var query = new QueryExpression
-            {
-                Distinct = false,
-                EntityName = entityName
-            };
-            query.ColumnSet.AddColumn($@"{entityName}id");
-            query.PageInfo = new PagingInfo
-            {
-                Count = 1,
-                PageNumber = 1,
-                ReturnTotalRecordCount = true,
-                PagingCookie = null
-            };
-            if (null != filters) query.Criteria.AddFilter(filters);
-            var result = service.RetrieveMultiple(query);
-            if (null != result)
-            {
-                return result.TotalRecordCount;
-            }
-            return 0;
+            var fetchXml = FetchXmlExt.FetchXml(entityName, FetchXmlExt.QueryColumns(entityName, $"{entityName}id")
+                , filterXml, page: 1, size: 1);
+            return service.Count(fetchXml);
         }
 
         /// <summary>

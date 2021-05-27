@@ -738,6 +738,17 @@
             <param name="targetFieldName"> 关联字段</param>
             <param name="targetId">        关联数据id</param>
         </member>
+        <member name="M:lce.mscrm.engine.ServiceProxyExt.Associate(Microsoft.Xrm.Sdk.IOrganizationService,System.String,System.String,System.Guid,System.String,System.Collections.Generic.IList{System.Guid})">
+            <summary>
+            建立实体间数据1:N/N:N关系
+            </summary>
+            <param name="service">          </param>
+            <param name="relationshipName"> </param>
+            <param name="targetEntityName"> </param>
+            <param name="tartgetEntityId">  </param>
+            <param name="relatedEntityName"></param>
+            <param name="relatedEntityIds"> </param>
+        </member>
         <member name="M:lce.mscrm.engine.ServiceProxyExt.Count(Microsoft.Xrm.Sdk.IOrganizationService,System.String)">
             <summary>
             统计数据行

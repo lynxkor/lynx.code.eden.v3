@@ -61,6 +61,26 @@ namespace lce.mscrm.engine
         }
 
         /// <summary>
+        /// 实体间建立数据1:N/N:N关系
+        /// </summary>
+        /// <param name="service">          </param>
+        /// <param name="relationshipName"> </param>
+        /// <param name="targetEntityName"> </param>
+        /// <param name="tartgetEntityId">  </param>
+        /// <param name="relatedEntityName"></param>
+        /// <param name="relatedEntityIds"> </param>
+        public static void Associate(this IOrganizationService service, string relationshipName, string targetEntityName, Guid tartgetEntityId, string relatedEntityName, IList<Guid> relatedEntityIds)
+        {
+            var relatedEntities = new EntityReferenceCollection();
+            foreach (var relatedId in relatedEntityIds)
+            {
+                relatedEntities.Add(new EntityReference(relatedEntityName, relatedId));
+            }
+            var relationship = new Relationship(relationshipName);
+            service.Associate(targetEntityName, tartgetEntityId, relationship, relatedEntities);
+        }
+
+        /// <summary>
         /// 统计数据行
         /// </summary>
         /// <param name="service"> </param>

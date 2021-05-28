@@ -766,6 +766,15 @@
             <param name="filterXml"> </param>
             <returns></returns>
         </member>
+        <member name="M:lce.mscrm.engine.ServiceProxyExt.Count(Microsoft.Xrm.Sdk.IOrganizationService,System.String,Microsoft.Xrm.Sdk.Query.FilterExpression)">
+            <summary>
+            统计数据行
+            </summary>
+            <param name="service">   </param>
+            <param name="entityName"></param>
+            <param name="filters">   </param>
+            <returns></returns>
+        </member>
         <member name="M:lce.mscrm.engine.ServiceProxyExt.Get(Microsoft.Xrm.Sdk.IOrganizationService,System.String,System.Guid,System.Collections.Generic.IList{System.String})">
             <summary>
             根据id查询实体指定字段

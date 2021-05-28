@@ -107,6 +107,37 @@ namespace lce.mscrm.engine
         }
 
         /// <summary>
+        /// 统计数据行
+        /// </summary>
+        /// <param name="service">   </param>
+        /// <param name="entityName"></param>
+        /// <param name="filters">   </param>
+        /// <returns></returns>
+        public static int Count(this IOrganizationService service, string entityName, FilterExpression filters = null)
+        {
+            var query = new QueryExpression
+            {
+                Distinct = false,
+                EntityName = entityName
+            };
+            query.ColumnSet.AddColumn($@"{entityName}id");
+            query.PageInfo = new PagingInfo
+            {
+                Count = 1,
+                PageNumber = 1,
+                ReturnTotalRecordCount = true,
+                PagingCookie = null
+            };
+            if (null != filters) query.Criteria.AddFilter(filters);
+            var result = service.RetrieveMultiple(query);
+            if (null != result)
+            {
+                return result.TotalRecordCount;
+            }
+            return 0;
+        }
+
+        /// <summary>
         /// 根据id查询实体指定字段
         /// </summary>
         /// <param name="service">   </param>

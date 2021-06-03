@@ -145,6 +145,19 @@ namespace lce.mscrm.engine
         /// <param name="id">        </param>
         /// <param name="columns">   </param>
         /// <returns></returns>
+        public static Entity Get(this IOrganizationService service, string entityName, Guid id, string columns)
+        {
+            return service.Get(entityName, id, columns.Split(new[] { ',' }));
+        }
+
+        /// <summary>
+        /// 根据id查询实体指定字段
+        /// </summary>
+        /// <param name="service">   </param>
+        /// <param name="entityName"></param>
+        /// <param name="id">        </param>
+        /// <param name="columns">   </param>
+        /// <returns></returns>
         public static Entity Get(this IOrganizationService service, string entityName, Guid id, IList<string> columns = null)
         {
             return service.Get(entityName, new[] { new ConditionItem($@"{entityName}id", id) }, columns);

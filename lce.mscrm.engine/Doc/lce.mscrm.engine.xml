@@ -134,53 +134,13 @@
             前缀
             </summary>
         </member>
-        <member name="T:lce.mscrm.engine.BaseActivity">
-            <summary>
-            action：BaseActivity
-            </summary>
-        </member>
-        <member name="P:lce.mscrm.engine.BaseActivity.Caller">
-            <summary>
-            用户权限服务
-            </summary>
-        </member>
-        <member name="P:lce.mscrm.engine.BaseActivity.Context">
-            <summary>
-            上下文
-            </summary>
-        </member>
-        <member name="P:lce.mscrm.engine.BaseActivity.Factory">
-            <summary>
-            服务工厂
-            </summary>
-        </member>
-        <member name="P:lce.mscrm.engine.BaseActivity.Service">
-            <summary>
-            管理员权限服务
-            </summary>
-        </member>
-        <member name="P:lce.mscrm.engine.BaseActivity.Tracing">
-            <summary>
-            跟踪服务
-            </summary>
-        </member>
-        <member name="P:lce.mscrm.engine.BaseActivity.UserId">
-            <summary>
-            当前用户
-            </summary>
-        </member>
-        <member name="P:lce.mscrm.engine.BaseActivity.WorkflowContext">
-            <summary>
-            工作流上下文
-            </summary>
-        </member>
         <member name="M:lce.mscrm.engine.BaseActivity.ShowErrorMessage(System.String)">
             <summary>
             工作流回滚，弹出消息。
             </summary>
             <param name="msg">消息类容</param>
         </member>
-        <member name="M:lce.mscrm.engine.BaseActivity.HandleExecute">
+        <member name="M:lce.mscrm.engine.BaseActivity.HandleExecute(Microsoft.Xrm.Sdk.IOrganizationService,Microsoft.Xrm.Sdk.IOrganizationService,Microsoft.Xrm.Sdk.ITracingService,System.Activities.CodeActivityContext,Microsoft.Xrm.Sdk.Workflow.IWorkflowContext)">
             <summary>
             工作流继承 BaseActivity 后实现些方法，进行业务处理
             </summary>
@@ -188,11 +148,69 @@
         <member name="M:lce.mscrm.engine.BaseActivity.Execute(System.Activities.CodeActivityContext)">
             <summary>
             </summary>
-            <param name="context"></param>
+            <param name="context">上下文</param>
+        </member>
+        <member name="F:lce.mscrm.engine.MessageName.Assign">
+            <summary>
+            Assign
+            <para>Changes ownership of a record. Valid for user-owned or team-owned entities.</para>
+            </summary>
+        </member>
+        <member name="F:lce.mscrm.engine.MessageName.Associate">
+            <summary>
+            Creates links between a record and a collection of records where there is a relationship
+            between the entities.
+            </summary>
+        </member>
+        <member name="F:lce.mscrm.engine.MessageName.Create">
+            <summary>
+            Create Target
+            <para>Creates a record of a specific entity type, including custom entities.</para>
+            </summary>
+        </member>
+        <member name="F:lce.mscrm.engine.MessageName.Delete">
+            <summary>
+            Delete Target
+            <para>Deletes a record.</para>
+            </summary>
+        </member>
+        <member name="F:lce.mscrm.engine.MessageName.Disassociate">
+            <summary>
+            Removes links between a record and a collection of records where there is a relationship
+            between the entities.
+            </summary>
+        </member>
+        <member name="F:lce.mscrm.engine.MessageName.Retrieve">
+            <summary>
+            Retrieves a record.
+            </summary>
+        </member>
+        <member name="F:lce.mscrm.engine.MessageName.RetrieveMultiple">
+            <summary>
+            Retrieves a collection of records.
+            </summary>
+        </member>
+        <member name="F:lce.mscrm.engine.MessageName.SetState">
+            <summary>
+            Set the state of a record.
+            </summary>
+        </member>
+        <member name="F:lce.mscrm.engine.MessageName.Share">
+            <summary>
+            Grants, modifies or revokes access to a record to another user or team. Valid for
+            user-owned or team-owned entities.
+            </summary>
+        </member>
+        <member name="F:lce.mscrm.engine.MessageName.Update">
+            <summary>
+            Update Target
+            <para>Modifies the contents of a record.</para>
+            </summary>
         </member>
         <member name="T:lce.mscrm.engine.BasePlugin">
             <summary>
             action：BasePlugin
+            <para>UserId = _context.UserId</para>
             </summary>
         </member>
         <member name="M:lce.mscrm.engine.BasePlugin.GetService``1(System.IServiceProvider)">
@@ -201,40 +219,6 @@
             <typeparam name="T"></typeparam>
             <param name="serviceProvider"></param>
             <returns></returns>
-        </member>
-        <member name="P:lce.mscrm.engine.BasePlugin.Caller">
-            <summary>
-            用户权限服务
-            </summary>
-        </member>
-        <member name="P:lce.mscrm.engine.BasePlugin.Context">
-            <summary>
-            上下文
-            </summary>
-        </member>
-        <member name="P:lce.mscrm.engine.BasePlugin.Factory">
-            <summary>
-            服务工厂
-            </summary>
-        </member>
-        <member name="P:lce.mscrm.engine.BasePlugin.Service">
-            <summary>
-            管理员权限服务
-            </summary>
-        </member>
-        <member name="P:lce.mscrm.engine.BasePlugin.ServiceProvider">
-            <summary>
-            </summary>
-        </member>
-        <member name="P:lce.mscrm.engine.BasePlugin.Tracing">
-            <summary>
-            跟踪服务
-            </summary>
-        </member>
-        <member name="P:lce.mscrm.engine.BasePlugin.UserId">
-            <summary>
-            当前用户
-            </summary>
         </member>
         <member name="P:lce.mscrm.engine.BasePlugin.PostImage">
             <summary>
@@ -247,6 +231,11 @@
             </summary>
         </member>
         <member name="P:lce.mscrm.engine.BasePlugin.Target">
+            <summary>
+            当前实例
+            </summary>
+        </member>
+        <member name="P:lce.mscrm.engine.BasePlugin.TargetReference">
             <summary>
             当前实例
             </summary>
@@ -272,12 +261,12 @@
             </summary>
             <param name="msg">消息类容</param>
         </member>
-        <member name="M:lce.mscrm.engine.BasePlugin.EqualActionOrMessage(System.Int32,System.String)">
+        <member name="M:lce.mscrm.engine.BasePlugin.EqualActionOrMessage(System.Int32,lce.mscrm.engine.MessageName)">
             <summary>
             实体状态比较
             </summary>
             <param name="state"> pre:20;post:40</param>
-            <param name="action">create,update,delete,Retrieve，RetrieveMultiple,Assign,share</param>
+            <param name="action">create,update,delete</param>
             <returns></returns>
         </member>
         <member name="M:lce.mscrm.engine.BasePlugin.Execute(System.IServiceProvider)">
@@ -285,7 +274,7 @@
             </summary>
             <param name="serviceProvider"></param>
         </member>
-        <member name="M:lce.mscrm.engine.BasePlugin.HandleExecute">
+        <member name="M:lce.mscrm.engine.BasePlugin.HandleExecute(Microsoft.Xrm.Sdk.IOrganizationService,Microsoft.Xrm.Sdk.IOrganizationService,Microsoft.Xrm.Sdk.ITracingService,Microsoft.Xrm.Sdk.IPluginExecutionContext)">
             <summary>
             插件继承BasePlugin后实现些方法，进行业务处理
             </summary>
@@ -773,6 +762,16 @@
             <param name="service">   </param>
             <param name="entityName"></param>
             <param name="filters">   </param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.mscrm.engine.ServiceProxyExt.Get(Microsoft.Xrm.Sdk.IOrganizationService,System.String,System.Guid,System.String)">
+            <summary>
+            根据id查询实体指定字段
+            </summary>
+            <param name="service">   </param>
+            <param name="entityName"></param>
+            <param name="id">        </param>
+            <param name="columns">   </param>
             <returns></returns>
         </member>
         <member name="M:lce.mscrm.engine.ServiceProxyExt.Get(Microsoft.Xrm.Sdk.IOrganizationService,System.String,System.Guid,System.Collections.Generic.IList{System.String})">

@@ -14,19 +14,86 @@ using Microsoft.Xrm.Sdk;
 
 namespace lce.mscrm.engine
 {
+    #region === MessageName ===
+
+    public enum MessageName
+    {
+        /// <summary>
+        /// Assign
+        /// <para>Changes ownership of a record. Valid for user-owned or team-owned entities.</para>
+        /// </summary>
+        Assign,
+
+        /// <summary>
+        /// Creates links between a record and a collection of records where there is a relationship
+        /// between the entities.
+        /// </summary>
+        Associate,
+
+        /// <summary>
+        /// Create Target
+        /// <para>Creates a record of a specific entity type, including custom entities.</para>
+        /// </summary>
+        Create,
+
+        /// <summary>
+        /// Delete Target
+        /// <para>Deletes a record.</para>
+        /// </summary>
+        Delete,
+
+        /// <summary>
+        /// Removes links between a record and a collection of records where there is a relationship
+        /// between the entities.
+        /// </summary>
+        Disassociate,
+
+        GrantAccess,
+        ModifyAccess,
+
+        /// <summary>
+        /// Retrieves a record.
+        /// </summary>
+        Retrieve,
+
+        /// <summary>
+        /// Retrieves a collection of records.
+        /// </summary>
+        RetrieveMultiple,
+
+        RetrievePrincipalAccess,
+        RetrieveSharedPrincipalsAndAccess,
+        RevokeAccess,
+
+        /// <summary>
+        /// Set the state of a record.
+        /// </summary>
+        SetState,
+
+        /// <summary>
+        /// Grants, modifies or revokes access to a record to another user or team. Valid for
+        /// user-owned or team-owned entities.
+        /// </summary>
+        Share,
+
+        /// <summary>
+        /// Update Target
+        /// <para>Modifies the contents of a record.</para>
+        /// </summary>
+        Update,
+    }
+
+    #endregion === MessageName ===
+
     /// <summary>
     /// action：BasePlugin
+    /// <para>UserId = _context.UserId</para>
     /// </summary>
     public abstract class BasePlugin : IPlugin
     {
         #region === 私有变量/方法 ===
 
-        private IOrganizationService _caller;
         private IPluginExecutionContext _context;
-        private IOrganizationServiceFactory _factory;
-        private IOrganizationService _service;
-        private IServiceProvider _serviceProvider;
-        private ITracingService _tracing;
 
         /// <summary>
         /// </summary>
@@ -40,108 +107,25 @@ namespace lce.mscrm.engine
 
         #endregion === 私有变量/方法 ===
 
-        #region === 插件 属性访问器 ===
-
-        /// <summary>
-        /// 用户权限服务
-        /// </summary>
-        public IOrganizationService Caller
-        {
-            get
-            {
-                if (null == _caller)
-                {
-                    _caller = Factory.CreateOrganizationService(this.UserId);
-                }
-                return _caller;
-            }
-        }
-
-        /// <summary>
-        /// 上下文
-        /// </summary>
-        public IPluginExecutionContext Context
-        {
-            get
-            {
-                if (null == _context)
-                {
-                    _context = GetService<IPluginExecutionContext>(ServiceProvider);
-                }
-                return _context;
-            }
-        }
-
-        /// <summary>
-        /// 服务工厂
-        /// </summary>
-        public IOrganizationServiceFactory Factory
-        {
-            get
-            {
-                if (null == _factory)
-                {
-                    _factory = GetService<IOrganizationServiceFactory>(ServiceProvider);
-                }
-                return _factory;
-            }
-        }
-
-        /// <summary>
-        /// 管理员权限服务
-        /// </summary>
-        public IOrganizationService Service
-        {
-            get
-            {
-                if (null == _service)
-                {
-                    _service = Factory.CreateOrganizationService(null);
-                }
-                return _service;
-            }
-        }
-
-        /// <summary>
-        /// </summary>
-        public IServiceProvider ServiceProvider { get { return _serviceProvider; } }
-
-        /// <summary>
-        /// 跟踪服务
-        /// </summary>
-        public ITracingService Tracing
-        {
-            get
-            {
-                if (null == _tracing)
-                {
-                    _tracing = GetService<ITracingService>(ServiceProvider);
-                }
-                return _tracing;
-            }
-        }
-
-        /// <summary>
-        /// 当前用户
-        /// </summary>
-        public Guid UserId { get { return this.Context.UserId; } }
-
-        #endregion === 插件 属性访问器 ===
-
         /// <summary>
         /// 修改后
         /// </summary>
-        public Entity PostImage { get; set; }
+        protected Entity PostImage { get; set; }
 
         /// <summary>
         /// 修改前
         /// </summary>
-        public Entity PreImage { get; set; }
+        protected Entity PreImage { get; set; }
 
         /// <summary>
         /// 当前实例
         /// </summary>
-        public Entity Target { get; set; }
+        protected Entity Target { get; set; }
+
+        /// <summary>
+        /// 当前实例
+        /// </summary>
+        protected EntityReference TargetReference { get; set; }
 
         /// <summary>
         /// check the attribute in entity is null.
@@ -177,12 +161,11 @@ namespace lce.mscrm.engine
         /// 实体状态比较
         /// </summary>
         /// <param name="state"> pre:20;post:40</param>
-        /// <param name="action">create,update,delete,Retrieve，RetrieveMultiple,Assign,share</param>
+        /// <param name="action">create,update,delete</param>
         /// <returns></returns>
-        public bool EqualActionOrMessage(int state, string action)
+        public bool EqualActionOrMessage(int state, MessageName action)
         {
-            Tracing.Trace("Equal Action ShowMessage");
-            return Context.Stage == state && !string.IsNullOrEmpty(action) && Context.MessageName.ToLower().Equals(action.ToLower());
+            return _context.Stage == state && _context.MessageName.ToLower().Equals(action.ToString().ToLower());
         }
 
         /// <summary>
@@ -190,18 +173,33 @@ namespace lce.mscrm.engine
         /// <param name="serviceProvider"></param>
         public void Execute(IServiceProvider serviceProvider)
         {
-            _serviceProvider = serviceProvider;
+            _context = GetService<IPluginExecutionContext>(serviceProvider);            //上下文
+            var _tracing = GetService<ITracingService>(serviceProvider);                //跟踪服务
+            var _factory = GetService<IOrganizationServiceFactory>(serviceProvider);    //服务工厂
+            var _caller = _factory.CreateOrganizationService(_context.UserId);          //用户权限服务
+            var _service = _factory.CreateOrganizationService(null);                    //管理员权限服务
 
             try
             {
-                if (Context.InputParameters.Contains("Target") && Context.InputParameters["Target"] is Entity)
-                    Target = (Entity)Context.InputParameters["Target"];
-                if (Context.PreEntityImages.Contains("PreImage") && Context.PreEntityImages["PreImage"] is Entity)
-                    PreImage = (Entity)Context.PreEntityImages["PreImage"];
-                if (Context.PreEntityImages.Contains("PostImage") && Context.PreEntityImages["PostImage"] is Entity)
-                    PreImage = (Entity)Context.PreEntityImages["PostImage"];
+                if (_context.InputParameters.Contains("Target") && _context.InputParameters["Target"] is EntityReference)
+                {
+                    TargetReference = (EntityReference)_context.InputParameters["Target"];
+                }
+
+                if (_context.InputParameters.Contains("Target") && _context.InputParameters["Target"] is Entity)
+                {
+                    Target = (Entity)_context.InputParameters["Target"];
+                    TargetReference = Target.ToEntityReference();
+                }
+
+                if (_context.PreEntityImages.Contains("PreImage") && _context.PreEntityImages["PreImage"] is Entity)
+                    PreImage = _context.PreEntityImages["PreImage"];
+
+                if (_context.PostEntityImages.Contains("PostImage") && _context.PostEntityImages["PostImage"] is Entity)
+                    PostImage = _context.PostEntityImages["PostImage"];
+
                 // do same logic
-                HandleExecute();
+                HandleExecute(_service, _caller, _tracing, _context);
             }
             catch (InvalidPluginExecutionException ex)
             {
@@ -209,21 +207,21 @@ namespace lce.mscrm.engine
             }
             catch (FaultException<OrganizationServiceFault> ex)
             {
+                _tracing.Trace($"插件业务错误：{ex.Message}", ex.StackTrace);
+                LogExt.e(ex.Message, ex);
                 throw new InvalidPluginExecutionException($"插件业务错误：{ex.Message}");
             }
-#pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception ex)
             {
-                Tracing.Trace($"系统内部错误：{ex.Message}", ex.StackTrace);
+                _tracing.Trace($"系统内部错误：{ex.Message}", ex.StackTrace);
                 LogExt.e(ex.Message, ex);
                 ShowErrorMessage($"系统内部错误：{ex.Message}");
             }
-#pragma warning restore CA1031 // Do not catch general exception types
         }
 
         /// <summary>
         /// 插件继承BasePlugin后实现些方法，进行业务处理
         /// </summary>
-        public abstract void HandleExecute();
+        public abstract void HandleExecute(IOrganizationService service, IOrganizationService caller, ITracingService tracing, IPluginExecutionContext context);
     }
 }

@@ -60,6 +60,18 @@
             <param name="value"></param>
             <returns></returns>
         </member>
+        <member name="T:lce.provider.ChineseSpellExt">
+            <summary>
+            action：ChineseSpellExt
+            </summary>
+        </member>
+        <member name="M:lce.provider.ChineseSpellExt.ToChsSpell(System.String)">
+            <summary>
+            获取汉字首字母（可包含多个汉字）
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
         <member name="T:lce.provider.ConfigExt">
             <summary>
             action：ConfigExt

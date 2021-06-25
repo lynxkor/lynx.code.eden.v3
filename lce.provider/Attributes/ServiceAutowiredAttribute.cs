@@ -26,6 +26,8 @@ namespace lce.provider.Attributes
     {
         /// <summary>
         /// 服务自动装载
+        /// <para>变量需要有 [ServiceAutowired] 标签</para>
+        /// <para>变量需要以“_”开头命名</para>
         /// </summary>
         /// <param name="service"> </param>
         /// <param name="provider"></param>

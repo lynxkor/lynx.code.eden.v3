@@ -17,6 +17,8 @@
         <member name="M:lce.provider.Attributes.ServiceAutowiredProvider.PropertyActivate(System.Object,System.IServiceProvider)">
             <summary>
             服务自动装载
+            <para>变量需要有 [ServiceAutowired] 标签</para>
+            <para>变量需要以“_”开头命名</para>
             </summary>
             <param name="service"> </param>
             <param name="provider"></param>
@@ -900,6 +902,19 @@
             <summary>
             总数
             </summary>
+        </member>
+        <member name="T:lce.provider.ServicesExt">
+            <summary>
+            action：ServicesExt
+            </summary>
+        </member>
+        <member name="M:lce.provider.ServicesExt.RegisterServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)">
+            <summary>
+            服务注册器
+            <para>服务需要有 [ServiceProvider] 标签</para>
+            </summary>
+            <param name="services">     </param>
+            <param name="rootnamespace">服务所在命名空间</param>
         </member>
         <member name="T:lce.provider.SmsExt">
             <summary>

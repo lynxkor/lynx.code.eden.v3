@@ -14,6 +14,7 @@ using lce.mscrm.engine.Attributes;
 using lce.provider;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Metadata;
+using Newtonsoft.Json.Linq;
 
 namespace lce.mscrm.engine
 {
@@ -31,17 +32,6 @@ namespace lce.mscrm.engine
         public static bool IsNotNull(this Entity entity, string attribute)
         {
             return null != entity && entity.Contains(attribute) && IsNotNull(entity[attribute]);
-        }   
-        
-        /// <summary>
-        /// 判断实体的某个字段是否为空
-        /// </summary>
-        /// <param name="entity"></param>
-        /// <param name="name">  </param>
-        /// <returns></returns>
-        public static bool IsNullOrEmpty(this Entity entity, string name)
-        {
-            return !entity.IsNotNull(name) || string.IsNullOrEmpty(entity.Attributes[name].ToString());
         }
 
         /// <summary>
@@ -52,6 +42,17 @@ namespace lce.mscrm.engine
         public static bool IsNotNull(object obj)
         {
             return null != obj && DBNull.Value != obj && !string.IsNullOrEmpty(obj.ToString());
+        }
+
+        /// <summary>
+        /// 判断实体的某个字段是否为空
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="name">  </param>
+        /// <returns></returns>
+        public static bool IsNullOrEmpty(this Entity entity, string name)
+        {
+            return !entity.IsNotNull(name) || string.IsNullOrEmpty(entity.Attributes[name].ToString());
         }
 
         /// <summary>
@@ -120,6 +121,81 @@ namespace lce.mscrm.engine
 
                                 case EntityDataType.Money:
                                     entity[column.Name] = new Money(decimal.Parse(value.ToString()));
+                                    break;
+                            }
+                        }
+                    }
+                }
+            }
+            return entity;
+        }
+
+        public static JObject TOJsonEntity<T>(this T model)
+        {
+            if (null == model) return null;
+            var type = model.GetType();
+            var entityName = (EntityNameAttribute)Attribute.GetCustomAttributes(type, typeof(EntityNameAttribute), true).FirstOrDefault();
+            if (null == entityName) return null;
+
+            var entity = new JObject();
+
+            var fields = type.GetProperties();
+            foreach (var f in fields)
+            {
+                var column = f.GetCustomAttribute<EntityColumnAttribute>();
+                if (null != column)
+                {
+                    var value = f.GetValue(model, null);
+                    if (null != value && !string.IsNullOrEmpty(value.ToString()))
+                    {
+                        if (column.Name == "id")
+                        {
+                            entity.Add($"{entityName}id", value.ToString());
+                        }
+                        else
+                        {
+                            switch (column.DataType)
+                            {
+                                case EntityDataType.Guid:
+                                case EntityDataType.String:
+                                    entity.Add(column.Name, value.ToString());
+                                    break;
+
+                                case EntityDataType.Int:
+                                    entity.Add(column.Name, value.ToInt32());
+                                    break;
+
+                                case EntityDataType.Decimal:
+                                    entity.Add(column.Name, value.ToDecimal());
+                                    break;
+
+                                case EntityDataType.Double:
+                                    entity.Add(column.Name, value.ToDouble());
+                                    break;
+
+                                case EntityDataType.Bool:
+                                    var tp = value.GetType();
+                                    if (tp.Equals(typeof(int)))
+                                        entity.Add(column.Name, value.ToInt32() != 0);
+                                    else
+                                        entity.Add(column.Name, (bool)value);
+                                    break;
+
+                                case EntityDataType.DateTime:
+                                    entity.Add(column.Name, value.ToUTC());
+                                    break;
+
+                                case EntityDataType.OptionSetValue:
+                                    entity.Add(column.Name, value.ToInt32());
+                                    break;
+
+                                case EntityDataType.EntityReference:
+                                    if (string.IsNullOrEmpty(value.ToString())) break;
+                                    entity.Add($"{column.Name}@odata.bind", $"/{column.LookUp}({value})");
+                                    break;
+
+                                case EntityDataType.Money:
+                                    entity.Add(column.Name, decimal.Parse(value.ToString()));
                                     break;
                             }
                         }

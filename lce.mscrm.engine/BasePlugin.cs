@@ -16,6 +16,9 @@ namespace lce.mscrm.engine
 {
     #region === MessageName ===
 
+    /// <summary>
+    /// Plugin MessageName
+    /// </summary>
     public enum MessageName
     {
         /// <summary>
@@ -48,7 +51,12 @@ namespace lce.mscrm.engine
         /// </summary>
         Disassociate,
 
+        /// <summary>
+        /// </summary>
         GrantAccess,
+
+        /// <summary>
+        /// </summary>
         ModifyAccess,
 
         /// <summary>
@@ -61,8 +69,16 @@ namespace lce.mscrm.engine
         /// </summary>
         RetrieveMultiple,
 
+        /// <summary>
+        /// </summary>
         RetrievePrincipalAccess,
+
+        /// <summary>
+        /// </summary>
         RetrieveSharedPrincipalsAndAccess,
+
+        /// <summary>
+        /// </summary>
         RevokeAccess,
 
         /// <summary>
@@ -181,14 +197,14 @@ namespace lce.mscrm.engine
 
             try
             {
-                if (_context.InputParameters.Contains("Target") && _context.InputParameters["Target"] is EntityReference)
+                if (_context.InputParameters.Contains("Target") && _context.InputParameters["Target"] is EntityReference reference)
                 {
-                    TargetReference = (EntityReference)_context.InputParameters["Target"];
+                    TargetReference = reference;
                 }
 
-                if (_context.InputParameters.Contains("Target") && _context.InputParameters["Target"] is Entity)
+                if (_context.InputParameters.Contains("Target") && _context.InputParameters["Target"] is Entity entity)
                 {
-                    Target = (Entity)_context.InputParameters["Target"];
+                    Target = entity;
                     TargetReference = Target.ToEntityReference();
                 }
 

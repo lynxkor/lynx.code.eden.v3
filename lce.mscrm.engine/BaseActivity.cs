@@ -16,6 +16,9 @@ using Microsoft.Xrm.Sdk.Workflow;
 
 namespace lce.mscrm.engine
 {
+    /// <summary>
+    /// BaseActivity
+    /// </summary>
     public abstract class BaseActivity : CodeActivity
     {
         /// <summary>
@@ -58,14 +61,12 @@ namespace lce.mscrm.engine
                 LogExt.e(ex.Message, ex);
                 ShowErrorMessage($"业务错误：{ex.Message}");
             }
-#pragma warning disable CA1031 // Do not catch general exception types
             catch (Exception ex)
             {
                 tracing.Trace($"系统内部错误：{ex.Message}", ex.StackTrace);
                 LogExt.e(ex.Message, ex);
                 ShowErrorMessage($"系统内部错误：{ex.Message}");
             }
-#pragma warning restore CA1031 // Do not catch general exception types
         }
     }
 }

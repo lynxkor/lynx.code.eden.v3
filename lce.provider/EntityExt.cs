@@ -21,6 +21,39 @@ namespace lce.provider
     public static class EntityExt
     {
         /// <summary>
+        /// Compare modified.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source"> </param>
+        /// <param name="target"> </param>
+        /// <param name="exclude"></param>
+        /// <returns></returns>
+        public static Dictionary<string, object> Compare<T>(this T source, T target, IEnumerable<string> exclude = null) where T : class
+        {
+            var type = target.GetType();
+            var keyValues1 = new Dictionary<string, object>();
+            var keyValues2 = new Dictionary<string, object>();
+            var properties = source.GetType().GetProperties();
+            foreach (var p in properties)
+            {
+                if (null != exclude && exclude.Contains(p.Name)) continue;
+                var value1 = p.GetValue(source, null);
+                var value2 = type.GetProperty(p.Name)?.GetValue(target, null);
+                if (value1 != value2)
+                {
+                    var attr = p.GetCustomAttribute<JsonPropertyAttribute>()?.PropertyName;
+                    attr = string.IsNullOrEmpty(attr) ? p.Name : attr;
+                    keyValues1.Add(attr, value1);
+                    keyValues2.Add(attr, value2);
+                }
+            }
+            return new Dictionary<string, object> {
+                { "source", keyValues1 },
+                { "target", keyValues2 }
+            };
+        }
+
+        /// <summary>
         /// Mapping T to R.
         /// </summary>
         /// <typeparam name="T">source type</typeparam>
@@ -29,7 +62,7 @@ namespace lce.provider
         /// <returns>target</returns>
         public static R Mapping<T, R>(this T source) where R : class where T : class
         {
-            if (null == source) return default(R);
+            if (null == source) return default;
             R result = Activator.CreateInstance<R>();
             return source.Mapping(result);
         }
@@ -66,39 +99,6 @@ namespace lce.provider
         public static IEnumerable<R> Mapping<T, R>(this IEnumerable<T> source) where T : class where R : class
         {
             return source.Select(x => x.Mapping<T, R>());
-        }
-
-        /// <summary>
-        /// Compare modified.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="source"> </param>
-        /// <param name="target"> </param>
-        /// <param name="exclude"></param>
-        /// <returns></returns>
-        public static Dictionary<string, object> Compare<T>(this T source, T target, IEnumerable<string> exclude = null) where T : class
-        {
-            var type = target.GetType();
-            var keyValues1 = new Dictionary<string, object>();
-            var keyValues2 = new Dictionary<string, object>();
-            var properties = source.GetType().GetProperties();
-            foreach (var p in properties)
-            {
-                if (null != exclude && exclude.Contains(p.Name)) continue;
-                var value1 = p.GetValue(source, null);
-                var value2 = type.GetProperty(p.Name)?.GetValue(target, null);
-                if (value1 != value2)
-                {
-                    var attr = p.GetCustomAttribute<JsonPropertyAttribute>()?.PropertyName;
-                    attr = string.IsNullOrEmpty(attr) ? p.Name : attr;
-                    keyValues1.Add(attr, value1);
-                    keyValues2.Add(attr, value2);
-                }
-            }
-            return new Dictionary<string, object> {
-                { "source", keyValues1 },
-                { "target", keyValues2 }
-            };
         }
     }
 }

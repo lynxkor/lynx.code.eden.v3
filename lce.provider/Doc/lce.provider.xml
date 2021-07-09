@@ -359,6 +359,16 @@
             Entity Ext
             </summary>
         </member>
+        <member name="M:lce.provider.EntityExt.Compare``1(``0,``0,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Compare modified.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="source"> </param>
+            <param name="target"> </param>
+            <param name="exclude"></param>
+            <returns></returns>
+        </member>
         <member name="M:lce.provider.EntityExt.Mapping``2(``0)">
             <summary>
             Mapping T to R.
@@ -386,16 +396,6 @@
             <typeparam name="R">target type</typeparam>
             <param name="source">source list</param>
             <returns>target list</returns>
-        </member>
-        <member name="M:lce.provider.EntityExt.Compare``1(``0,``0,System.Collections.Generic.IEnumerable{System.String})">
-            <summary>
-            Compare modified.
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="source"> </param>
-            <param name="target"> </param>
-            <param name="exclude"></param>
-            <returns></returns>
         </member>
         <member name="T:lce.provider.EnumExt">
             <summary>

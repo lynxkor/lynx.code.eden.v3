@@ -68,7 +68,10 @@ namespace lce.mscrm.engine
         {
             if (null == model) return null;
             var type = model.GetType();
-            var entityName = (EntityNameAttribute)Attribute.GetCustomAttributes(type, typeof(EntityNameAttribute), true).FirstOrDefault();
+
+            var entityName = type.GetCustomAttribute<EntityNameAttribute>();
+            // var entityName = (EntityNameAttribute)Attribute.GetCustomAttributes(type,
+            // typeof(EntityNameAttribute), true).FirstOrDefault();
             if (null == entityName) return null;
 
             var entity = new Entity($"{entityName.Prefix}{entityName.Name}");
@@ -130,11 +133,20 @@ namespace lce.mscrm.engine
             return entity;
         }
 
-        public static JObject TOJsonEntity<T>(this T model)
+        /// <summary>
+        /// model to json entity for dynamics web api
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public static JObject ToJsonEntity<T>(this T model)
         {
             if (null == model) return null;
             var type = model.GetType();
-            var entityName = (EntityNameAttribute)Attribute.GetCustomAttributes(type, typeof(EntityNameAttribute), true).FirstOrDefault();
+
+            var entityName = type.GetCustomAttribute<EntityNameAttribute>();
+            // var entityName = (EntityNameAttribute)Attribute.GetCustomAttributes(type,
+            // typeof(EntityNameAttribute), true).FirstOrDefault();
             if (null == entityName) return null;
 
             var entity = new JObject();

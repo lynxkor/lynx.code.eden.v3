@@ -8,6 +8,7 @@
 */
 
 using System.Text;
+using NPinyin;
 
 namespace lce.provider
 {
@@ -23,40 +24,13 @@ namespace lce.provider
         /// <returns></returns>
         public static string ToChsSpell(this string input)
         {
-            input = input.Replace("行", "H");
-            input = input.Replace("圳", "Z");
-            input = input.Replace("莞", "G");
-            int len = input.Length;
-            string myStr = "";
-            for (int i = 0; i < len; i++)
-            {
-                myStr += ToSpell(input.Substring(i, 1));
-            }
-            return myStr;
-        }
-
-        private static string ToSpell(string cnChar)
-        {
-            byte[] arrCN = Encoding.Default.GetBytes(cnChar);
-            if (arrCN.Length > 1)
-            {
-                int area = (short)arrCN[0];
-                int pos = (short)arrCN[1];
-                int code = (area << 8) + pos;
-                int[] areacode = { 45217, 45253, 45761, 46318, 46826, 47010, 47297, 47614, 48119, 48119, 49062, 49324, 49896, 50371, 50614, 50622, 50906, 51387, 51446, 52218, 52698, 52698, 52698, 52980, 53689, 54481 };
-                for (int i = 0; i < 26; i++)
-                {
-                    int max = 55290;
-                    if (i != 25) max = areacode[i + 1];
-                    if (areacode[i] <= code && code < max)
-                    {
-                        return Encoding.Default.GetString(new byte[] { (byte)(65 + i) });
-                    }
-                }
-                return "N";
-            }
-            else
-                return cnChar;
+            Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);//注册编码对象
+            Encoding gb2312 = Encoding.GetEncoding("GB2312");
+            string strA = Pinyin.ConvertEncoding(input, Encoding.UTF8, gb2312);
+            //首字母
+            return Pinyin.GetInitials(strA, gb2312);
+            //拼音
+            //string strC = Pinyin.GetPinyin(str);
         }
     }
 }

@@ -59,7 +59,6 @@ namespace lce.mscrm.engine
             if (content == null) return null;
 
             HttpContent clone;
-
             switch (content)
             {
                 case StringContent sc:
@@ -111,8 +110,8 @@ namespace lce.mscrm.engine
                         }
                     }
 
-                    HttpResponseMessage response = await SendAsync(client, message);
-                    response.Dispose();
+                    using (HttpResponseMessage response = await SendAsync(client, message))
+                        response.Dispose();
                 }
             }
             catch (Exception)
@@ -186,8 +185,8 @@ namespace lce.mscrm.engine
                         {
                             return JToken.Parse(await response.Content.ReadAsStringAsync());
                         }
-                        return null;
                     }
+                    return null;
                 }
             }
             catch (Exception)
@@ -198,42 +197,40 @@ namespace lce.mscrm.engine
 
         /// <summary>
         /// </summary>
-        /// <param name="url">     </param>
-        /// <param name="username"></param>
-        /// <param name="password"></param>
-        /// <param name="domain">  </param>
-        /// <param name="callerId"></param>
-        /// <param name="clientId"></param>
-        /// <param name="version"> </param>
+        /// <param name="url">      </param>
+        /// <param name="username"> </param>
+        /// <param name="password"> </param>
+        /// <param name="authority"></param>
+        /// <param name="callerId"> </param>
+        /// <param name="clientId"> </param>
+        /// <param name="version">  </param>
         /// <returns></returns>
-        public static HttpClient GetClient(string url, string username, string password, string domain, string clientId = "c7ea0955-0fcc-4a43-9d80-4093496f45e1", string callerId = "", string version = "8.2")
+        public static HttpClient GetClient(string url, string username, string password
+            , string authority, string clientId = "c7ea0955-0fcc-4a43-9d80-4093496f45e1"
+            , string callerId = "", string version = "8.2")
         {
-            //var userCredential = new UserCredential(username, password);
-            //var authParameters = AuthenticationParameters.CreateFromResourceUrlAsync(new Uri(webApiUrl)).Result;
-            //var authContext = new AuthenticationContext(authParameters.Authority, false);
-            //var authResult = authContext.AcquireToken(url, clientId, userCredential);
-            //var authHeader = new AuthenticationHeaderValue("Bearer", authResult.AccessToken);
-
-            HttpMessageHandler messageHandler;
-            NetworkCredential credentials = new NetworkCredential(username, password, domain);
-            messageHandler = new HttpClientHandler() { Credentials = credentials };
+            HttpMessageHandler messageHandler = new OAuthMessageHandler(
+                 new HttpClientHandler() { UseCookies = false }
+                 , url, username, password, authority, clientId
+                 );
 
             var webApiUrl = $"{url.TrimEnd('/')}/api/data/v{version}/";
 
-            var client = new HttpClient(messageHandler)
+            var httpClient = new HttpClient(messageHandler)
             {
-                BaseAddress = new Uri(webApiUrl),
-                Timeout = new TimeSpan(0, 2, 0)
+                BaseAddress = new Uri(webApiUrl)
             };
-            //client.DefaultRequestHeaders.Authorization = authHeader;
-            client.DefaultRequestHeaders.Add("OData-MaxVersion", "4.0");
-            client.DefaultRequestHeaders.Add("OData-Version", "4.0");
-            client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            httpClient.Timeout = new TimeSpan(0, 2, 0);
+            httpClient.DefaultRequestHeaders.Add("OData-MaxVersion", "4.0");
+            httpClient.DefaultRequestHeaders.Add("OData-Version", "4.0");
+            httpClient.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
             if (!string.IsNullOrEmpty(callerId))
             {
-                client.DefaultRequestHeaders.Add("CallerObjectId", callerId);
+                httpClient.DefaultRequestHeaders.Add("CallerObjectId", callerId);
             }
-            return client;
+            return httpClient;
         }
 
         /// <summary>
@@ -246,6 +243,32 @@ namespace lce.mscrm.engine
         public static void Patch(this HttpClient client, Uri uri, object body, Dictionary<string, List<string>> headers = null)
         {
             client.PatchAsync(uri, body, headers).GetAwaiter().GetResult();
+        }
+
+        /// <summary>
+        /// Sends a PATCH request to update a resource.
+        /// </summary>
+        /// <param name="client"> </param>
+        /// <param name="uri">    </param>
+        /// <param name="body">   </param>
+        /// <param name="headers"></param>
+        public static void Patch(this HttpClient client, string url, object body, Dictionary<string, List<string>> headers = null)
+        {
+            client.PatchAsync(url, body, headers).GetAwaiter().GetResult();
+        }
+
+        /// <summary>
+        /// Sends a PATCH request to update a resource asynchronously
+        /// </summary>
+        /// <param name="client"> </param>
+        /// <param name="url">    </param>
+        /// <param name="body">   </param>
+        /// <param name="headers"></param>
+        /// <returns></returns>
+        public static async Task PatchAsync(this HttpClient client, string url, object body, Dictionary<string, List<string>> headers = null)
+        {
+            var path = $"{client.BaseAddress.AbsoluteUri.TrimEnd('/')}/{url.TrimEnd('/')}"; // client.BaseAddress
+            await client.PatchAsync(new Uri(path), body, headers);
         }
 
         /// <summary>
@@ -272,9 +295,7 @@ namespace lce.mscrm.engine
                         }
                     }
                     using (HttpResponseMessage response = await SendAsync(client, message))
-                    {
                         response.Dispose();
-                    }
                 }
             }
             catch (Exception ex)
@@ -371,9 +392,7 @@ namespace lce.mscrm.engine
                     message.Content = new StringContent(JObject.FromObject(body).ToString());
                     message.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
                     using (HttpResponseMessage response = await SendAsync(client, message))
-                    {
                         return new Uri(response.Headers.GetValues("OData-EntityId").FirstOrDefault());
-                    }
                 }
             }
             catch (Exception ex)
@@ -398,32 +417,11 @@ namespace lce.mscrm.engine
             return client.PostGetAsync<T>(path, body, headers).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Sents a POST to create an entity and retrieves the created entity.
-        /// </summary>
-        /// <param name="client"> </param>
-        /// <param name="path">   
-        /// The path to the entityset and any query string parameters to specify the properties to return.
-        /// </param>
-        /// <param name="body">   The payload to send to create the entity record.</param>
-        /// <param name="headers">Any headers to control optional behaviors.</param>
-        /// <returns>An object containing data for the created entity.</returns>
         public static JObject PostGet(this HttpClient client, string path, object body, Dictionary<string, List<string>> headers = null)
         {
             return client.PostGetAsync(path, body, headers).GetAwaiter().GetResult();
         }
 
-        /// <summary>
-        /// Sents a POST to create a typed entity and retrieves the created entity asynchronously.
-        /// </summary>
-        /// <typeparam name="T">The type of entity to create and retrieve.</typeparam>
-        /// <param name="client"> </param>
-        /// <param name="path">   
-        /// The path to the entityset and any query string parameters to specify the properties to return.
-        /// </param>
-        /// <param name="body">   The payload to send to create the entity record.</param>
-        /// <param name="headers">Any headers to control optional behaviors.</param>
-        /// <returns>The typed entity record created.</returns>
         public static async Task<T> PostGetAsync<T>(this HttpClient client, string path, object body, Dictionary<string, List<string>> headers = null)
         {
             return (await client.PostGetAsync(path, body, headers)).ToObject<T>();
@@ -491,8 +489,8 @@ namespace lce.mscrm.engine
                     };
                     message.Content = new StringContent(body.ToString());
                     message.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
-                    HttpResponseMessage response = await SendAsync(client, message);
-                    response.Dispose();
+                    using (HttpResponseMessage response = await SendAsync(client, message))
+                        response.Dispose();
                 }
             }
             catch (Exception)
@@ -522,8 +520,8 @@ namespace lce.mscrm.engine
 
                     message.Content = new StringContent(metadataItem.ToString());
                     message.Content.Headers.ContentType = MediaTypeHeaderValue.Parse("application/json");
-                    HttpResponseMessage response = await SendAsync(client, message);
-                    response.Dispose();
+                    using (HttpResponseMessage response = await SendAsync(client, message))
+                        response.Dispose();
                 }
             }
             catch (Exception)
@@ -582,7 +580,7 @@ namespace lce.mscrm.engine
             try
             {
                 //The request is cloned so it can be sent again.
-                response = await SendAsync(client, request.Clone(), httpCompletionOption);
+                response = await client.SendAsync(request.Clone(), httpCompletionOption);
             }
             catch (Exception)
             {
@@ -623,6 +621,56 @@ namespace lce.mscrm.engine
             else
             {
                 return response;
+            }
+        }
+
+        public class OAuthMessageHandler : DelegatingHandler
+        {
+            private readonly AuthenticationContext _authContext;
+            private readonly string _clientId;
+            private readonly UserCredential _credential = null;
+            private readonly string _redirectUrl;
+            private readonly string _url;
+
+            public OAuthMessageHandler(HttpMessageHandler innerHandler, string url, string username, string password
+                , string authority, string clientId, string redirectUrl = "")
+                : base(innerHandler)
+            {
+                _url = url;
+                _clientId = clientId;
+                _redirectUrl = redirectUrl;
+                _credential = new UserCredential(username, password);
+                _authContext = new AuthenticationContext(authority, false);
+            }
+
+            /// <summary>
+            /// Overrides the default HttpClient.SendAsync operation so that authentication can be done.
+            /// </summary>
+            /// <param name="request">          The request to send</param>
+            /// <param name="cancellationToken"></param>
+            /// <returns></returns>
+            protected override Task<HttpResponseMessage> SendAsync(
+                      HttpRequestMessage request, CancellationToken cancellationToken)
+            {
+                try
+                {
+                    request.Headers.Authorization = GetAuthHeader();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                return base.SendAsync(request, cancellationToken);
+            }
+
+            /// <summary>
+            /// Will refresh the ADAL AccessToken when it expires.
+            /// </summary>
+            /// <returns></returns>
+            private AuthenticationHeaderValue GetAuthHeader()
+            {
+                var authResult = _authContext.AcquireTokenAsync(_url, _clientId, _credential).Result;
+                return new AuthenticationHeaderValue("Bearer", authResult.AccessToken);
             }
         }
 

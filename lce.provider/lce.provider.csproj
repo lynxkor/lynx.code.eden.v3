@@ -1,32 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
+  <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-        <Company>lynxce.com</Company>
-        <Authors>lynx.kor</Authors>
-    </PropertyGroup>
-    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-        <DocumentationFile>Doc\lce.provider.xml</DocumentationFile>
-    </PropertyGroup>
-    <ItemGroup>
-        <PackageReference Include="NPinyin" Version="0.2.6321.26573" />
-        <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
-        <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
-        <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-        <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.2" />
-        <PackageReference Include="aliyun-net-sdk-core" Version="1.5.3" />
-        <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
-        <PackageReference Include="System.Text.Encoding" Version="4.3.0" />
-        <PackageReference Include="System.Text.Encoding.CodePages" Version="5.0.0" />
-    </ItemGroup>
-    <ItemGroup>
-        <Folder Include="Doc\" />
-        <Folder Include="Enums\" />
-        <Folder Include="Requests\" />
-    </ItemGroup>
-    <ItemGroup>
-      <None Update="Doc\lce.provider.xml">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </None>
-    </ItemGroup>
+    <Company>lynxce.com</Company>
+    <Authors>lynx.kor</Authors>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DocumentationFile>Doc\lce.provider.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="NPinyin.Core" Version="3.0.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
+    <PackageReference Include="System.Drawing.Common" Version="4.7.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.2" />
+    <PackageReference Include="aliyun-net-sdk-core" Version="1.5.3" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
+    <PackageReference Include="System.Text.Encoding" Version="4.3.0" />
+    <PackageReference Include="System.Text.Encoding.CodePages" Version="5.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Doc\" />
+    <Folder Include="Enums\" />
+    <Folder Include="Requests\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="Doc\lce.provider.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 </Project>

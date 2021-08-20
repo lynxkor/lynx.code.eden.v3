@@ -920,6 +920,16 @@
             <param name="orders">    </param>
             <returns></returns>
         </member>
+        <member name="M:lce.mscrm.engine.ServiceProxyExt.ListAll(Microsoft.Xrm.Sdk.IOrganizationService,System.String,System.Collections.Generic.IList{lce.mscrm.engine.ConditionItem},System.Collections.Generic.IList{System.String})">
+            <summary>
+            查询所有
+            </summary>
+            <param name="service">   </param>
+            <param name="entityName"></param>
+            <param name="conditions"></param>
+            <param name="columns">   </param>
+            <returns></returns>
+        </member>
         <member name="M:lce.mscrm.engine.ServiceProxyExt.Merge(Microsoft.Xrm.Sdk.IOrganizationService,System.Collections.Generic.IEnumerable{Microsoft.Xrm.Sdk.Entity})">
             <summary>
             数据合并

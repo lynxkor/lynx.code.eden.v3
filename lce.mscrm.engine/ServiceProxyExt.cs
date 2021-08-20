@@ -308,6 +308,20 @@ namespace lce.mscrm.engine
         }
 
         /// <summary>
+        /// 查询所有
+        /// </summary>
+        /// <param name="service">   </param>
+        /// <param name="entityName"></param>
+        /// <param name="conditions"></param>
+        /// <param name="columns">   </param>
+        /// <returns></returns>
+        public static IList<Entity> ListAll(this IOrganizationService service, string entityName, IList<ConditionItem> conditions, IList<string> columns = null)
+        {
+            var fetchXml = FetchXmlExt.FetchXml(entityName, columns, conditions);
+            return service.RetrieveAll(fetchXml);
+        }
+
+        /// <summary>
         /// 数据合并
         /// </summary>
         /// <param name="service"> </param>

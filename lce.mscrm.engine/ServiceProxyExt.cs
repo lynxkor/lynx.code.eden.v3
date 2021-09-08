@@ -81,6 +81,23 @@ namespace lce.mscrm.engine
         }
 
         /// <summary>
+        /// 更改用户业务部门
+        /// </summary>
+        /// <param name="service"></param>
+        /// <param name="userId"> </param>
+        /// <param name="bizId">  </param>
+        public static void ChangeUserBiz(this IOrganizationService service, Guid userId, Guid bizId)
+        {
+            var request = new SetBusinessSystemUserRequest
+            {
+                BusinessId = bizId,
+                UserId = userId,
+                ReassignPrincipal = new EntityReference("systemuser", userId)
+            };
+            service.Execute(request);
+        }
+
+        /// <summary>
         /// 统计数据行
         /// </summary>
         /// <param name="service"> </param>

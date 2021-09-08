@@ -666,6 +666,321 @@
             <param name="filterXml"> </param>
             <returns></returns>
         </member>
+        <member name="T:lce.mscrm.engine.ODataExt">
+            <summary>
+            action：ODataExt
+            </summary>
+        </member>
+        <member name="M:lce.mscrm.engine.ODataExt.Clone(System.Net.Http.HttpRequestMessage)">
+            <summary>
+            Clones a HttpRequestMessage instance
+            </summary>
+            <param name="request">The HttpRequestMessage to clone.</param>
+            <returns>A copy of the HttpRequestMessage</returns>
+        </member>
+        <member name="M:lce.mscrm.engine.ODataExt.Clone(System.Net.Http.HttpContent)">
+            <summary>
+            Clones a HttpContent instance
+            </summary>
+            <param name="content">The HttpContent to clone</param>
+            <returns>A copy of the HttpContent</returns>
+        </member>
+        <member name="M:lce.mscrm.engine.ODataExt.Delete(System.Net.Http.HttpClient,System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            Deletes an entity
+            </summary>
+            <param name="client"> </param>
+            <param name="path">   The path to the resource to delete</param>
+            <param name="headers">Any custom headers to control optional behaviors.</param>
+        </member>
+        <member name="M:lce.mscrm.engine.ODataExt.DeleteAsync(System.Net.Http.HttpClient,System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            Deletes an entity asychronously
+            </summary>
+            <param name="client"> </param>
+            <param name="path">   The path to the resource to delete.</param>
+            <param name="headers">Any custom headers to control optional behaviors.</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:lce.mscrm.engine.ODataExt.Get``1(System.Net.Http.HttpClient,System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            Gets a typed response from a specified resource.
+            </summary>
+            <typeparam name="T">The type of response</typeparam>
+            <param name="client"> </param>
+            <param name="path">   The path to the resource.</param>
+            <param name="headers">Any custom headers to control optional behaviors.</param>
+            <returns>The typed response from the request.</returns>
+        </member>
+        <member name="M:lce.mscrm.engine.ODataExt.Get(System.Net.Http.HttpClient,System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            Retrieves data from a specified resource.
+            </summary>
+            <param name="client"> </param>
+            <param name="path">   The path to the resource</param>
+            <param name="headers">Any custom headers to control optional behaviors.</param>
+            <returns>The response from the request.</returns>
+        </member>
+        <member name="M:lce.mscrm.engine.ODataExt.GetAsync``1(System.Net.Http.HttpClient,System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            Gets a typed response from a specified resource asychronously
+            </summary>
+            <typeparam name="T">The type of resource</typeparam>
+            <param name="client"> </param>
+            <param name="path">   The path to the resource.</param>
+            <param name="headers"></param>
+            <returns>Any custom headers to control optional behaviors.</returns>
+        </member>
+        <member name="M:lce.mscrm.engine.ODataExt.GetAsync(System.Net.Http.HttpClient,System.String,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            Retrieves data from a specified resource asychronously.
+            </summary>
+            <param name="client"> </param>
+            <param name="path">   The path to the resource.</param>
+            <param name="headers">Any custom headers to control optional behaviors.</param>
+            <returns>The response to the request.</returns>
+        </member>
+        <member name="M:lce.mscrm.engine.ODataExt.GetClient(System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            </summary>
+            <param name="url">      </param>
+            <param name="username"> </param>
+            <param name="password"> </param>
+            <param name="authority"></param>
+            <param name="callerId"> </param>
+            <param name="clientId"> </param>
+            <param name="version">  </param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.mscrm.engine.ODataExt.Patch(System.Net.Http.HttpClient,System.Uri,System.Object,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            Sends a PATCH request to update a resource.
+            </summary>
+            <param name="client"> </param>
+            <param name="uri">    </param>
+            <param name="body">   The payload to send to update the resource.</param>
+            <param name="headers">Any custom headers to control optional behaviors.</param>
+        </member>
+        <member name="M:lce.mscrm.engine.ODataExt.Patch(System.Net.Http.HttpClient,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            Sends a PATCH request to update a resource.
+            </summary>
+            <param name="client"> </param>
+            <param name="url">    </param>
+            <param name="body">   </param>
+            <param name="headers"></param>
+        </member>
+        <member name="M:lce.mscrm.engine.ODataExt.PatchAsync(System.Net.Http.HttpClient,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            Sends a PATCH request to update a resource asynchronously
+            </summary>
+            <param name="client"> </param>
+            <param name="url">    </param>
+            <param name="body">   </param>
+            <param name="headers"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.mscrm.engine.ODataExt.PatchAsync(System.Net.Http.HttpClient,System.Uri,System.Object,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            Sends a PATCH request to update a resource asynchronously
+            </summary>
+            <param name="client"> </param>
+            <param name="uri">    </param>
+            <param name="body">   The payload to send to update the resource.</param>
+            <param name="headers">Any custom headers to control optional behaviors.</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:lce.mscrm.engine.ODataExt.Post(System.Net.Http.HttpClient,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            Posts a payload to the specified resource.
+            </summary>
+            <param name="client"> </param>
+            <param name="path">   The path to the resource</param>
+            <param name="body">   The payload to send.</param>
+            <param name="headers">Any headers to control optional behaviors.</param>
+            <returns>The response from the request.</returns>
+        </member>
+        <member name="M:lce.mscrm.engine.ODataExt.PostAsync(System.Net.Http.HttpClient,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            Posts a payload to the specified resource asynchronously.
+            </summary>
+            <param name="client"> </param>
+            <param name="path">   The path to the resource.</param>
+            <param name="body">   The payload to send.</param>
+            <param name="headers">Any headers to control optional behaviors.</param>
+            <returns>The response from the request.</returns>
+        </member>
+        <member name="M:lce.mscrm.engine.ODataExt.PostCreate(System.Net.Http.HttpClient,System.String,System.Object)">
+            <summary>
+            Creates an entity and returns the URI
+            </summary>
+            <param name="client">       </param>
+            <param name="entitySetName">The entity set name of the entity to create.</param>
+            <param name="body">         The JObject containing the data of the entity to create.</param>
+            <returns>The Uri for the created entity record.</returns>
+        </member>
+        <member name="M:lce.mscrm.engine.ODataExt.PostCreateAsync(System.Net.Http.HttpClient,System.String,System.Object)">
+            <summary>
+            Creates an entity asynchronously and returns the URI
+            </summary>
+            <param name="client">       </param>
+            <param name="entitySetName">The entity set name of the entity to create.</param>
+            <param name="body">         The JObject containing the data of the entity to create.</param>
+            <returns>The Uri for the created entity record.</returns>
+        </member>
+        <member name="M:lce.mscrm.engine.ODataExt.PostGet``1(System.Net.Http.HttpClient,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            Sends a POST to create a typed entity and retrieves the created entity.
+            </summary>
+            <typeparam name="T">
+            The path to the entityset and any query string parameters to specify the properties to return.
+            </typeparam>
+            <param name="client"> </param>
+            <param name="path">   The path to the entityset.</param>
+            <param name="body">   The payload to send to create the entity record.</param>
+            <param name="headers">Any headers to control optional behaviors.</param>
+            <returns>The typed entity record created.</returns>
+        </member>
+        <member name="M:lce.mscrm.engine.ODataExt.PostGet(System.Net.Http.HttpClient,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            </summary>
+            <param name="client"> </param>
+            <param name="path">   </param>
+            <param name="body">   </param>
+            <param name="headers"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.mscrm.engine.ODataExt.PostGetAsync``1(System.Net.Http.HttpClient,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="client"> </param>
+            <param name="path">   </param>
+            <param name="body">   </param>
+            <param name="headers"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.mscrm.engine.ODataExt.PostGetAsync(System.Net.Http.HttpClient,System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.String}})">
+            <summary>
+            Sents a POST to create an entity and retrieves the created entity asynchronously.
+            </summary>
+            <param name="client"> </param>
+            <param name="path">   The path to the entityset.</param>
+            <param name="body">   The payload to send to create the entity record.</param>
+            <param name="headers">Any headers to control optional behaviors.</param>
+            <returns>An object containing data for the created entity.</returns>
+        </member>
+        <member name="M:lce.mscrm.engine.ODataExt.Put(System.Net.Http.HttpClient,System.String,System.String,System.String)">
+            <summary>
+            Updates a property of an entity
+            </summary>
+            <param name="client">  </param>
+            <param name="path">    The path to the entity.</param>
+            <param name="property">The name of the property to update.</param>
+            <param name="value">   The value to set.</param>
+        </member>
+        <member name="M:lce.mscrm.engine.ODataExt.Put(System.Net.Http.HttpClient,System.String,Newtonsoft.Json.Linq.JObject,System.Boolean)">
+            <summary>
+            Used to update metadata
+            </summary>
+            <param name="client">      </param>
+            <param name="path">        The path to the metadata resource.</param>
+            <param name="metadataItem">The payload to send to update the metadata resource.</param>
+            <param name="mergeLabels"> Whether any existing language labels should be merged.</param>
+        </member>
+        <member name="M:lce.mscrm.engine.ODataExt.PutAsync(System.Net.Http.HttpClient,System.String,System.String,System.String)">
+            <summary>
+            Updates a property of an entity asychronously
+            </summary>
+            <param name="client">  </param>
+            <param name="path">    The path to the entity.</param>
+            <param name="property">The name of the property to update.</param>
+            <param name="value">   The value to set.</param>
+            <returns>Task</returns>
+        </member>
+        <member name="M:lce.mscrm.engine.ODataExt.PutAsync(System.Net.Http.HttpClient,System.String,Newtonsoft.Json.Linq.JObject,System.Boolean)">
+            <summary>
+            Used to update metadata asychronously.
+            </summary>
+            <param name="client">      </param>
+            <param name="path">        The path to the metadata resource.</param>
+            <param name="metadataItem">The payload to send to update the metadata resource.</param>
+            <param name="mergeLabels"> Whether any existing language labels should be merged.</param>
+        </member>
+        <member name="M:lce.mscrm.engine.ODataExt.ParseError(System.Net.Http.HttpResponseMessage)">
+            <summary>
+            Parses the Web API error
+            </summary>
+            <param name="response">The response that failed.</param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.mscrm.engine.ODataExt.SendAsync(System.Net.Http.HttpClient,System.Net.Http.HttpRequestMessage,System.Net.Http.HttpCompletionOption,System.Int32)">
+            <summary>
+            Sends all requests with retry capabilities
+            </summary>
+            <param name="client">              </param>
+            <param name="request">             The request to send</param>
+            <param name="httpCompletionOption">
+            Indicates if HttpClient operations should be considered completed either as soon as a
+            response is available, or after reading the entire response message including the content.
+            </param>
+            <param name="retryCount">          The number of retry attempts</param>
+            <returns>The response for the request.</returns>
+        </member>
+        <member name="T:lce.mscrm.engine.ODataExt.OAuthMessageHandler">
+            <summary>
+            </summary>
+        </member>
+        <member name="M:lce.mscrm.engine.ODataExt.OAuthMessageHandler.#ctor(System.Net.Http.HttpMessageHandler,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            </summary>
+            <param name="innerHandler"></param>
+            <param name="url">         </param>
+            <param name="username">    </param>
+            <param name="password">    </param>
+            <param name="authority">   </param>
+            <param name="clientId">    </param>
+            <param name="redirectUrl"> </param>
+        </member>
+        <member name="M:lce.mscrm.engine.ODataExt.OAuthMessageHandler.SendAsync(System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)">
+            <summary>
+            Overrides the default HttpClient.SendAsync operation so that authentication can be done.
+            </summary>
+            <param name="request">          The request to send</param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.mscrm.engine.ODataExt.OAuthMessageHandler.GetAuthHeader">
+            <summary>
+            Will refresh the ADAL AccessToken when it expires.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:lce.mscrm.engine.ODataExt.ServiceException">
+            <summary>
+            An exception that captures data returned by the Web API
+            </summary>
+        </member>
+        <member name="M:lce.mscrm.engine.ODataExt.ServiceException.#ctor(System.Int32,System.Int32,System.String,System.String)">
+            <summary>
+            </summary>
+            <param name="errorcode">   </param>
+            <param name="statuscode">  </param>
+            <param name="reasonphrase"></param>
+            <param name="message">     </param>
+        </member>
+        <member name="P:lce.mscrm.engine.ODataExt.ServiceException.ErrorCode">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:lce.mscrm.engine.ODataExt.ServiceException.ReasonPhrase">
+            <summary>
+            </summary>
+        </member>
+        <member name="P:lce.mscrm.engine.ODataExt.ServiceException.StatusCode">
+            <summary>
+            </summary>
+        </member>
         <member name="T:lce.mscrm.engine.OptionSetExt">
             <summary>
             action:OptionSetExt
@@ -775,6 +1090,14 @@
             <param name="tartgetEntityId">  </param>
             <param name="relatedEntityName"></param>
             <param name="relatedEntityIds"> </param>
+        </member>
+        <member name="M:lce.mscrm.engine.ServiceProxyExt.ChangeUserBiz(Microsoft.Xrm.Sdk.IOrganizationService,System.Guid,System.Guid)">
+            <summary>
+            更改用户业务部门
+            </summary>
+            <param name="service"></param>
+            <param name="userId"> </param>
+            <param name="bizId">  </param>
         </member>
         <member name="M:lce.mscrm.engine.ServiceProxyExt.Count(Microsoft.Xrm.Sdk.IOrganizationService,System.String)">
             <summary>

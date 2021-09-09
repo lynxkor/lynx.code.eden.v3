@@ -19,13 +19,13 @@ namespace lce.provider
         /// <summary>
         /// 方圆几里计算
         /// </summary>
-        /// <param name="lng">经度</param>
-        /// <param name="lat">纬度</param>
+        /// <param name="lng">   经度</param>
+        /// <param name="lat">   纬度</param>
         /// <param name="minLng"></param>
         /// <param name="maxLng"></param>
         /// <param name="maxLat"></param>
         /// <param name="minLat"></param>
-        /// <param name="dis">距离，默认0.5km</param>
+        /// <param name="dis">   距离，默认0.5km</param>
         public static void MilesAround(double lng, double lat, out double minLng, out double maxLng, out double minLat, out double maxLat, double dis = 0.5)
         {
             double r = 6371;//地球半径千米  

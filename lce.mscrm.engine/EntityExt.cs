@@ -8,7 +8,6 @@
 */
 
 using System;
-using System.Linq;
 using System.Reflection;
 using lce.mscrm.engine.Attributes;
 using lce.provider;

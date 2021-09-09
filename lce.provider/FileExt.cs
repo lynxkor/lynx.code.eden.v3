@@ -15,30 +15,6 @@ namespace lce.provider
     public static class FileExt
     {
         /// <summary>
-        /// Get the file size.
-        /// </summary>
-        /// <returns>The size.</returns>
-        /// <param name="contentLength">Content length.</param>
-        public static string GetSize(long contentLength = 0)
-        {
-            var size = string.Empty;
-
-            if (contentLength / 1024 < 1024)
-            {
-                size = contentLength / 1024.00 + " KB";
-            }
-            else if (contentLength / 1024 / 1024 < 1024)
-            {
-                size = (contentLength / 1024.00 / 1024.00).ToString("f2") + " M";
-            }
-            else if (contentLength / 1024 / 1024 / 1024 < 1024)
-            {
-                size = (contentLength / 1024.00 / 1024.00 / 1024.00).ToString("f2") + " G";
-            }
-            return size;
-        }
-
-        /// <summary>
         /// Get the type of the MIME.
         /// </summary>
         /// <returns>The MIME type.</returns>
@@ -112,6 +88,30 @@ namespace lce.provider
                     break;
             }
             return mimeType;
+        }
+
+        /// <summary>
+        /// Get the file size.
+        /// </summary>
+        /// <returns>The size.</returns>
+        /// <param name="contentLength">Content length.</param>
+        public static string GetSize(long contentLength = 0)
+        {
+            var size = string.Empty;
+
+            if (contentLength / 1024 < 1024)
+            {
+                size = contentLength / 1024.00 + " KB";
+            }
+            else if (contentLength / 1024 / 1024 < 1024)
+            {
+                size = (contentLength / 1024.00 / 1024.00).ToString("f2") + " M";
+            }
+            else if (contentLength / 1024 / 1024 / 1024 < 1024)
+            {
+                size = (contentLength / 1024.00 / 1024.00 / 1024.00).ToString("f2") + " G";
+            }
+            return size;
         }
     }
 }

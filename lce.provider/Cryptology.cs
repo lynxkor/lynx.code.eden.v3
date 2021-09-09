@@ -19,19 +19,6 @@ namespace lce.provider
     public static class Cryptology
     {
         /// <summary>
-        /// To the md5.
-        /// </summary>
-        /// <returns>The md5.</returns>
-        /// <param name="input">Input.</param>
-        public static string ToMd5(this string input)
-        {
-            using (var provider = MD5.Create())
-            {
-                return BitConverter.ToString(provider.ComputeHash(Encoding.UTF8.GetBytes(input))).Replace("-", "").ToUpper();
-            }
-        }
-
-        /// <summary>
         /// 生成随机字符串
         /// </summary>
         /// <returns>The random.</returns>
@@ -90,6 +77,19 @@ namespace lce.provider
             Array.Copy(msecsArray, msecsArray.Length - 4, guidArray, guidArray.Length - 4, 4);
 
             return new Guid(guidArray);
+        }
+
+        /// <summary>
+        /// To the md5.
+        /// </summary>
+        /// <returns>The md5.</returns>
+        /// <param name="input">Input.</param>
+        public static string ToMd5(this string input)
+        {
+            using (var provider = MD5.Create())
+            {
+                return BitConverter.ToString(provider.ComputeHash(Encoding.UTF8.GetBytes(input))).Replace("-", "").ToUpper();
+            }
         }
 
         /// <summary>

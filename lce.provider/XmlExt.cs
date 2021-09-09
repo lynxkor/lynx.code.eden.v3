@@ -20,21 +20,6 @@ namespace lce.provider
     public static class XmlExt
     {
         /// <summary>
-        /// Xml to model.
-        /// </summary>
-        /// <returns>The model.</returns>
-        /// <param name="xml">Xml.</param>
-        /// <typeparam name="T">The 1st type parameter.</typeparam>
-        public static T XmlToModel<T>(this string xml)
-        {
-            using (var sr = new StringReader(xml))
-            {
-                var xmldes = new XmlSerializer(typeof(T));
-                return (T)xmldes.Deserialize(sr);
-            }
-        }
-
-        /// <summary>
         /// Model to the xml.
         /// </summary>
         /// <returns>The xml.</returns>
@@ -62,6 +47,21 @@ namespace lce.provider
             sr.Dispose();
             stream.Dispose();
             return str;
+        }
+
+        /// <summary>
+        /// Xml to model.
+        /// </summary>
+        /// <returns>The model.</returns>
+        /// <param name="xml">Xml.</param>
+        /// <typeparam name="T">The 1st type parameter.</typeparam>
+        public static T XmlToModel<T>(this string xml)
+        {
+            using (var sr = new StringReader(xml))
+            {
+                var xmldes = new XmlSerializer(typeof(T));
+                return (T)xmldes.Deserialize(sr);
+            }
         }
     }
 }

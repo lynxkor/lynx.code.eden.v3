@@ -83,13 +83,13 @@ namespace lce.provider.Responses
         public ResponseCode Code { get; set; } = ResponseCode.SUCCESS;
 
         /// <summary>
-        /// 状态信息
-        /// </summary>
-        public string Msg { get; set; } = ResponseCode.SUCCESS.Description();
-
-        /// <summary>
         /// 返回的数据内容
         /// </summary>
         public T Data { get; set; }
+
+        /// <summary>
+        /// 状态信息
+        /// </summary>
+        public string Msg { get; set; } = ResponseCode.SUCCESS.Description();
     }
 }

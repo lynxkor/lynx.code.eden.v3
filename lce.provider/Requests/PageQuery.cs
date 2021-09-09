@@ -17,6 +17,11 @@ namespace lce.provider.Requests
     public class PageQuery : BaseQuery
     {
         /// <summary>
+        /// 排序条件
+        /// </summary>
+        public Dictionary<string, bool> Orders { get; set; }
+
+        /// <summary>
         /// 頁码
         /// </summary>
         public int Page { get; set; } = 1;
@@ -25,10 +30,5 @@ namespace lce.provider.Requests
         /// 頁阀
         /// </summary>
         public int Size { get; set; } = 10;
-
-        /// <summary>
-        /// 排序条件
-        /// </summary>
-        public Dictionary<string, bool> Orders { get; set; }
     }
 }

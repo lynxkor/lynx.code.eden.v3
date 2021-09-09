@@ -24,20 +24,6 @@ namespace lce.provider
     public static class PredicateExt
     {
         /// <summary>
-        /// True
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        public static Expression<Func<T, bool>> True<T>() { return f => true; }
-
-        /// <summary>
-        /// False
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
-        public static Expression<Func<T, bool>> False<T>() { return f => false; }
-
-        /// <summary>
         /// Left And Right
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -51,6 +37,13 @@ namespace lce.provider
         }
 
         /// <summary>
+        /// False
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static Expression<Func<T, bool>> False<T>() { return f => false; }
+
+        /// <summary>
         /// Left Or Right
         /// </summary>
         /// <typeparam name="T"></typeparam>
@@ -62,5 +55,12 @@ namespace lce.provider
             var invoked = Expression.Invoke(right, left.Parameters.Cast<Expression>());
             return Expression.Lambda<Func<T, bool>>(Expression.OrElse(left.Body, invoked), left.Parameters);
         }
+
+        /// <summary>
+        /// True
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static Expression<Func<T, bool>> True<T>() { return f => true; }
     }
 }

@@ -102,25 +102,18 @@
             <summary>
             方圆几里计算
             </summary>
-            <param name="lng">经度</param>
-            <param name="lat">纬度</param>
+            <param name="lng">   经度</param>
+            <param name="lat">   纬度</param>
             <param name="minLng"></param>
             <param name="maxLng"></param>
             <param name="maxLat"></param>
             <param name="minLat"></param>
-            <param name="dis">距离，默认0.5km</param>
+            <param name="dis">   距离，默认0.5km</param>
         </member>
         <member name="T:lce.provider.Cryptology">
             <summary>
             密码/编码/验证码 生成器
             </summary>
-        </member>
-        <member name="M:lce.provider.Cryptology.ToMd5(System.String)">
-            <summary>
-            To the md5.
-            </summary>
-            <returns>The md5.</returns>
-            <param name="input">Input.</param>
         </member>
         <member name="M:lce.provider.Cryptology.Captcha(System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
@@ -144,6 +137,13 @@
             根据时间产生有序的GUID编码
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:lce.provider.Cryptology.ToMd5(System.String)">
+            <summary>
+            To the md5.
+            </summary>
+            <returns>The md5.</returns>
+            <param name="input">Input.</param>
         </member>
         <member name="M:lce.provider.Cryptology.Version(System.String,System.Boolean)">
             <summary>
@@ -490,19 +490,19 @@
             文件扩展类
             </summary>
         </member>
-        <member name="M:lce.provider.FileExt.GetSize(System.Int64)">
-            <summary>
-            Get the file size.
-            </summary>
-            <returns>The size.</returns>
-            <param name="contentLength">Content length.</param>
-        </member>
         <member name="M:lce.provider.FileExt.GetMimeType(System.String)">
             <summary>
             Get the type of the MIME.
             </summary>
             <returns>The MIME type.</returns>
             <param name="fileName">File name.</param>
+        </member>
+        <member name="M:lce.provider.FileExt.GetSize(System.Int64)">
+            <summary>
+            Get the file size.
+            </summary>
+            <returns>The size.</returns>
+            <param name="contentLength">Content length.</param>
         </member>
         <member name="T:lce.provider.HttpClientExt">
             <summary>
@@ -535,6 +535,30 @@
             <summary>
             POST
             </summary>
+            <param name="url">        </param>
+            <param name="body">       </param>
+            <param name="headers">    </param>
+            <param name="token">      </param>
+            <param name="scheme">     </param>
+            <param name="contentType"></param>
+            <param name="charSet">    </param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.HttpClientExt.PostAsync``1(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.String)">
+            <summary>
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="url">        </param>
+            <param name="param">      </param>
+            <param name="headers">    </param>
+            <param name="contentType"></param>
+            <param name="charSet">    </param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.HttpClientExt.PostAsync``1(System.String,System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.String,System.String,System.String)">
+            <summary>
+            </summary>
+            <typeparam name="T"></typeparam>
             <param name="url">        </param>
             <param name="body">       </param>
             <param name="headers">    </param>
@@ -660,7 +684,7 @@
             <para>创建时间：2016/5/25 10:10:58</para>
             <para>描述：appSettings add namevalue</para>
             <code><add key = "LogPath" value="C:\Log\" /></code>
-            <code><add key = "SoftName" value="Toolkit" /></code>
+            <code><add key = "SoftName" value="Toolkit"/></code>
             <para>> add description for Log 修改历史：</para>
              </summary>
         </member>
@@ -719,20 +743,6 @@
             lambda包装器
             </summary>
         </member>
-        <member name="M:lce.provider.PredicateExt.True``1">
-            <summary>
-            True
-            </summary>
-            <typeparam name="T"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:lce.provider.PredicateExt.False``1">
-            <summary>
-            False
-            </summary>
-            <typeparam name="T"></typeparam>
-            <returns></returns>
-        </member>
         <member name="M:lce.provider.PredicateExt.And``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
             <summary>
             Left And Right
@@ -742,6 +752,13 @@
             <param name="right"></param>
             <returns></returns>
         </member>
+        <member name="M:lce.provider.PredicateExt.False``1">
+            <summary>
+            False
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
         <member name="M:lce.provider.PredicateExt.Or``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
             <summary>
             Left Or Right
@@ -749,6 +766,13 @@
             <typeparam name="T"></typeparam>
             <param name="left"> </param>
             <param name="right"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.PredicateExt.True``1">
+            <summary>
+            True
+            </summary>
+            <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
         <member name="T:lce.provider.Requests.BaseQuery">
@@ -766,6 +790,11 @@
             分頁查询
             </summary>
         </member>
+        <member name="P:lce.provider.Requests.PageQuery.Orders">
+            <summary>
+            排序条件
+            </summary>
+        </member>
         <member name="P:lce.provider.Requests.PageQuery.Page">
             <summary>
             頁码
@@ -774,11 +803,6 @@
         <member name="P:lce.provider.Requests.PageQuery.Size">
             <summary>
             頁阀
-            </summary>
-        </member>
-        <member name="P:lce.provider.Requests.PageQuery.Orders">
-            <summary>
-            排序条件
             </summary>
         </member>
         <member name="T:lce.provider.Requests.ReportQuery">
@@ -850,14 +874,14 @@
             状态码
             </summary>
         </member>
-        <member name="P:lce.provider.Responses.BaseResponse`1.Msg">
-            <summary>
-            状态信息
-            </summary>
-        </member>
         <member name="P:lce.provider.Responses.BaseResponse`1.Data">
             <summary>
             返回的数据内容
+            </summary>
+        </member>
+        <member name="P:lce.provider.Responses.BaseResponse`1.Msg">
+            <summary>
+            状态信息
             </summary>
         </member>
         <member name="T:lce.provider.Responses.PageResponse`1">
@@ -1046,6 +1070,20 @@
             <returns><c>true</c>, if number was ised, <c>false</c> otherwise.</returns>
             <param name="Value">Value.</param>
         </member>
+        <member name="M:lce.provider.Verifier.VerifyBool(System.Object)">
+            <summary>
+            校验布尔值
+            </summary>
+            <param name="Value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.provider.Verifier.VerifyByte(System.Object)">
+            <summary>
+            校验是否为字节格式
+            </summary>
+            <param name="Value">要校验的值</param>
+            <returns>合法字节返回传入值,非法字节返回零</returns>
+        </member>
         <member name="M:lce.provider.Verifier.VerifyDateTime(System.Object)">
             <summary>
             校验是否为日期格式
@@ -1061,6 +1099,27 @@
             <param name="format"></param>
             <returns></returns>
         </member>
+        <member name="M:lce.provider.Verifier.VerifyDecimal(System.Object)">
+            <summary>
+            校验是否为Decimal型格式
+            </summary>
+            <param name="Value">要校验的值</param>
+            <returns>合法Decimal型返回传入值,非法Decimal型返回零</returns>
+        </member>
+        <member name="M:lce.provider.Verifier.VerifyDouble(System.Object)">
+            <summary>
+            校验是否为double型格式
+            </summary>
+            <param name="Value">要校验的值</param>
+            <returns>合法double型返回传入值,非法double型返回零</returns>
+        </member>
+        <member name="M:lce.provider.Verifier.VerifyInt(System.Object)">
+            <summary>
+            校验是否为整型格式
+            </summary>
+            <param name="Value">要校验的值</param>
+            <returns>合法整型返回传入值,非法整型返回零</returns>
+        </member>
         <member name="M:lce.provider.Verifier.VerifyLong(System.Object)">
             <summary>
             校验是否为长整型格式
@@ -1075,12 +1134,12 @@
             <param name="Value">要校验的值</param>
             <returns>合法短整型返回传入值,非法短整型返回零</returns>
         </member>
-        <member name="M:lce.provider.Verifier.VerifyInt(System.Object)">
+        <member name="M:lce.provider.Verifier.VerifySingle(System.Object)">
             <summary>
-            校验是否为整型格式
+            校验是否为single型格式
             </summary>
             <param name="Value">要校验的值</param>
-            <returns>合法整型返回传入值,非法整型返回零</returns>
+            <returns>合法single型返回传入值,非法single型返回零</returns>
         </member>
         <member name="M:lce.provider.Verifier.VerifyString(System.Object)">
             <summary>
@@ -1089,53 +1148,10 @@
             <param name="Value"></param>
             <returns></returns>
         </member>
-        <member name="M:lce.provider.Verifier.VerifyBool(System.Object)">
-            <summary>
-            校验布尔值
-            </summary>
-            <param name="Value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:lce.provider.Verifier.VerifyDouble(System.Object)">
-            <summary>
-            校验是否为double型格式
-            </summary>
-            <param name="Value">要校验的值</param>
-            <returns>合法double型返回传入值,非法double型返回零</returns>
-        </member>
-        <member name="M:lce.provider.Verifier.VerifySingle(System.Object)">
-            <summary>
-            校验是否为single型格式
-            </summary>
-            <param name="Value">要校验的值</param>
-            <returns>合法single型返回传入值,非法single型返回零</returns>
-        </member>
-        <member name="M:lce.provider.Verifier.VerifyDecimal(System.Object)">
-            <summary>
-            校验是否为Decimal型格式
-            </summary>
-            <param name="Value">要校验的值</param>
-            <returns>合法Decimal型返回传入值,非法Decimal型返回零</returns>
-        </member>
-        <member name="M:lce.provider.Verifier.VerifyByte(System.Object)">
-            <summary>
-            校验是否为字节格式
-            </summary>
-            <param name="Value">要校验的值</param>
-            <returns>合法字节返回传入值,非法字节返回零</returns>
-        </member>
         <member name="T:lce.provider.XmlExt">
             <summary>
             action：XmlExt
             </summary>
-        </member>
-        <member name="M:lce.provider.XmlExt.XmlToModel``1(System.String)">
-            <summary>
-            Xml to model.
-            </summary>
-            <returns>The model.</returns>
-            <param name="xml">Xml.</param>
-            <typeparam name="T">The 1st type parameter.</typeparam>
         </member>
         <member name="M:lce.provider.XmlExt.ToXml``1(``0)">
             <summary>
@@ -1143,6 +1159,14 @@
             </summary>
             <returns>The xml.</returns>
             <param name="model">Model.</param>
+            <typeparam name="T">The 1st type parameter.</typeparam>
+        </member>
+        <member name="M:lce.provider.XmlExt.XmlToModel``1(System.String)">
+            <summary>
+            Xml to model.
+            </summary>
+            <returns>The model.</returns>
+            <param name="xml">Xml.</param>
             <typeparam name="T">The 1st type parameter.</typeparam>
         </member>
     </members>

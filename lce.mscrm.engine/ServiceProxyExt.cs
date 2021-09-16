@@ -45,6 +45,22 @@ namespace lce.mscrm.engine
         }
 
         /// <summary>
+        /// 分派;把target分派给owner
+        /// </summary>
+        /// <param name="service"></param>
+        /// <param name="owner">  </param>
+        /// <param name="target"> </param>
+        public static void Assign(this IOrganizationService service, EntityReference owner, EntityReference target)
+        {
+            var assign = new AssignRequest
+            {
+                Assignee = owner,
+                Target = target
+            };
+            service.Execute(assign);
+        }
+
+        /// <summary>
         /// 给实体指定查找字段建立关联关系
         /// </summary>
         /// <param name="service">         </param>

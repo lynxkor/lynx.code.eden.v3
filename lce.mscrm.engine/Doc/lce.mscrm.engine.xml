@@ -1069,6 +1069,14 @@
             <param name="targetEntityName"></param>
             <param name="targetId">        </param>
         </member>
+        <member name="M:lce.mscrm.engine.ServiceProxyExt.Assign(Microsoft.Xrm.Sdk.IOrganizationService,Microsoft.Xrm.Sdk.EntityReference,Microsoft.Xrm.Sdk.EntityReference)">
+            <summary>
+            分派;把target分派给owner
+            </summary>
+            <param name="service"></param>
+            <param name="owner">  </param>
+            <param name="target"> </param>
+        </member>
         <member name="M:lce.mscrm.engine.ServiceProxyExt.Associate(Microsoft.Xrm.Sdk.IOrganizationService,System.String,System.Guid,System.String,System.String,System.Guid)">
             <summary>
             给实体指定查找字段建立关联关系

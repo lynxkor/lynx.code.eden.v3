@@ -100,7 +100,7 @@
         </member>
         <member name="M:lce.provider.CoordinateExt.MilesAround(System.Double,System.Double,System.Double@,System.Double@,System.Double@,System.Double@,System.Double)">
             <summary>
-            方圆几里计算
+            方圆几公里计算
             </summary>
             <param name="lng">   经度</param>
             <param name="lat">   纬度</param>

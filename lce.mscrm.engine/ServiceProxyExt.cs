@@ -308,6 +308,27 @@ namespace lce.mscrm.engine
         }
 
         /// <summary>
+        /// 共享记录（读与写）
+        /// </summary>
+        /// <param name="owner"> 要共享给用户或者团队</param>
+        /// <param name="target">要共享的记录</param>
+        public static void Grant(this IOrganizationService service, EntityReference owner, EntityReference target, bool writeable = false)
+        {
+            var accessMask = AccessRights.ReadAccess;
+            if (writeable) accessMask = AccessRights.WriteAccess | AccessRights.ReadAccess;
+            var grantAccessRequest = new GrantAccessRequest
+            {
+                Target = target,
+                PrincipalAccess = new PrincipalAccess
+                {
+                    Principal = owner,
+                    AccessMask = accessMask
+                }
+            };
+            service.Execute(grantAccessRequest);
+        }
+
+        /// <summary>
         /// 列表查询
         /// </summary>
         /// <param name="service">   </param>
@@ -541,6 +562,53 @@ namespace lce.mscrm.engine
                 return entitys.Entities.ToList();
             }
             return new List<Entity>();
+        }
+
+        /// <summary>
+        /// 取消共享
+        /// </summary>
+        /// <param name="service"></param>
+        /// <param name="target"> 要取消共享的记录</param>
+        /// <param name="revokee">要取消共享给用户或者团队</param>
+        public static void Revoke(this IOrganizationService service, EntityReference target, EntityReference revokee)
+        {
+            var revokeUserAccessReq = new RevokeAccessRequest
+            {
+                Revokee = revokee,
+                Target = target
+            };
+            service.Execute(revokeUserAccessReq);
+        }
+
+        /// <summary>
+        /// 取消共享
+        /// </summary>
+        /// <param name="service"></param>
+        /// <param name="target"> 要取消共享的记录</param>
+        /// <param name="ownerid">是否排除当前记录ownerid</param>
+        public static void RevokeAll(this IOrganizationService service, EntityReference target, EntityReference ownerid = null)
+        {
+            var accesses = service.RetrieveAccess(target);
+            if (null == accesses) return;
+            if (null != ownerid)
+                accesses = accesses.Where(x => x.Principal.Id != ownerid.Id).ToList();
+            foreach (var access in accesses)
+            {
+                service.Revoke(target, access.Principal);
+            }
+        }
+
+        private static IList<PrincipalAccess> RetrieveAccess(this IOrganizationService service, EntityReference target)
+        {
+            var accessRequest = new RetrieveSharedPrincipalsAndAccessRequest
+            {
+                Target = target
+            };
+
+            var accessResponse = (RetrieveSharedPrincipalsAndAccessResponse)service.Execute(accessRequest);
+            if (null != accessResponse && accessResponse.PrincipalAccesses.Length > 0)
+                return accessResponse.PrincipalAccesses;
+            return null;
         }
     }
 }

@@ -47,6 +47,18 @@ namespace lce.provider.Enums
         REQUEST_TIMEOUT = 408,
 
         /// <summary>
+        /// 参数非法
+        /// </summary>
+        [Description("请求出错")]
+        INVALID_ARGUMENTS = 4001,
+
+        /// <summary>
+        /// 格式非法
+        /// </summary>
+        [Description("请求出错")]
+        INVALID_FORMAT = 4002,
+
+        /// <summary>
         /// 服务一般性错误
         /// </summary>
         [Description("服务一般性错误")]

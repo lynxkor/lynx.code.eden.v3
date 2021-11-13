@@ -1226,6 +1226,13 @@
             <param name="caller"> </param>
             <returns></returns>
         </member>
+        <member name="M:lce.mscrm.engine.ServiceProxyExt.Grant(Microsoft.Xrm.Sdk.IOrganizationService,Microsoft.Xrm.Sdk.EntityReference,Microsoft.Xrm.Sdk.EntityReference,System.Boolean)">
+            <summary>
+            共享记录（读与写）
+            </summary>
+            <param name="owner"> 要共享给用户或者团队</param>
+            <param name="target">要共享的记录</param>
+        </member>
         <member name="M:lce.mscrm.engine.ServiceProxyExt.List(Microsoft.Xrm.Sdk.IOrganizationService,System.String,System.Collections.Generic.IList{lce.mscrm.engine.ConditionItem},System.Collections.Generic.IList{System.String})">
             <summary>
             列表查询
@@ -1319,6 +1326,22 @@
             <param name="fetchXml"></param>
             <param name="totals">  </param>
             <returns></returns>
+        </member>
+        <member name="M:lce.mscrm.engine.ServiceProxyExt.Revoke(Microsoft.Xrm.Sdk.IOrganizationService,Microsoft.Xrm.Sdk.EntityReference,Microsoft.Xrm.Sdk.EntityReference)">
+            <summary>
+            取消共享
+            </summary>
+            <param name="service"></param>
+            <param name="target"> 要取消共享的记录</param>
+            <param name="revokee">要取消共享给用户或者团队</param>
+        </member>
+        <member name="M:lce.mscrm.engine.ServiceProxyExt.RevokeAll(Microsoft.Xrm.Sdk.IOrganizationService,Microsoft.Xrm.Sdk.EntityReference,Microsoft.Xrm.Sdk.EntityReference)">
+            <summary>
+            取消共享
+            </summary>
+            <param name="service"></param>
+            <param name="target"> 要取消共享的记录</param>
+            <param name="ownerid">是否排除当前记录ownerid</param>
         </member>
         <member name="T:lce.mscrm.engine.SqlQueryExt">
             <summary>

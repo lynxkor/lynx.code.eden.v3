@@ -480,6 +480,16 @@
             请求响应超时
             </summary>
         </member>
+        <member name="F:lce.provider.Enums.ResponseCode.INVALID_ARGUMENTS">
+            <summary>
+            参数非法
+            </summary>
+        </member>
+        <member name="F:lce.provider.Enums.ResponseCode.INVALID_FORMAT">
+            <summary>
+            格式非法
+            </summary>
+        </member>
         <member name="F:lce.provider.Enums.ResponseCode.SERVER_ERROR">
             <summary>
             服务一般性错误

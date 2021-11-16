@@ -115,16 +115,17 @@
             密码/编码/验证码 生成器
             </summary>
         </member>
-        <member name="M:lce.provider.Cryptology.Captcha(System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:lce.provider.Cryptology.Captcha(System.Int32,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             生成随机字符串
             </summary>
             <returns>The random.</returns>
-            <param name="lenght">Lenght.</param>
-            <param name="useNum">If set to <c>true</c> use number.</param>
-            <param name="useLow">If set to <c>true</c> use low.</param>
-            <param name="useUpp">If set to <c>true</c> use upp.</param>
-            <param name="useSpe">If set to <c>true</c> use special char.</param>
+            <param name="lenght">  Lenght.</param>
+            <param name="useNum">  If set to <c>true</c> use number.</param>
+            <param name="useLow">  If set to <c>true</c> use low.</param>
+            <param name="useUpp">  If set to <c>true</c> use upp.</param>
+            <param name="useSpe">  If set to <c>true</c> use special char.</param>
+            <param name="isLeast1">If set to <c>true</c> least one char upset.</param>
         </member>
         <member name="M:lce.provider.Cryptology.Code">
             <summary>
@@ -694,7 +695,7 @@
             <para>创建时间：2016/5/25 10:10:58</para>
             <para>描述：appSettings add namevalue</para>
             <code><add key = "LogPath" value="C:\Log\" /></code>
-            <code><add key = "SoftName" value="Toolkit"/></code>
+            <code><add key = "AppName" value="Toolkit"/></code>
             <para>> add description for Log 修改历史：</para>
              </summary>
         </member>

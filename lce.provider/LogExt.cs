@@ -68,7 +68,7 @@ namespace lce.provider
     ///<para>创建时间：2016/5/25 10:10:58</para>
     ///<para>描述：appSettings add namevalue</para>
     ///<code><add key = "LogPath" value="C:\Log\" /></code>
-    ///<code><add key = "SoftName" value="Toolkit"/></code>
+    ///<code><add key = "AppName" value="Toolkit"/></code>
     ///<para>> add description for Log 修改历史：</para>
     /// </summary>
     public static class LogExt
@@ -96,7 +96,7 @@ namespace lce.provider
             var dirpath = ConfigExt.Get("LogPath");
             if (string.IsNullOrEmpty(dirpath))
                 dirpath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            SoftName = ConfigExt.Get("SoftName");
+            SoftName = ConfigExt.Get("AppName");
             if (string.IsNullOrEmpty(SoftName))
                 SoftName = Process.GetCurrentProcess().MainModule.ModuleName;
             LogDir = Path.Combine(dirpath, SoftName);

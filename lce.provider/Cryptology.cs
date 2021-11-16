@@ -10,6 +10,7 @@
 using System;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace lce.provider
 {
@@ -22,26 +23,42 @@ namespace lce.provider
         /// 生成随机字符串
         /// </summary>
         /// <returns>The random.</returns>
-        /// <param name="lenght">Lenght.</param>
-        /// <param name="useNum">If set to <c>true</c> use number.</param>
-        /// <param name="useLow">If set to <c>true</c> use low.</param>
-        /// <param name="useUpp">If set to <c>true</c> use upp.</param>
-        /// <param name="useSpe">If set to <c>true</c> use special char.</param>
-        public static string Captcha(int lenght, bool useNum = true, bool useLow = true, bool useUpp = true, bool useSpe = false)
+        /// <param name="lenght">  Lenght.</param>
+        /// <param name="useNum">  If set to <c>true</c> use number.</param>
+        /// <param name="useLow">  If set to <c>true</c> use low.</param>
+        /// <param name="useUpp">  If set to <c>true</c> use upp.</param>
+        /// <param name="useSpe">  If set to <c>true</c> use special char.</param>
+        /// <param name="isLeast1">If set to <c>true</c> least one char upset.</param>
+        public static string Captcha(int lenght,
+            bool useNum = true,
+            bool useLow = true,
+            bool useUpp = true,
+            bool useSpe = false,
+            bool isLeast1 = false)
         {
             var b = new byte[4];
             new RNGCryptoServiceProvider().GetBytes(b);
-            var r = new Random(BitConverter.ToInt32(b, 0));
-            var code = string.Empty;
+            var seed = new Random(BitConverter.ToInt32(b, 0));
             var dic = string.Empty;
             if (useNum) dic += "0123456789";
             if (useLow) dic += "abcdefghijklmnopqrstuvwxyz";
             if (useUpp) dic += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             if (useSpe) dic += "!#$%&'()*+,-./:;<=>?@[]^_`{|}~";
+            var code = string.Empty;
             var dicLength = dic.Length - 1;
             for (int i = 0; i < lenght; i++)
             {
-                code += dic.Substring(r.Next(0, dicLength), 1);
+                code += dic.Substring(seed.Next(0, dicLength), 1);
+            }
+
+            if (isLeast1)
+            {
+                var pattern = $"^{(useNum ? @"(?=.*\d)" : "")}{(useLow ? @"(?=.*[a-z])" : "")}{(useUpp ? @"(?=.*[A-Z])" : "")}{(useSpe ? @"(?=.*[!#$%&'()*+,-./:;<=>?@[]^_`{|}~])" : "")}{".{"}{lenght}{",}"}$";
+                //不符合正则，重新生成
+                if (!Regex.IsMatch(code, pattern))
+                {
+                    code = Captcha(lenght, useNum, useLow, useUpp, useSpe, isLeast1);
+                }
             }
             return code;
         }

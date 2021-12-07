@@ -46,6 +46,7 @@ namespace lce.mscrm.engine
         /// <returns></returns>
         public static string OptionLabel(this EntityMetadata entity, string attributeName, int? optionValue)
         {
+            if (attributeName.Contains('.')) attributeName = attributeName.Split('.').LastOrDefault();
             if (null == entity) return string.Empty;
             if (!optionValue.HasValue) return string.Empty;
             if (optionValue == -1) return string.Empty;

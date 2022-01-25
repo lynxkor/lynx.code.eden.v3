@@ -21,23 +21,6 @@ namespace lce.mscrm.engine
     public static class OptionSetExt
     {
         /// <summary>
-        /// 根据entity获取EntityMetadata
-        /// </summary>
-        /// <param name="service">   </param>
-        /// <param name="entityName"></param>
-        /// <returns></returns>
-        public static EntityMetadata EntityMetadata(this IOrganizationService service, string entityName)
-        {
-            var request = new RetrieveEntityRequest
-            {
-                LogicalName = entityName,
-                EntityFilters = EntityFilters.Attributes
-            };
-            var response = (RetrieveEntityResponse)service.Execute(request);
-            return response.EntityMetadata;
-        }
-
-        /// <summary>
         /// 通过选项值获取选项描述 这个效率更高，建议用这个 通过OptionsSetExt.EntityMetadata 先获取EntityMetadata
         /// </summary>
         /// <param name="entity">       EntityMetadata</param>

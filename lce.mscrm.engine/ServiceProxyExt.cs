@@ -17,6 +17,8 @@ using System.Xml.Linq;
 using Microsoft.Crm.Sdk.Messages;
 using Microsoft.Xrm.Sdk;
 using Microsoft.Xrm.Sdk.Client;
+using Microsoft.Xrm.Sdk.Messages;
+using Microsoft.Xrm.Sdk.Metadata;
 using Microsoft.Xrm.Sdk.Query;
 
 namespace lce.mscrm.engine
@@ -168,6 +170,23 @@ namespace lce.mscrm.engine
                 return result.TotalRecordCount;
             }
             return 0;
+        }
+
+        /// <summary>
+        /// 根据entity获取EntityMetadata
+        /// </summary>
+        /// <param name="service">   </param>
+        /// <param name="entityName"></param>
+        /// <returns></returns>
+        public static EntityMetadata EntityMetadata(this IOrganizationService service, string entityName)
+        {
+            var request = new RetrieveEntityRequest
+            {
+                LogicalName = entityName,
+                EntityFilters = EntityFilters.Attributes
+            };
+            var response = (RetrieveEntityResponse)service.Execute(request);
+            return response.EntityMetadata;
         }
 
         /// <summary>

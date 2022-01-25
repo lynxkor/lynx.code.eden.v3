@@ -986,14 +986,6 @@
             action:OptionSetExt
             </summary>
         </member>
-        <member name="M:lce.mscrm.engine.OptionSetExt.EntityMetadata(Microsoft.Xrm.Sdk.IOrganizationService,System.String)">
-            <summary>
-            根据entity获取EntityMetadata
-            </summary>
-            <param name="service">   </param>
-            <param name="entityName"></param>
-            <returns></returns>
-        </member>
         <member name="M:lce.mscrm.engine.OptionSetExt.OptionLabel(Microsoft.Xrm.Sdk.Metadata.EntityMetadata,System.String,System.Nullable{System.Int32})">
             <summary>
             通过选项值获取选项描述 这个效率更高，建议用这个 通过OptionsSetExt.EntityMetadata 先获取EntityMetadata
@@ -1131,6 +1123,14 @@
             <param name="service">   </param>
             <param name="entityName"></param>
             <param name="filters">   </param>
+            <returns></returns>
+        </member>
+        <member name="M:lce.mscrm.engine.ServiceProxyExt.EntityMetadata(Microsoft.Xrm.Sdk.IOrganizationService,System.String)">
+            <summary>
+            根据entity获取EntityMetadata
+            </summary>
+            <param name="service">   </param>
+            <param name="entityName"></param>
             <returns></returns>
         </member>
         <member name="M:lce.mscrm.engine.ServiceProxyExt.Get(Microsoft.Xrm.Sdk.IOrganizationService,System.String,System.Guid,System.String)">

@@ -209,6 +209,41 @@ namespace lce.provider
                         sb.AppendFormat(CultureInfo.InvariantCulture, format, new object[] { line, cols, fileName });
                     }
                 }
+                if (null != ex.InnerException)
+                {
+                    sb.Append($"[InnerException]desc:{ex.InnerException.Message}\r\n");
+                    var ist = new StackTrace(ex.InnerException, true);
+                    foreach (var frame in ist.GetFrames())
+                    {
+                        var method = frame.GetMethod();
+                        if (method == null) continue;
+                        if (method.ReflectedType == typeof(LogExt)) continue;
+                        string name = method.DeclaringType != null ? method.DeclaringType.FullName : string.Empty;
+                        if (name.StartsWith("System.")) continue;
+
+                        string fileName = null;
+                        try
+                        {
+                            fileName = frame.GetFileName();
+                        }
+                        catch (NotSupportedException)
+                        {
+                            continue;
+                        }
+                        catch (SecurityException)
+                        {
+                            continue;
+                        }
+
+                        sb.Append($"@ {(method.DeclaringType != null ? method.ReflectedType.FullName.Replace('+', '.') : string.Empty)}:{ method.Name}\r\n");
+                        var line = frame.GetFileLineNumber();
+                        if (line > 0 && !string.IsNullOrEmpty(fileName))
+                        {
+                            var cols = frame.GetFileColumnNumber();
+                            sb.AppendFormat(CultureInfo.InvariantCulture, format, new object[] { line, cols, fileName });
+                        }
+                    }
+                }
             }
             sb.Append("\r\n");
             logStr = sb.ToString();

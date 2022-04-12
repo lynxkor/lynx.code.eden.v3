@@ -385,14 +385,13 @@
             <param name="model"></param>
             <returns></returns>
         </member>
-        <member name="M:lce.mscrm.engine.EntityExt.ToModel``1(Microsoft.Xrm.Sdk.Entity,Microsoft.Xrm.Sdk.Metadata.EntityMetadata)">
+        <member name="M:lce.mscrm.engine.EntityExt.ToModel``1(Microsoft.Xrm.Sdk.Entity)">
             <summary>
             Dynamics Entity To Model
             <para>Model's property need flag EntityColumnAttribute.</para>
             </summary>
             <typeparam name="T"></typeparam>
-            <param name="entity">  </param>
-            <param name="metadata"></param>
+            <param name="entity"></param>
             <returns></returns>
         </member>
         <member name="T:lce.mscrm.engine.FetchXmlExt">

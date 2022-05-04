@@ -63,10 +63,10 @@ namespace lce.mscrm.engine
         public static string FetchXml(string entityName, string columnsXml, string filterXml = "", string ordersXml = "", string linkXml = "", int page = 0, int size = 0)
         {
             if (string.IsNullOrEmpty(entityName)) return null;
-            var header = "<fetch version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>";
+            var header = "<fetch no-lock='true' version='1.0' output-format='xml-platform' mapping='logical' distinct='false'>";
             if (0 != page && 0 != size)
             {
-                header = $"<fetch returntotalrecordcount='true' distinct='false' {(page == 0 ? "" : $" page='{page}'")} {(size == 0 ? "" : $" count='{size}'")}>";
+                header = $"<fetch no-lock='true' returntotalrecordcount='true' distinct='false' {(page == 0 ? "" : $" page='{page}'")} {(size == 0 ? "" : $" count='{size}'")}>";
             }
             return
 $@"{header}

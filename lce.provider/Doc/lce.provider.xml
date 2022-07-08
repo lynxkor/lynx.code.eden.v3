@@ -481,6 +481,11 @@
             请求响应超时
             </summary>
         </member>
+        <member name="F:lce.provider.Enums.ResponseCode.REQUEST_ERRORCODE">
+            <summary>
+            不允许删除配件或项目
+            </summary>
+        </member>
         <member name="F:lce.provider.Enums.ResponseCode.INVALID_ARGUMENTS">
             <summary>
             参数非法
@@ -893,6 +898,10 @@
         <member name="P:lce.provider.Responses.BaseResponse`1.Msg">
             <summary>
             状态信息
+            </summary>
+        </member>
+        <member name="P:lce.provider.Responses.BaseResponse`1.Success">
+            <summary>
             </summary>
         </member>
         <member name="T:lce.provider.Responses.PageResponse`1">

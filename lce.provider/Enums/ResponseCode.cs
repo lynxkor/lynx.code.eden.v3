@@ -47,6 +47,12 @@ namespace lce.provider.Enums
         REQUEST_TIMEOUT = 408,
 
         /// <summary>
+        /// 不允许删除配件或项目
+        /// </summary>
+        [Description("请求失败")]
+        REQUEST_ERRORCODE = 4000,
+
+        /// <summary>
         /// 参数非法
         /// </summary>
         [Description("请求出错")]

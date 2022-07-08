@@ -20,7 +20,8 @@ namespace lce.provider.Responses
         /// <summary>
         /// 请求响应体
         /// </summary>
-        public BaseResponse() { }
+        public BaseResponse()
+        { }
 
         /// <summary>
         /// 请求响应体
@@ -91,5 +92,9 @@ namespace lce.provider.Responses
         /// 状态信息
         /// </summary>
         public string Msg { get; set; } = ResponseCode.SUCCESS.Description();
+
+        /// <summary>
+        /// </summary>
+        public bool Success { get; set; } = true;
     }
 }
